@@ -1,0 +1,262 @@
+// MetaMask Builder Hub Theme - Common Styles
+// Dark mode theme using MetaMask brand colors
+
+// Color System
+:root {
+  --mm-bg-primary: #0D0D0D;
+  --mm-bg-secondary: #1A1A1A;
+  --mm-bg-tertiary: #2A2A2A;
+  --mm-accent: #FF5C16;
+  --mm-accent-light: #FFA680;
+  --mm-accent-dark: #661800;
+  --mm-text-primary: #FFFFFF;
+  --mm-text-secondary: #A0A0A0;
+  --mm-purple: #d075ff;
+  --mm-purple-dark: #3d065f;
+  --mm-blue: #89B0FF;
+  --mm-green: #BAF24A;
+}
+
+// Base body styling
+body {
+  background-color: var(--mm-bg-primary);
+  color: var(--mm-text-primary);
+}
+
+// Hide sidebar navigation
+.sidebar-wrapper {
+  display: none !important;
+}
+
+// Hide categories sidebar widget
+.sidebar-section-categories {
+  display: none !important;
+}
+
+// Hide suggested topics
+.suggested-topics {
+  display: none !important;
+}
+
+// Hide user badges and trust levels
+.badge-wrapper,
+.user-badge,
+.trust-level {
+  display: none !important;
+}
+
+// Hide default header navigation items
+.d-header .header-buttons,
+.d-header .header-links {
+  // Keep search and user menu, hide others
+}
+
+// Base typography
+body,
+p,
+li {
+  color: var(--mm-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--mm-text-primary);
+  font-weight: 600;
+}
+
+// Links
+a {
+  color: var(--mm-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--mm-accent-light);
+  }
+
+  &:visited {
+    color: var(--mm-accent);
+  }
+}
+
+// Buttons
+.btn {
+  background-color: var(--mm-accent);
+  color: var(--mm-text-primary);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: var(--mm-accent-light);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.btn-primary {
+    background-color: var(--mm-accent);
+    
+    &:hover {
+      background-color: var(--mm-accent-light);
+    }
+  }
+}
+
+// Form inputs
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  background-color: var(--mm-bg-secondary);
+  color: var(--mm-text-primary);
+  border: 1px solid var(--mm-bg-tertiary);
+  border-radius: 4px;
+  padding: 10px;
+
+  &:focus {
+    outline: none;
+    border-color: var(--mm-accent);
+    box-shadow: 0 0 0 2px rgba(255, 92, 22, 0.2);
+  }
+}
+
+// Topic list styling
+.topic-list {
+  .topic-list-item {
+    background-color: var(--mm-bg-secondary);
+    border: 1px solid var(--mm-bg-tertiary);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 16px;
+    transition: border-color 0.2s ease, transform 0.1s ease;
+
+    &:hover {
+      border-color: var(--mm-accent);
+      transform: translateX(4px);
+    }
+  }
+
+  .topic-title {
+    color: var(--mm-text-primary);
+    font-weight: 500;
+  }
+
+  .topic-meta {
+    color: var(--mm-text-secondary);
+    font-size: 0.9em;
+  }
+}
+
+// Post styling
+.topic-post {
+  background-color: var(--mm-bg-secondary);
+  border: 1px solid var(--mm-bg-tertiary);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .post-content {
+    color: var(--mm-text-primary);
+  }
+
+  .post-author {
+    color: var(--mm-text-secondary);
+  }
+}
+
+// Code blocks
+pre,
+code {
+  background-color: var(--mm-purple-dark) !important;
+  color: var(--mm-text-primary);
+  border-radius: 4px;
+}
+
+pre {
+  padding: 16px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+code {
+  padding: 2px 6px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mm-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mm-bg-tertiary);
+  border-radius: 5px;
+
+  &:hover {
+    background: var(--mm-accent-dark);
+  }
+}
+
+// Header styling
+.d-header {
+  background-color: var(--mm-bg-secondary);
+  border-bottom: 2px solid var(--mm-accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+// Navigation
+.nav-pills > li > a {
+  color: var(--mm-text-secondary);
+
+  &:hover,
+  &.active {
+    color: var(--mm-accent);
+    background-color: transparent;
+  }
+}
+
+// Category boxes (hidden, replaced by homepage grid)
+.category-boxes {
+  display: none !important;
+}
+
+// Topic status icons
+.topic-status-info {
+  color: var(--mm-accent);
+}
+
+// Loading spinner
+.spinner {
+  border-color: var(--mm-accent);
+}
+
+// Alert/notice boxes
+.alert {
+  background-color: var(--mm-bg-secondary);
+  border-left: 4px solid var(--mm-accent);
+  color: var(--mm-text-primary);
+}
+
+// Search
+.search-container {
+  .search-input {
+    background-color: var(--mm-bg-secondary);
+    color: var(--mm-text-primary);
+    border-color: var(--mm-bg-tertiary);
+
+    &:focus {
+      border-color: var(--mm-accent);
+    }
+  }
+}

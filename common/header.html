@@ -1,0 +1,47 @@
+<header class="d-header">
+  <div class="wrap">
+    <div class="contents">
+      <div class="title">
+        <a href="/">
+          <span class="logo">MetaMask Builder Hub</span>
+        </a>
+      </div>
+      <div class="panel">
+        {{mount-widget widget="search"}}
+        {{mount-widget widget="user-menu"}}
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+.d-header {
+  background-color: var(--mm-bg-secondary);
+  border-bottom: 2px solid var(--mm-accent);
+  padding: 12px 0;
+}
+
+.d-header .wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.d-header .contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.d-header .title .logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mm-text-primary);
+}
+
+.d-header .panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+</style>

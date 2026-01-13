@@ -1,0 +1,12 @@
+{
+  "name": "MetaMask Builder Hub",
+  "about_url": "https://github.com/MetaMask/mm-builder-hub-theme",
+  "license_url": "https://github.com/MetaMask/mm-builder-hub-theme/blob/main/LICENSE",
+  "component": true,
+  "assets": {
+    "common": "common",
+    "desktop": "desktop",
+    "mobile": "mobile"
+  },
+  "color_schemes": {}
+}
