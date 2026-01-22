@@ -4,23 +4,23 @@
   "license_url": "https://github.com/MetaMask/mm-builder-hub-theme/blob/main/LICENSE",
   "color_schemes": {
     "metamask-light": {
-      "primary": "454545",
-      "secondary": "F6FBFC",
-      "tertiary": "FF5C16",
+      "primary": "0a0a0a",
+      "secondary": "ffffff",
+      "tertiary": "ff5c16",
       "header_background": "ffffff",
-      "header_primary": "111111",
-      "selected": "FFE5D9",
-      "hover": "FFE5D9"
+      "header_primary": "0a0a0a",
+      "selected": "e9edf6",
+      "hover": "e9edf6"
     },
     "metamask-dark": {
-      "primary": "e0e0e0",
-      "secondary": "2d2d2d",
-      "tertiary": "FF5C16",
-      "header_background": "202020",
-      "header_primary": "e0e0e0",
-      "highlight": "FF5C16",
-      "selected": "2A1A0D",
-      "hover": "2A1A0D"
+      "primary": "ffffff",
+      "secondary": "0a0a0a",
+      "tertiary": "ff5c16",
+      "header_background": "0a0a0a",
+      "header_primary": "ffffff",
+      "highlight": "ff5c16",
+      "selected": "242628",
+      "hover": "242628"
     }
   }
 }
