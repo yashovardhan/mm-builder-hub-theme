@@ -7,5 +7,25 @@
     "desktop": "desktop",
     "mobile": "mobile"
   },
-  "color_schemes": {}
+  "color_schemes": {
+    "metamask-light": {
+      "primary": "2C2C2C",
+      "secondary": "FAFAFA",
+      "tertiary": "FF5C16",
+      "header_background": "FFFFFF",
+      "header_primary": "0D0D0D",
+      "selected": "FFE5D9",
+      "hover": "FFE5D9"
+    },
+    "metamask-dark": {
+      "primary": "E0E0E0",
+      "secondary": "1A1A1A",
+      "tertiary": "FF5C16",
+      "header_background": "0D0D0D",
+      "header_primary": "E0E0E0",
+      "highlight": "FF5C16",
+      "selected": "2A1A0D",
+      "hover": "2A1A0D"
+    }
+  }
 }
