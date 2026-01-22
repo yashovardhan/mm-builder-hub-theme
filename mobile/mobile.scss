@@ -20,22 +20,22 @@ body {
 // LAYOUT
 // ============================================================================
 .wrap {
-  padding: 0 var(--mm-space-md);
+  padding: 0 12px;
 }
 
 #main-outlet {
-  padding-top: var(--mm-space-md);
+  padding-top: 8px;
 }
 
 // Single column layout on mobile
 #main-outlet-wrapper {
   display: block;
-  padding: 0 var(--mm-space-md);
+  padding: 0 12px;
 
   .sidebar-wrapper {
     position: relative;
     top: 0;
-    margin-bottom: var(--mm-space-lg);
+    margin-bottom: 12px;
     max-height: none;
   }
 }
@@ -151,28 +151,28 @@ body {
 // ============================================================================
 .category-boxes {
   grid-template-columns: 1fr;
-  gap: var(--mm-space-md);
-  margin: var(--mm-space-md) 0;
+  gap: 10px;
+  margin: 10px 0;
 
   .category-box {
-    --mm-clip-md: 1em;
+    --mm-clip-md: 0.8em;
 
     .category-details {
-      padding: var(--mm-space-md);
+      padding: 12px;
       min-height: auto;
     }
 
     .category-title {
-      font-size: 1.125em;
+      font-size: 1em;
     }
 
     .category-description {
-      font-size: 0.875em;
+      font-size: 0.8125em;
     }
 
     // Smaller decorative shape
     &::after {
-      width: 8em;
+      width: 70px;
       opacity: 0.3;
     }
   }
@@ -182,7 +182,7 @@ body {
 // TOPIC LIST - Mobile Compact
 // ============================================================================
 .topic-list {
-  border-spacing: 0 var(--mm-space-xs);
+  border-spacing: 0 4px;
 
   // Hide some columns on mobile
   th.posters,
@@ -195,15 +195,15 @@ body {
   }
 
   th {
-    padding: var(--mm-space-xs) var(--mm-space-sm);
+    padding: 4px 8px;
     font-size: 0.6875em;
   }
 
   .topic-list-item {
-    --mm-clip-xs: 0.5em;
+    --mm-clip-xs: 0.4em;
 
     td {
-      padding: var(--mm-space-sm);
+      padding: 8px 10px;
     }
 
     .title {
@@ -221,23 +221,23 @@ body {
 // POST LAYOUT - Mobile
 // ============================================================================
 .topic-post {
-  --mm-clip-md: 1em;
-  margin-bottom: var(--mm-space-md);
+  --mm-clip-md: 0.8em;
+  margin-bottom: 10px;
 
   .row {
-    padding: var(--mm-space-md);
+    padding: 10px 12px;
     display: block;
   }
 
   .topic-avatar {
     display: flex;
     align-items: center;
-    gap: var(--mm-space-sm);
-    margin-bottom: var(--mm-space-sm);
+    gap: 8px;
+    margin-bottom: 8px;
 
     img.avatar {
-      width: 2.5em;
-      height: 2.5em;
+      width: 36px;
+      height: 36px;
     }
   }
 
@@ -250,13 +250,13 @@ body {
     display: flex;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    gap: var(--mm-space-xs);
-    padding-bottom: var(--mm-space-xs);
+    gap: 4px;
+    padding-bottom: 4px;
 
     .btn {
       flex: 0 0 auto;
-      min-height: 2.5em;
-      padding: var(--mm-space-xs) var(--mm-space-sm);
+      min-height: 32px;
+      padding: 4px 10px;
     }
   }
 }
@@ -472,33 +472,33 @@ body {
 // CUSTOM SEARCH BANNER - Mobile Compact
 // ============================================================================
 .custom-search-banner-wrap {
-  --mm-clip-lg: 1.5em;
-  padding: var(--mm-space-lg) var(--mm-space-md);
-  margin: 0 calc(-1 * var(--mm-space-md)) var(--mm-space-md) calc(-1 * var(--mm-space-md));
+  --mm-clip-lg: 1em;
+  padding: 16px 14px;
+  margin: 0 -12px 12px -12px;
 
   .custom-search-banner-headline,
   h1 {
-    font-size: 1.5em;
+    font-size: 1.375em;
     line-height: 1.2;
   }
 
   p {
-    font-size: 0.9375em;
+    font-size: 0.875em;
   }
 
   // Smaller decorative elements
   &::before {
-    width: 16em;
-    height: 16em;
-    right: -4em;
-    top: -4em;
+    width: 120px;
+    height: 120px;
+    right: -40px;
+    top: -40px;
   }
 
   &::after {
-    width: 12em;
-    height: 12em;
+    width: 100px;
+    height: 100px;
     left: -5%;
-    bottom: -6em;
+    bottom: -50px;
   }
 }
 

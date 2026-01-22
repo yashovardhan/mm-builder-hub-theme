@@ -10,11 +10,11 @@
 .wrap {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 var(--mm-space-xl);
+  padding: 0 20px;
 }
 
 #main-outlet {
-  padding-top: var(--mm-space-lg);
+  padding-top: 12px;
 }
 
 // ============================================================================
@@ -46,22 +46,22 @@
 // ============================================================================
 #main-outlet-wrapper {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--mm-space-xl);
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 var(--mm-space-xl);
+  padding: 0 20px;
 
   &.has-sidebar {
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 240px 1fr;
   }
 
   .sidebar-wrapper {
     grid-column: 2;
     position: sticky;
-    top: 5em;
+    top: 60px;
     height: fit-content;
-    max-height: calc(100vh - 6em);
+    max-height: calc(100vh - 70px);
   }
 
   #main-outlet {
@@ -84,18 +84,18 @@
 // CATEGORY CARDS - Desktop Grid
 // ============================================================================
 .category-boxes {
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: var(--mm-space-lg);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
 
   .category-box {
     .category-details {
-      padding: var(--mm-space-xl);
-      min-height: 15em;
+      padding: 20px;
+      min-height: 140px;
     }
 
     // Larger decorative shape on desktop
     &::after {
-      width: 14em;
+      width: 120px;
     }
   }
 }
@@ -104,16 +104,16 @@
 // TOPIC LIST - Desktop Enhancements
 // ============================================================================
 .topic-list {
-  border-spacing: 0 var(--mm-space-sm);
+  border-spacing: 0 6px;
 
   th {
-    padding: var(--mm-space-sm) var(--mm-space-md);
-    font-size: 0.8125em;
+    padding: 6px 12px;
+    font-size: 0.75em;
   }
 
   .topic-list-item {
     td {
-      padding: var(--mm-space-md);
+      padding: 10px 14px;
     }
 
     // Show more info on hover
@@ -125,9 +125,9 @@
     }
 
     &:hover .topic-excerpt {
-      max-height: 6em;
+      max-height: 60px;
       opacity: 1;
-      margin-top: var(--mm-space-xs);
+      margin-top: 4px;
     }
   }
 }
@@ -137,14 +137,14 @@
 // ============================================================================
 .topic-post {
   .row {
-    padding: var(--mm-space-lg);
+    padding: 14px 18px;
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: var(--mm-space-lg);
+    gap: 14px;
   }
 
   .topic-avatar {
-    width: 3.75em;
+    width: 48px;
   }
 
   .topic-body {
@@ -157,11 +157,11 @@
 // ============================================================================
 .sidebar-wrapper {
   .sidebar-sections {
-    padding: var(--mm-space-xs) 0;
+    padding: 4px 0;
   }
 
   .sidebar-section {
-    margin-bottom: var(--mm-space-lg);
+    margin-bottom: 12px;
 
     &:last-child {
       margin-bottom: 0;
@@ -169,7 +169,7 @@
   }
 
   .sidebar-section-link-wrapper a {
-    padding: var(--mm-space-sm) var(--mm-space-md);
+    padding: 6px 12px;
   }
 }
 
@@ -224,33 +224,33 @@
 // CUSTOM SEARCH BANNER - Desktop Hero
 // ============================================================================
 .custom-search-banner-wrap {
-  padding: var(--mm-space-xl) var(--mm-space-lg);
-  margin-bottom: var(--mm-space-xl);
+  padding: 28px 24px;
+  margin-bottom: 20px;
 
   .custom-search-banner-headline,
   h1 {
-    font-size: 3em;
-    max-width: 70em;
+    font-size: 2em;
+    max-width: 700px;
   }
 
   p {
-    font-size: 1.25em;
-    max-width: 60em;
+    font-size: 1em;
+    max-width: 600px;
   }
 
   // Larger decorative elements
   &::before {
-    width: 40em;
-    height: 40em;
-    right: -8em;
-    top: -8em;
+    width: 250px;
+    height: 250px;
+    right: -60px;
+    top: -60px;
   }
 
   &::after {
-    width: 30em;
-    height: 30em;
+    width: 200px;
+    height: 200px;
     left: 5%;
-    bottom: -12em;
+    bottom: -80px;
   }
 }
 
