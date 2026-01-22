@@ -1,26 +1,39 @@
 {
-  "name": "MetaMask Builder Hub",
+  "name": "MetaMask Builder Hub - Docs Style",
   "about_url": "https://github.com/MetaMask/mm-builder-hub-theme",
   "license_url": "https://github.com/MetaMask/mm-builder-hub-theme/blob/main/LICENSE",
+  "minimum_discourse_version": "2.7.0",
   "color_schemes": {
-    "metamask-light": {
+    "MetaMask Light": {
       "primary": "0a0a0a",
       "secondary": "ffffff",
-      "tertiary": "ff5c16",
+      "tertiary": "d075ff",
+      "quaternary": "baf24a",
       "header_background": "ffffff",
       "header_primary": "0a0a0a",
-      "selected": "e9edf6",
+      "highlight": "eac2ff",
+      "danger": "ff5c16",
+      "success": "baf24a",
+      "love": "d075ff",
+      "selected": "f7f9fc",
       "hover": "e9edf6"
     },
-    "metamask-dark": {
+    "MetaMask Dark": {
       "primary": "ffffff",
       "secondary": "0a0a0a",
-      "tertiary": "ff5c16",
+      "tertiary": "baf24a",
+      "quaternary": "d075ff",
       "header_background": "0a0a0a",
       "header_primary": "ffffff",
       "highlight": "baf24a",
+      "danger": "ff5c16",
+      "success": "baf24a",
+      "love": "d075ff",
       "selected": "242628",
-      "hover": "242628"
+      "hover": "1b1b1b"
     }
+  },
+  "modifiers": {
+    "serialize_topic_excerpts": true
   }
 }

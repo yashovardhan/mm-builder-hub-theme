@@ -1,190 +1,425 @@
-// MetaMask Builder Hub - Desktop Styles
-// Wild MetaMask docs-style with decorative elements
+// ============================================================================
+// MetaMask Builder Hub - Desktop Specific Styles
+// Enhanced layouts and interactions for larger screens
+// ============================================================================
 
-// Main outlet - Clipped corners
-body:not(.navigation-categories, .navigation-topics) #main-outlet {
-  background: var(--secondary);
-  padding: 2em;
-  margin-top: 1em;
-  border-radius: 0;
-  clip-path: polygon(
-    0 2rem,
-    2rem 0,
-    100% 0,
-    100% calc(100% - 2rem),
-    calc(100% - 2rem) 100%,
-    0 100%
-  );
+// ============================================================================
+// LAYOUT ADJUSTMENTS
+// ============================================================================
+.wrap {
+  max-width: 144rem;
+  margin: 0 auto;
+  padding: 0 4rem;
 }
 
-.boxed.white {
-  background: var(--secondary);
-  clip-path: polygon(
-    0 2rem,
-    2rem 0,
-    100% 0,
-    100% calc(100% - 2rem),
-    calc(100% - 2rem) 100%,
-    0 100%
-  );
+#main-outlet {
+  padding-top: 3.2rem;
 }
 
-// Decorative background shapes - MetaMask style
-#main-outlet::after {
-  content: "";
-  display: block;
-  position: fixed;
-  z-index: -1;
-  width: 500px;
-  height: 500px;
-  border-radius: 0;
-  background: linear-gradient(135deg, rgba(186, 242, 74, 0.05) 0%, rgba(255, 92, 22, 0.05) 100%);
-  clip-path: polygon(
-    0 3rem,
-    3rem 0,
-    100% 0,
-    100% calc(100% - 3rem),
-    calc(100% - 3rem) 100%,
-    0 100%
-  );
-  right: -100px;
-  top: -100px;
-  transform: rotate(15deg);
-  pointer-events: none;
-}
-
-#main-outlet::before {
-  content: "";
-  display: block;
-  position: fixed;
-  z-index: -1;
-  width: 300px;
-  height: 300px;
-  border-radius: 0;
-  background: linear-gradient(45deg, rgba(208, 117, 255, 0.05) 0%, rgba(137, 176, 255, 0.05) 100%);
-  clip-path: polygon(
-    0 2rem,
-    2rem 0,
-    100% 0,
-    100% calc(100% - 2rem),
-    calc(100% - 2rem) 100%,
-    0 100%
-  );
-  left: -50px;
-  bottom: -50px;
-  transform: rotate(-15deg);
-  pointer-events: none;
-}
-
-// Chat styling - Clipped corners
-html body.has-sidebar-page.has-full-page-chat {
-  #main-outlet-wrapper {
-    gap: 2em;
+// ============================================================================
+// HEADER ENHANCEMENTS
+// ============================================================================
+.d-header {
+  .wrap {
+    padding: 0 4rem;
   }
 
-  #main-outlet {
-    padding: 0 !important;
+  .contents {
+    padding: 1.6rem 0;
   }
-}
 
-.chat-composer__wrapper {
-  background: transparent;
-}
+  // Navigation links
+  .header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
 
-.full-page-chat .chat-full-page-header {
-  background: var(--secondary);
-  clip-path: polygon(
-    0 1.5rem,
-    1.5rem 0,
-    100% 0,
-    100% calc(100% - 1.5rem),
-    calc(100% - 1.5rem) 100%,
-    0 100%
-  );
-}
-
-.desktop-view .has-full-page-chat {
-  .chat-channel {
-    height: calc(100vh - (var(--header-offset) + 3em));
-  }
-}
-
-.chat-message-container,
-.chat-transcript {
-  background: transparent;
-}
-
-.chat-drawer .chat-drawer-container {
-  background: var(--secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0;
-  clip-path: polygon(
-    0 2rem,
-    2rem 0,
-    100% 0,
-    100% calc(100% - 2rem),
-    calc(100% - 2rem) 100%,
-    0 100%
-  );
-}
-
-// Enhanced category grid on desktop
-.category-boxes {
-  @media (min-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-  }
-}
-
-// Topic list enhancements
-.topic-list {
-  .topic-list-item {
-    @media (min-width: 1200px) {
-      padding: 2em;
-      
-      &:hover {
-        transform: translateX(4px);
-      }
+    .btn {
+      padding: 0.8rem 1.6rem;
     }
   }
 }
 
-// Desktop-specific clipped corner containers
-.container.list-container {
-  clip-path: polygon(
-    0 2rem,
-    2rem 0,
-    100% 0,
-    100% calc(100% - 2rem),
-    calc(100% - 2rem) 100%,
-    0 100%
-  );
-}
+// ============================================================================
+// TWO-COLUMN LAYOUT
+// ============================================================================
+#main-outlet-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 30rem;
+  gap: 4rem;
+  max-width: 144rem;
+  margin: 0 auto;
+  padding: 0 4rem;
 
-// Decorative accent lines
-.navigation-topics .container.list-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0.4rem;
-  background: linear-gradient(90deg, 
-    var(--mm-orange) 0%,
-    var(--mm-green) 25%,
-    var(--mm-purple) 50%,
-    var(--mm-blue) 75%,
-    var(--mm-orange) 100%
-  );
-  background-size: 200% 100%;
-  animation: gradient-shift 3s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
+  &.has-sidebar {
+    grid-template-columns: 28rem 1fr;
   }
-  50% {
-    background-position: 100% 50%;
+
+  .sidebar-wrapper {
+    grid-column: 2;
+    position: sticky;
+    top: 8rem;
+    height: fit-content;
+    max-height: calc(100vh - 10rem);
+  }
+
+  #main-outlet {
+    grid-column: 1;
+    min-width: 0;
+  }
+}
+
+// Without sidebar
+#main-outlet-wrapper:not(.has-sidebar) {
+  grid-template-columns: 1fr;
+  max-width: 100rem;
+
+  #main-outlet {
+    grid-column: 1;
+  }
+}
+
+// ============================================================================
+// CATEGORY CARDS - Desktop Grid
+// ============================================================================
+.category-boxes {
+  grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+  gap: 3.2rem;
+
+  .category-box {
+    .category-details {
+      padding: 4rem;
+      min-height: 24rem;
+    }
+
+    // Larger decorative shape on desktop
+    &::after {
+      width: 18rem;
+    }
+  }
+}
+
+// ============================================================================
+// TOPIC LIST - Desktop Enhancements
+// ============================================================================
+.topic-list {
+  border-spacing: 0 1.2rem;
+
+  th {
+    padding: 1.2rem 2rem;
+    font-size: 1.3rem;
+  }
+
+  .topic-list-item {
+    td {
+      padding: 2rem;
+    }
+
+    // Show more info on hover
+    .topic-excerpt {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+    }
+
+    &:hover .topic-excerpt {
+      max-height: 10rem;
+      opacity: 1;
+      margin-top: 0.8rem;
+    }
+  }
+}
+
+// ============================================================================
+// POST LAYOUT
+// ============================================================================
+.topic-post {
+  .row {
+    padding: 3.2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.4rem;
+  }
+
+  .topic-avatar {
+    width: 6rem;
+  }
+
+  .topic-body {
+    min-width: 0;
+  }
+}
+
+// ============================================================================
+// SIDEBAR - Desktop Specific
+// ============================================================================
+.sidebar-wrapper {
+  .sidebar-sections {
+    padding: 0.8rem 0;
+  }
+
+  .sidebar-section {
+    margin-bottom: 2.4rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .sidebar-section-link-wrapper a {
+    padding: 1.2rem 2rem;
+  }
+}
+
+// ============================================================================
+// SEARCH - Desktop Full Width
+// ============================================================================
+.search-menu {
+  &.visible {
+    width: 50rem;
+    max-width: 90vw;
+  }
+
+  .search-input {
+    font-size: 1.6rem;
+    padding: 1.6rem 2rem;
+  }
+
+  .results {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+}
+
+// ============================================================================
+// MODAL - Desktop Centered
+// ============================================================================
+.modal-inner-container {
+  min-width: 50rem;
+  max-width: 80rem;
+  margin: 10vh auto;
+}
+
+// ============================================================================
+// COMPOSER - Desktop Floating
+// ============================================================================
+#reply-control {
+  &.open {
+    height: 50vh;
+    min-height: 35rem;
+  }
+
+  .reply-area {
+    padding: 2.4rem;
+  }
+
+  .d-editor-textarea-wrapper {
+    min-height: 20rem;
+  }
+}
+
+// ============================================================================
+// CUSTOM SEARCH BANNER - Desktop Hero
+// ============================================================================
+.custom-search-banner-wrap {
+  padding: 8rem 6rem;
+  margin-bottom: 4rem;
+
+  .custom-search-banner-headline,
+  h1 {
+    font-size: 4.8rem;
+    max-width: 70rem;
+  }
+
+  p {
+    font-size: 2rem;
+    max-width: 60rem;
+  }
+
+  // Larger decorative elements
+  &::before {
+    width: 50rem;
+    height: 50rem;
+    right: -10rem;
+    top: -10rem;
+  }
+
+  &::after {
+    width: 40rem;
+    height: 40rem;
+    left: 5%;
+    bottom: -15rem;
+  }
+}
+
+// ============================================================================
+// NAVIGATION - Desktop Horizontal Nav
+// ============================================================================
+.category-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2.4rem;
+
+  li {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child)::after {
+      content: '/';
+      margin-left: 0.8rem;
+      color: var(--mm-gray-mid);
+    }
+  }
+
+  a {
+    font-size: 1.4rem;
+    color: var(--mm-gray-dark);
+
+    &:hover {
+      color: var(--mm-purple);
+    }
+  }
+}
+
+// ============================================================================
+// TABLES - Desktop Full Width
+// ============================================================================
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.4rem 0;
+
+  th, td {
+    padding: 1.6rem;
+    text-align: left;
+    border-bottom: 1px solid var(--mm-gray-light);
+
+    [data-theme='dark'] & {
+      border-bottom-color: var(--mm-gray-dark);
+    }
+  }
+
+  th {
+    font-weight: 500;
+    background: var(--mm-white-off);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    [data-theme='dark'] & {
+      background: var(--mm-black-light);
+    }
+  }
+
+  tr:hover td {
+    background: var(--mm-gray-light);
+
+    [data-theme='dark'] & {
+      background: var(--mm-black-mid);
+    }
+  }
+}
+
+// ============================================================================
+// TOOLTIPS - Desktop Positioning
+// ============================================================================
+[data-tippy-root] {
+  .tippy-box {
+    max-width: 35rem;
+    padding: 1.2rem 1.6rem;
+  }
+}
+
+// ============================================================================
+// ANIMATIONS - Desktop Enhanced
+// ============================================================================
+@media (prefers-reduced-motion: no-preference) {
+  .category-box {
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  .topic-list-item {
+    &:hover {
+      transform: translateX(4px);
+    }
+  }
+
+  .btn {
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ============================================================================
+// WIDE SCREENS (1920px+)
+// ============================================================================
+@media (min-width: 1920px) {
+  html {
+    font-size: 70%; // Slightly larger base for 4K displays
+  }
+
+  .wrap {
+    max-width: 160rem;
+    padding: 0 6rem;
+  }
+
+  #main-outlet-wrapper {
+    max-width: 160rem;
+    gap: 6rem;
+    padding: 0 6rem;
+
+    &.has-sidebar {
+      grid-template-columns: 32rem 1fr;
+    }
+  }
+
+  .category-boxes {
+    grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+  }
+}
+
+// ============================================================================
+// MEDIUM SCREENS (1024px - 1440px)
+// ============================================================================
+@media (max-width: 1440px) {
+  .wrap {
+    padding: 0 3rem;
+  }
+
+  #main-outlet-wrapper {
+    gap: 3rem;
+    padding: 0 3rem;
+
+    &.has-sidebar {
+      grid-template-columns: 24rem 1fr;
+    }
+  }
+}
+
+// ============================================================================
+// PRINT STYLES
+// ============================================================================
+@media print {
+  .d-header,
+  .sidebar-wrapper,
+  #reply-control,
+  .btn,
+  .topic-footer-buttons {
+    display: none !important;
+  }
+
+  .topic-post {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: var(--mm-black) !important;
+    text-decoration: underline !important;
   }
 }

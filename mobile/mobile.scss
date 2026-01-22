@@ -1,188 +1,643 @@
-// MetaMask Builder Hub - Mobile Styles
-// Wild MetaMask docs-style optimized for mobile
+// ============================================================================
+// MetaMask Builder Hub - Mobile Specific Styles
+// Optimized for touch interactions and small screens
+// ============================================================================
 
-.navigation-categories {
-  .search-banner {
+// ============================================================================
+// BASE MOBILE ADJUSTMENTS
+// ============================================================================
+html {
+  font-size: 55%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+// ============================================================================
+// LAYOUT
+// ============================================================================
+.wrap {
+  padding: 0 1.6rem;
+}
+
+#main-outlet {
+  padding-top: 1.6rem;
+}
+
+// Single column layout on mobile
+#main-outlet-wrapper {
+  display: block;
+  padding: 0 1.6rem;
+
+  .sidebar-wrapper {
+    position: relative;
+    top: 0;
+    margin-bottom: 2.4rem;
+    max-height: none;
+  }
+}
+
+// ============================================================================
+// HEADER - Mobile Compact
+// ============================================================================
+.d-header {
+  min-height: 5.6rem;
+
+  .wrap {
+    padding: 0 1.2rem;
+  }
+
+  .contents {
+    padding: 0.8rem 0;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  // Hide text labels on mobile
+  .header-buttons .btn-text {
     display: none;
   }
-}
 
-// Mobile header adjustments
-.d-header {
-  padding: 8px 0;
-  min-height: 50px;
-
-  .title .logo {
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .panel {
-    gap: 12px;
-  }
-}
-
-// Mobile category grid - Smaller clip size
-.category-boxes {
-  grid-template-columns: 1fr;
-  gap: 1.5em;
-  margin: 1.5em 0;
-
-  .category-box {
-    // Smaller clip size for mobile
-    clip-path: polygon(
-      0 1.5rem,
-      1.5rem 0,
-      100% 0,
-      100% calc(100% - 1.5rem),
-      calc(100% - 1.5rem) 100%,
-      0 100%
-    );
-
-    .category-box-inner .category-details {
-      padding: 2em 1.5em;
+  .d-header-icons {
+    .icon {
+      padding: 0.8rem;
     }
   }
 }
 
-// Mobile topic list - Smaller clip size
-.topic-list {
-  padding: 0 10px;
+// Mobile menu
+.mobile-nav {
+  background: var(--secondary);
+  border-bottom: 1px solid var(--mm-gray-light);
+  padding: 1.2rem 1.6rem;
 
-  .topic-list-item {
-    padding: 1.2em;
-    margin-bottom: 0.75em;
-    clip-path: polygon(
-      0 0.8rem,
-      0.8rem 0,
-      100% 0,
-      100% calc(100% - 0.8rem),
-      calc(100% - 0.8rem) 100%,
-      0 100%
-    );
+  [data-theme='dark'] & {
+    border-bottom-color: var(--mm-gray-dark);
   }
 }
 
-// Mobile post adjustments - Smaller clip size
-.topic-post {
-  padding: 1.5em;
-  margin-bottom: 1em;
-  clip-path: polygon(
-    0 1.5rem,
-    1.5rem 0,
-    100% 0,
-    100% calc(100% - 1.5rem),
-    calc(100% - 1.5rem) 100%,
-    0 100%
-  );
+// ============================================================================
+// NAVIGATION - Mobile Horizontal Scroll
+// ============================================================================
+.nav-pills {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.8rem;
+  margin: 0 -1.6rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > li {
+    flex: 0 0 auto;
+
+    > a {
+      padding: 1rem 1.4rem;
+      font-size: 1.4rem;
+      white-space: nowrap;
+    }
+  }
 }
 
-// Mobile form inputs
+// ============================================================================
+// BUTTONS - Mobile Touch Friendly
+// ============================================================================
+.btn {
+  min-height: 4.4rem; // Apple's recommended touch target
+  padding: 1.2rem 2rem;
+  font-size: 1.5rem;
+
+  &-icon {
+    min-width: 4.4rem;
+    min-height: 4.4rem;
+    padding: 1rem;
+  }
+}
+
+// Create topic button - fixed position on mobile
+#create-topic {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  width: 5.6rem;
+  height: 5.6rem;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: var(--mm-shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Hide text, show icon only
+  .d-button-label {
+    display: none;
+  }
+
+  .d-icon {
+    margin: 0;
+    font-size: 2rem;
+  }
+}
+
+// ============================================================================
+// CATEGORY CARDS - Mobile Stack
+// ============================================================================
+.category-boxes {
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  margin: 2rem 0;
+
+  .category-box {
+    --mm-clip-md: 1.6rem;
+
+    .category-details {
+      padding: 2rem;
+      min-height: auto;
+    }
+
+    .category-title {
+      font-size: 1.8rem;
+    }
+
+    .category-description {
+      font-size: 1.4rem;
+    }
+
+    // Smaller decorative shape
+    &::after {
+      width: 10rem;
+      opacity: 0.3;
+    }
+  }
+}
+
+// ============================================================================
+// TOPIC LIST - Mobile Compact
+// ============================================================================
+.topic-list {
+  border-spacing: 0 0.8rem;
+
+  // Hide some columns on mobile
+  th.posters,
+  th.views,
+  th.activity,
+  td.posters,
+  td.views,
+  td.activity {
+    display: none;
+  }
+
+  th {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .topic-list-item {
+    --mm-clip-xs: 0.8rem;
+
+    td {
+      padding: 1.2rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .topic-excerpt {
+      display: none; // Hide excerpts on mobile
+    }
+  }
+}
+
+// ============================================================================
+// POST LAYOUT - Mobile
+// ============================================================================
+.topic-post {
+  --mm-clip-md: 1.6rem;
+  margin-bottom: 1.6rem;
+
+  .row {
+    padding: 1.6rem;
+    display: block;
+  }
+
+  .topic-avatar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+
+    img.avatar {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  .topic-body {
+    width: 100%;
+  }
+
+  // Post actions - horizontal scroll on mobile
+  .post-actions {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.4rem;
+    padding-bottom: 0.8rem;
+
+    .btn {
+      flex: 0 0 auto;
+      min-height: 4rem;
+      padding: 0.8rem 1.2rem;
+    }
+  }
+}
+
+// Post content
+.cooked {
+  font-size: 1.5rem;
+  line-height: 1.7;
+
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.8rem; }
+  h4 { font-size: 1.6rem; }
+
+  // Make images responsive
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  // Code blocks scroll horizontally
+  pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  // Tables scroll horizontally
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// ============================================================================
+// SIDEBAR - Mobile Collapsible
+// ============================================================================
+.sidebar-wrapper {
+  background: var(--mm-white-off);
+  border: 1px solid var(--mm-gray-light);
+  --mm-clip-md: 1.6rem;
+
+  .sidebar-container {
+    padding: 1.2rem;
+  }
+
+  .sidebar-section {
+    margin-bottom: 1.6rem;
+  }
+
+  .sidebar-section-link-wrapper a {
+    padding: 1.2rem 1.6rem;
+    font-size: 1.5rem;
+  }
+
+  [data-theme='dark'] & {
+    background: var(--mm-black-light);
+    border-color: var(--mm-gray-dark);
+  }
+}
+
+// ============================================================================
+// SEARCH - Mobile Full Screen
+// ============================================================================
+.search-menu {
+  &.visible {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    z-index: 1000;
+    background: var(--secondary);
+    border-radius: 0;
+    clip-path: none;
+  }
+
+  .search-input {
+    font-size: 1.6rem;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .results {
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .search-result-topic {
+    padding: 1.4rem 1.6rem;
+  }
+}
+
+// ============================================================================
+// MODAL - Mobile Full Screen
+// ============================================================================
+.modal-outer-container {
+  padding: 0;
+}
+
+.modal-inner-container {
+  min-width: auto;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  clip-path: none;
+
+  .modal-header {
+    padding: 1.6rem;
+    position: sticky;
+    top: 0;
+    background: var(--secondary);
+    z-index: 10;
+
+    .title {
+      font-size: 1.8rem;
+    }
+  }
+
+  .modal-body {
+    padding: 1.6rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-footer {
+    padding: 1.2rem 1.6rem;
+    position: sticky;
+    bottom: 0;
+    background: var(--mm-white-off);
+
+    [data-theme='dark'] & {
+      background: var(--mm-black-light);
+    }
+  }
+}
+
+// ============================================================================
+// MENU PANELS - Mobile Slide In
+// ============================================================================
+.menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 32rem;
+  border-radius: 0;
+  clip-path: none;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  .widget-link,
+  .categories-link {
+    padding: 1.4rem 1.6rem;
+    min-height: 4.4rem;
+  }
+}
+
+// ============================================================================
+// COMPOSER - Mobile Full Screen
+// ============================================================================
+#reply-control {
+  &.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100% !important;
+    max-height: none;
+    border-radius: 0;
+    clip-path: none;
+  }
+
+  .reply-area {
+    padding: 1.2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .d-editor-textarea-wrapper {
+    flex: 1;
+    min-height: 0;
+
+    textarea {
+      height: 100%;
+    }
+  }
+
+  // Hide preview on mobile by default
+  .d-editor-preview-wrapper {
+    display: none;
+  }
+
+  .grippie {
+    display: none;
+  }
+
+  // Composer toolbar scroll
+  .d-editor-button-bar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 0.8rem;
+
+    .btn {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+// ============================================================================
+// CUSTOM SEARCH BANNER - Mobile Compact
+// ============================================================================
+.custom-search-banner-wrap {
+  --mm-clip-lg: 2rem;
+  padding: 3.2rem 2rem;
+  margin: 0 -1.6rem 2rem -1.6rem;
+
+  .custom-search-banner-headline,
+  h1 {
+    font-size: 2.4rem;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  // Smaller decorative elements
+  &::before {
+    width: 20rem;
+    height: 20rem;
+    right: -5rem;
+    top: -5rem;
+  }
+
+  &::after {
+    width: 15rem;
+    height: 15rem;
+    left: -5%;
+    bottom: -8rem;
+  }
+}
+
+// ============================================================================
+// FORMS - Mobile Touch Optimized
+// ============================================================================
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea {
-  padding: 12px;
-  font-size: 16px; // Prevents zoom on iOS
-  border-radius: 0;
+input[type="search"],
+textarea,
+select {
+  font-size: 1.6rem; // Prevents iOS zoom on focus
+  padding: 1.4rem 1.6rem;
+  min-height: 4.8rem;
 }
 
-// Mobile buttons - Touch-friendly
-.btn {
-  padding: 12px 20px;
-  font-size: 16px;
-  min-height: 44px; // Touch-friendly target size
-  border-radius: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.select-kit {
+  .select-kit-header {
+    min-height: 4.8rem;
+    padding: 1.2rem 1.6rem;
+  }
 }
 
-// Mobile navigation pills
-.nav-pills li a {
-  padding: 10px 12px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-// Mobile sidebar - Smaller clip size
-#main-outlet-wrapper .sidebar-wrapper {
-  margin-top: 0.5em;
-  border-radius: 0;
-  clip-path: polygon(
-    0 1.5rem,
-    1.5rem 0,
-    100% 0,
-    100% calc(100% - 1.5rem),
-    calc(100% - 1.5rem) 100%,
-    0 100%
-  );
-}
-
-// Mobile main outlet - Smaller clip size
-body:not(.navigation-categories, .navigation-topics) #main-outlet {
-  clip-path: polygon(
-    0 1.5rem,
-    1.5rem 0,
-    100% 0,
-    100% calc(100% - 1.5rem),
-    calc(100% - 1.5rem) 100%,
-    0 100%
-  );
-  padding: 1.5em;
-}
-
-// Hide decorative shapes on mobile
-#main-outlet::before,
-#main-outlet::after {
-  display: none;
-}
-
-// Mobile category list items
-.category-list-item.category {
-  clip-path: polygon(
-    0 1rem,
-    1rem 0,
-    100% 0,
-    100% calc(100% - 1rem),
-    calc(100% - 1rem) 100%,
-    0 100%
-  );
-}
-
-// Mobile alerts
+// ============================================================================
+// ALERTS - Mobile
+// ============================================================================
 .alert {
-  clip-path: polygon(
-    0 0.8rem,
-    0.8rem 0,
-    100% 0,
-    100% calc(100% - 0.8rem),
-    calc(100% - 0.8rem) 100%,
-    0 100%
-  );
+  padding: 1.2rem 1.6rem 1.2rem 2rem;
+  margin: 1.2rem 0;
+  font-size: 1.4rem;
+
+  &::before {
+    width: 0.4rem;
+  }
 }
 
-// Mobile modals
-.modal-inner-container {
-  clip-path: polygon(
-    0 1.5rem,
-    1.5rem 0,
-    100% 0,
-    100% calc(100% - 1.5rem),
-    calc(100% - 1.5rem) 100%,
-    0 100%
-  );
+// ============================================================================
+// TAGS - Mobile Wrap
+// ============================================================================
+.discourse-tag {
+  font-size: 1.2rem;
+  padding: 0.4rem 1rem;
+  margin: 0.2rem;
 }
 
-// Mobile menu panel
-.menu-panel {
-  clip-path: polygon(
-    0 0.8rem,
-    0.8rem 0,
-    100% 0,
-    100% calc(100% - 0.8rem),
-    calc(100% - 0.8rem) 100%,
-    0 100%
-  );
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+// ============================================================================
+// USER CARD - Mobile
+// ============================================================================
+#user-card {
+  width: calc(100vw - 3.2rem) !important;
+  max-width: 36rem;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+// ============================================================================
+// TOOLTIPS - Disable on Mobile (use tap instead)
+// ============================================================================
+[data-tippy-root] {
+  display: none !important;
+}
+
+// ============================================================================
+// SAFE AREA - iOS Notch Support
+// ============================================================================
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .d-header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  #reply-control.open {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  #create-topic {
+    bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+
+  .modal-inner-container .modal-footer {
+    padding-bottom: calc(1.2rem + env(safe-area-inset-bottom));
+  }
+}
+
+// ============================================================================
+// LANDSCAPE MODE
+// ============================================================================
+@media (orientation: landscape) and (max-height: 500px) {
+  .custom-search-banner-wrap {
+    padding: 2rem;
+
+    .custom-search-banner-headline,
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  #reply-control.open {
+    .d-editor-button-bar {
+      padding: 0.4rem 0;
+    }
+  }
+}
+
+// ============================================================================
+// REDUCE MOTION
+// ============================================================================
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+// ============================================================================
+// DARK MODE ADJUSTMENTS
+// ============================================================================
+@media (prefers-color-scheme: dark) {
+  // Ensure good contrast on OLED screens
+  body {
+    background: var(--mm-black);
+  }
 }
