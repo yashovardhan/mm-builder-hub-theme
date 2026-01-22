@@ -2,27 +2,22 @@
   "name": "MetaMask Builder Hub",
   "about_url": "https://github.com/MetaMask/mm-builder-hub-theme",
   "license_url": "https://github.com/MetaMask/mm-builder-hub-theme/blob/main/LICENSE",
-  "assets": {
-    "common": "common",
-    "desktop": "desktop",
-    "mobile": "mobile"
-  },
   "color_schemes": {
     "metamask-light": {
-      "primary": "2C2C2C",
-      "secondary": "FAFAFA",
+      "primary": "454545",
+      "secondary": "F6FBFC",
       "tertiary": "FF5C16",
-      "header_background": "FFFFFF",
-      "header_primary": "0D0D0D",
+      "header_background": "ffffff",
+      "header_primary": "111111",
       "selected": "FFE5D9",
       "hover": "FFE5D9"
     },
     "metamask-dark": {
-      "primary": "E0E0E0",
-      "secondary": "1A1A1A",
+      "primary": "e0e0e0",
+      "secondary": "2d2d2d",
       "tertiary": "FF5C16",
-      "header_background": "0D0D0D",
-      "header_primary": "E0E0E0",
+      "header_background": "202020",
+      "header_primary": "e0e0e0",
       "highlight": "FF5C16",
       "selected": "2A1A0D",
       "hover": "2A1A0D"

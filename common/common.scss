@@ -1,15 +1,28 @@
-@import "../scss/variables";
-@import "../scss/sidebar";
-@import "../scss/chat";
+// MetaMask Builder Hub - Common Styles (based on Mint Theme)
+
+@mixin mint-card-bg {
+  background: var(--primary-very-low);
+
+  @media (prefers-color-scheme: light) {
+    background: var(--header_background);
+  }
+}
+
+:root {
+  --mint-border-radius: 10px;
+  --mint-hover-shadow: 4px 4px var(--tertiary-high);
+  --mint-color-mint: #FF5C16;
+  --mint-color-blue: #89B0FF;
+  --d-input-border-radius: var(--mint-border-radius);
+  --d-nav-underline-height: 0;
+  --d-sidebar-highlight-background: var(--tertiary-low);
+  --d-sidebar-highlight-hover-background: var(--tertiary);
+  --d-sidebar-header-icon-color: var(--tertiary);
+}
 
 .d-editor-textarea-wrapper,
 .select-kit-header {
   border-radius: var(--mint-border-radius);
-}
-
-:root {
-  --d-input-border-radius: var(--mint-border-radius);
-  --d-nav-underline-height: 0;
 }
 
 .d-header {
@@ -23,15 +36,6 @@
 
 .alert.alert-info {
   border-radius: 10px;
-}
-
-.navigation-categories .search-banner {
-  border-radius: var(--mint-border-radius);
-  height: 350px;
-  box-sizing: border-box;
-  padding: 2.5em 0 3em;
-  margin: 1em auto;
-  max-width: 1110px;
 }
 
 .category-box-inner {
@@ -145,19 +149,6 @@ a {
 
 .open .grippie {
   background: var(--tertiary);
-}
-
-.options.toolbar-popup-menu-options {
-  button.single-select-header.dropdown-select-box-header {
-    background: transparent;
-    border-radius: none;
-    border: none;
-
-    &:hover {
-      background: var(--tertiary);
-      border-radius: 0;
-    }
-  }
 }
 
 .list-controls {
@@ -354,4 +345,29 @@ summary.select-kit-header.single-select-header.dropdown-select-box-header {
   .search-advanced-filters {
     border: 1px dashed var(--tertiary);
   }
+}
+
+// Sidebar styling
+#main-outlet-wrapper {
+  .sidebar-wrapper {
+    background-color: var(--primary-very-low);
+    box-shadow:
+      0 8px 60px 0 rgb(103, 151, 255, 0.1),
+      0 12px 90px 0 rgb(133, 255, 103, 0.1);
+    margin-top: 1em;
+    border-top: 8px solid var(--tertiary);
+    border-radius: var(--mint-border-radius);
+    height: calc(
+      var(--composer-vh, var(--1dvh)) * 100 - var(--header-offset, 0px) - 3em
+    );
+    top: calc(var(--header-offset) + 1em);
+
+    .sidebar-container {
+      border: none;
+    }
+  }
+}
+
+.sidebar-footer-wrapper {
+  background: var(--primary-very-low);
 }

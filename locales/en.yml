@@ -1,9 +1,3 @@
 en:
   theme_metadata:
-    name: "MetaMask Builder Hub"
-    description: "Dark mode theme for MetaMask Developer Builder Hub with custom homepage"
-  theme_settings:
-    homepage_enabled: "Enable custom homepage"
-    hero_title: "Hero title"
-    hero_subtitle: "Hero subtitle"
-    homepage_categories: "Homepage categories"
+    description: "A MetaMask-branded theme based on Discourse Mint Theme."
