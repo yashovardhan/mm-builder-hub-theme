@@ -371,3 +371,57 @@ summary.select-kit-header.single-select-header.dropdown-select-box-header {
 .sidebar-footer-wrapper {
   background: var(--primary-very-low);
 }
+
+// Enhanced Category Grid Styling
+.category-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+  margin: 2em 0;
+
+  .category-box {
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      border-top-color: var(--tertiary) !important;
+      box-shadow: 0 8px 24px rgba(255, 92, 22, 0.2);
+      transform: translateY(-4px);
+    }
+
+    // Alternate hover colors for visual variety
+    &:nth-child(4n+1),
+    &:nth-child(4n+2) {
+      &:hover {
+        border-top-color: var(--tertiary);
+      }
+    }
+
+    &:nth-child(4n+3),
+    &:nth-child(4n+4) {
+      &:hover {
+        border-top-color: var(--mint-color-blue);
+      }
+    }
+  }
+
+  .category-box-inner {
+    .category-details {
+      .category-title {
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+    }
+  }
+
+  .category-box:hover .category-box-inner .category-details .category-title {
+    color: var(--tertiary);
+  }
+}
+
+@media (width <= 960px) {
+  .category-boxes {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+  }
+}

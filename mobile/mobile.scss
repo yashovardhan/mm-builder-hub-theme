@@ -5,3 +5,18 @@
     display: none;
   }
 }
+
+// Mobile hero adjustments
+.mm-homepage-hero {
+  padding: 40px 20px;
+  margin: 20px 0;
+
+  .mm-hero-title {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .mm-hero-subtitle {
+    font-size: 16px;
+  }
+}
