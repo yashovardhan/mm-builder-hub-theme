@@ -1,4 +1,5 @@
 // MetaMask Builder Hub - Mobile Styles
+// Wild MetaMask docs-style optimized for mobile
 
 .navigation-categories {
   .search-banner {
@@ -13,6 +14,8 @@
 
   .title .logo {
     font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .panel {
@@ -20,33 +23,59 @@
   }
 }
 
-// Mobile category grid
+// Mobile category grid - Smaller clip size
 .category-boxes {
   grid-template-columns: 1fr;
-  gap: 1em;
+  gap: 1.5em;
   margin: 1.5em 0;
 
   .category-box {
+    // Smaller clip size for mobile
+    clip-path: polygon(
+      0 1.5rem,
+      1.5rem 0,
+      100% 0,
+      100% calc(100% - 1.5rem),
+      calc(100% - 1.5rem) 100%,
+      0 100%
+    );
+
     .category-box-inner .category-details {
-      padding: 1.5em;
+      padding: 2em 1.5em;
     }
   }
 }
 
-// Mobile topic list
+// Mobile topic list - Smaller clip size
 .topic-list {
   padding: 0 10px;
 
   .topic-list-item {
-    padding: 1em;
+    padding: 1.2em;
     margin-bottom: 0.75em;
+    clip-path: polygon(
+      0 0.8rem,
+      0.8rem 0,
+      100% 0,
+      100% calc(100% - 0.8rem),
+      calc(100% - 0.8rem) 100%,
+      0 100%
+    );
   }
 }
 
-// Mobile post adjustments
+// Mobile post adjustments - Smaller clip size
 .topic-post {
   padding: 1.5em;
   margin-bottom: 1em;
+  clip-path: polygon(
+    0 1.5rem,
+    1.5rem 0,
+    100% 0,
+    100% calc(100% - 1.5rem),
+    calc(100% - 1.5rem) 100%,
+    0 100%
+  );
 }
 
 // Mobile form inputs
@@ -56,23 +85,104 @@ input[type="password"],
 textarea {
   padding: 12px;
   font-size: 16px; // Prevents zoom on iOS
+  border-radius: 0;
 }
 
-// Mobile buttons
+// Mobile buttons - Touch-friendly
 .btn {
   padding: 12px 20px;
   font-size: 16px;
   min-height: 44px; // Touch-friendly target size
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 // Mobile navigation pills
 .nav-pills li a {
   padding: 10px 12px;
   font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-// Mobile sidebar
+// Mobile sidebar - Smaller clip size
 #main-outlet-wrapper .sidebar-wrapper {
   margin-top: 0.5em;
-  border-radius: var(--mm-border-radius) var(--mm-border-radius) 0 0;
+  border-radius: 0;
+  clip-path: polygon(
+    0 1.5rem,
+    1.5rem 0,
+    100% 0,
+    100% calc(100% - 1.5rem),
+    calc(100% - 1.5rem) 100%,
+    0 100%
+  );
+}
+
+// Mobile main outlet - Smaller clip size
+body:not(.navigation-categories, .navigation-topics) #main-outlet {
+  clip-path: polygon(
+    0 1.5rem,
+    1.5rem 0,
+    100% 0,
+    100% calc(100% - 1.5rem),
+    calc(100% - 1.5rem) 100%,
+    0 100%
+  );
+  padding: 1.5em;
+}
+
+// Hide decorative shapes on mobile
+#main-outlet::before,
+#main-outlet::after {
+  display: none;
+}
+
+// Mobile category list items
+.category-list-item.category {
+  clip-path: polygon(
+    0 1rem,
+    1rem 0,
+    100% 0,
+    100% calc(100% - 1rem),
+    calc(100% - 1rem) 100%,
+    0 100%
+  );
+}
+
+// Mobile alerts
+.alert {
+  clip-path: polygon(
+    0 0.8rem,
+    0.8rem 0,
+    100% 0,
+    100% calc(100% - 0.8rem),
+    calc(100% - 0.8rem) 100%,
+    0 100%
+  );
+}
+
+// Mobile modals
+.modal-inner-container {
+  clip-path: polygon(
+    0 1.5rem,
+    1.5rem 0,
+    100% 0,
+    100% calc(100% - 1.5rem),
+    calc(100% - 1.5rem) 100%,
+    0 100%
+  );
+}
+
+// Mobile menu panel
+.menu-panel {
+  clip-path: polygon(
+    0 0.8rem,
+    0.8rem 0,
+    100% 0,
+    100% calc(100% - 0.8rem),
+    calc(100% - 0.8rem) 100%,
+    0 100%
+  );
 }
