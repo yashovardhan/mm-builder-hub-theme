@@ -1,19 +1,20 @@
 // ============================================================================
 // MetaMask Builder Hub - Desktop Specific Styles
 // Enhanced layouts and interactions for larger screens
+// ALWAYS DARK MODE
 // ============================================================================
 
 // ============================================================================
 // LAYOUT ADJUSTMENTS
 // ============================================================================
 .wrap {
-  max-width: 144rem;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 4rem;
+  padding: 0 var(--mm-space-xl);
 }
 
 #main-outlet {
-  padding-top: 3.2rem;
+  padding-top: var(--mm-space-lg);
 }
 
 // ============================================================================
@@ -25,17 +26,17 @@
   }
 
   .contents {
-    padding: 1.6rem 0;
+    padding: var(--mm-space-md) 0;
   }
 
   // Navigation links
   .header-buttons {
     display: flex;
     align-items: center;
-    gap: 2.4rem;
+    gap: var(--mm-space-lg);
 
     .btn {
-      padding: 0.8rem 1.6rem;
+      padding: 0.5em 1em;
     }
   }
 }
@@ -45,22 +46,22 @@
 // ============================================================================
 #main-outlet-wrapper {
   display: grid;
-  grid-template-columns: 1fr 30rem;
-  gap: 4rem;
-  max-width: 144rem;
+  grid-template-columns: 1fr 300px;
+  gap: var(--mm-space-xl);
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 4rem;
+  padding: 0 var(--mm-space-xl);
 
   &.has-sidebar {
-    grid-template-columns: 28rem 1fr;
+    grid-template-columns: 280px 1fr;
   }
 
   .sidebar-wrapper {
     grid-column: 2;
     position: sticky;
-    top: 8rem;
+    top: 5em;
     height: fit-content;
-    max-height: calc(100vh - 10rem);
+    max-height: calc(100vh - 6em);
   }
 
   #main-outlet {
@@ -72,7 +73,7 @@
 // Without sidebar
 #main-outlet-wrapper:not(.has-sidebar) {
   grid-template-columns: 1fr;
-  max-width: 100rem;
+  max-width: 1000px;
 
   #main-outlet {
     grid-column: 1;
@@ -83,18 +84,18 @@
 // CATEGORY CARDS - Desktop Grid
 // ============================================================================
 .category-boxes {
-  grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
-  gap: 3.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--mm-space-lg);
 
   .category-box {
     .category-details {
-      padding: 4rem;
-      min-height: 24rem;
+      padding: var(--mm-space-xl);
+      min-height: 15em;
     }
 
     // Larger decorative shape on desktop
     &::after {
-      width: 18rem;
+      width: 14em;
     }
   }
 }
@@ -103,16 +104,16 @@
 // TOPIC LIST - Desktop Enhancements
 // ============================================================================
 .topic-list {
-  border-spacing: 0 1.2rem;
+  border-spacing: 0 var(--mm-space-sm);
 
   th {
-    padding: 1.2rem 2rem;
-    font-size: 1.3rem;
+    padding: var(--mm-space-sm) var(--mm-space-md);
+    font-size: 0.8125em;
   }
 
   .topic-list-item {
     td {
-      padding: 2rem;
+      padding: var(--mm-space-md);
     }
 
     // Show more info on hover
@@ -124,9 +125,9 @@
     }
 
     &:hover .topic-excerpt {
-      max-height: 10rem;
+      max-height: 6em;
       opacity: 1;
-      margin-top: 0.8rem;
+      margin-top: var(--mm-space-xs);
     }
   }
 }
@@ -136,14 +137,14 @@
 // ============================================================================
 .topic-post {
   .row {
-    padding: 3.2rem;
+    padding: var(--mm-space-lg);
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 2.4rem;
+    gap: var(--mm-space-lg);
   }
 
   .topic-avatar {
-    width: 6rem;
+    width: 3.75em;
   }
 
   .topic-body {
@@ -156,11 +157,11 @@
 // ============================================================================
 .sidebar-wrapper {
   .sidebar-sections {
-    padding: 0.8rem 0;
+    padding: var(--mm-space-xs) 0;
   }
 
   .sidebar-section {
-    margin-bottom: 2.4rem;
+    margin-bottom: var(--mm-space-lg);
 
     &:last-child {
       margin-bottom: 0;
@@ -168,7 +169,7 @@
   }
 
   .sidebar-section-link-wrapper a {
-    padding: 1.2rem 2rem;
+    padding: var(--mm-space-sm) var(--mm-space-md);
   }
 }
 
@@ -177,13 +178,13 @@
 // ============================================================================
 .search-menu {
   &.visible {
-    width: 50rem;
+    width: 500px;
     max-width: 90vw;
   }
 
   .search-input {
-    font-size: 1.6rem;
-    padding: 1.6rem 2rem;
+    font-size: 1em;
+    padding: var(--mm-space-md) var(--mm-space-md);
   }
 
   .results {
@@ -196,8 +197,8 @@
 // MODAL - Desktop Centered
 // ============================================================================
 .modal-inner-container {
-  min-width: 50rem;
-  max-width: 80rem;
+  min-width: 500px;
+  max-width: 800px;
   margin: 10vh auto;
 }
 
@@ -207,15 +208,15 @@
 #reply-control {
   &.open {
     height: 50vh;
-    min-height: 35rem;
+    min-height: 22em;
   }
 
   .reply-area {
-    padding: 2.4rem;
+    padding: var(--mm-space-lg);
   }
 
   .d-editor-textarea-wrapper {
-    min-height: 20rem;
+    min-height: 12em;
   }
 }
 
@@ -223,33 +224,33 @@
 // CUSTOM SEARCH BANNER - Desktop Hero
 // ============================================================================
 .custom-search-banner-wrap {
-  padding: 8rem 6rem;
-  margin-bottom: 4rem;
+  padding: var(--mm-space-xl) var(--mm-space-lg);
+  margin-bottom: var(--mm-space-xl);
 
   .custom-search-banner-headline,
   h1 {
-    font-size: 4.8rem;
-    max-width: 70rem;
+    font-size: 3em;
+    max-width: 70em;
   }
 
   p {
-    font-size: 2rem;
-    max-width: 60rem;
+    font-size: 1.25em;
+    max-width: 60em;
   }
 
   // Larger decorative elements
   &::before {
-    width: 50rem;
-    height: 50rem;
-    right: -10rem;
-    top: -10rem;
+    width: 40em;
+    height: 40em;
+    right: -8em;
+    top: -8em;
   }
 
   &::after {
-    width: 40rem;
-    height: 40rem;
+    width: 30em;
+    height: 30em;
     left: 5%;
-    bottom: -15rem;
+    bottom: -12em;
   }
 }
 
@@ -259,8 +260,8 @@
 .category-breadcrumb {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 2.4rem;
+  gap: var(--mm-space-xs);
+  margin-bottom: var(--mm-space-lg);
 
   li {
     display: flex;
@@ -268,17 +269,17 @@
 
     &:not(:last-child)::after {
       content: '/';
-      margin-left: 0.8rem;
+      margin-left: var(--mm-space-xs);
       color: var(--mm-gray-mid);
     }
   }
 
   a {
-    font-size: 1.4rem;
-    color: var(--mm-gray-dark);
+    font-size: 0.875em;
+    color: var(--mm-gray);
 
     &:hover {
-      color: var(--mm-purple);
+      color: var(--mm-green);
     }
   }
 }
@@ -289,36 +290,25 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2.4rem 0;
+  margin: var(--mm-space-lg) 0;
 
   th, td {
-    padding: 1.6rem;
+    padding: var(--mm-space-md);
     text-align: left;
-    border-bottom: 1px solid var(--mm-gray-light);
-
-    [data-theme='dark'] & {
-      border-bottom-color: var(--mm-gray-dark);
-    }
+    border-bottom: 1px solid var(--mm-gray-dark);
   }
 
   th {
     font-weight: 500;
-    background: var(--mm-white-off);
-    font-size: 1.3rem;
+    background: var(--mm-black-light);
+    font-size: 0.8125em;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-
-    [data-theme='dark'] & {
-      background: var(--mm-black-light);
-    }
+    color: var(--mm-gray-mid);
   }
 
   tr:hover td {
-    background: var(--mm-gray-light);
-
-    [data-theme='dark'] & {
-      background: var(--mm-black-mid);
-    }
+    background: var(--mm-black-mid);
   }
 }
 
@@ -327,8 +317,8 @@ table {
 // ============================================================================
 [data-tippy-root] {
   .tippy-box {
-    max-width: 35rem;
-    padding: 1.2rem 1.6rem;
+    max-width: 350px;
+    padding: var(--mm-space-sm) var(--mm-space-md);
   }
 }
 
@@ -359,27 +349,23 @@ table {
 // WIDE SCREENS (1920px+)
 // ============================================================================
 @media (min-width: 1920px) {
-  html {
-    font-size: 70%; // Slightly larger base for 4K displays
-  }
-
   .wrap {
-    max-width: 160rem;
-    padding: 0 6rem;
+    max-width: 1600px;
+    padding: 0 var(--mm-space-xl);
   }
 
   #main-outlet-wrapper {
-    max-width: 160rem;
-    gap: 6rem;
-    padding: 0 6rem;
+    max-width: 1600px;
+    gap: var(--mm-space-xl);
+    padding: 0 var(--mm-space-xl);
 
     &.has-sidebar {
-      grid-template-columns: 32rem 1fr;
+      grid-template-columns: 320px 1fr;
     }
   }
 
   .category-boxes {
-    grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   }
 }
 
@@ -388,15 +374,15 @@ table {
 // ============================================================================
 @media (max-width: 1440px) {
   .wrap {
-    padding: 0 3rem;
+    padding: 0 var(--mm-space-lg);
   }
 
   #main-outlet-wrapper {
-    gap: 3rem;
-    padding: 0 3rem;
+    gap: var(--mm-space-lg);
+    padding: 0 var(--mm-space-lg);
 
     &.has-sidebar {
-      grid-template-columns: 24rem 1fr;
+      grid-template-columns: 240px 1fr;
     }
   }
 }
@@ -419,7 +405,7 @@ table {
   }
 
   a {
-    color: var(--mm-black) !important;
+    color: var(--mm-white) !important;
     text-decoration: underline !important;
   }
 }

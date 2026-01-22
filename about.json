@@ -4,20 +4,6 @@
   "license_url": "https://github.com/MetaMask/mm-builder-hub-theme/blob/main/LICENSE",
   "minimum_discourse_version": "2.7.0",
   "color_schemes": {
-    "MetaMask Light": {
-      "primary": "0a0a0a",
-      "secondary": "ffffff",
-      "tertiary": "d075ff",
-      "quaternary": "baf24a",
-      "header_background": "ffffff",
-      "header_primary": "0a0a0a",
-      "highlight": "eac2ff",
-      "danger": "ff5c16",
-      "success": "baf24a",
-      "love": "d075ff",
-      "selected": "f7f9fc",
-      "hover": "e9edf6"
-    },
     "MetaMask Dark": {
       "primary": "ffffff",
       "secondary": "0a0a0a",

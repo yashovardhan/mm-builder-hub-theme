@@ -1,18 +1,18 @@
 // ============================================================================
 // MetaMask Builder Hub - Mobile Specific Styles
 // Optimized for touch interactions and small screens
+// ALWAYS DARK MODE
 // ============================================================================
 
 // ============================================================================
 // BASE MOBILE ADJUSTMENTS
 // ============================================================================
 html {
-  font-size: 55%;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-size: 1.6rem;
+  font-size: 1em;
   line-height: 1.6;
 }
 
@@ -20,22 +20,22 @@ body {
 // LAYOUT
 // ============================================================================
 .wrap {
-  padding: 0 1.6rem;
+  padding: 0 var(--mm-space-md);
 }
 
 #main-outlet {
-  padding-top: 1.6rem;
+  padding-top: var(--mm-space-md);
 }
 
 // Single column layout on mobile
 #main-outlet-wrapper {
   display: block;
-  padding: 0 1.6rem;
+  padding: 0 var(--mm-space-md);
 
   .sidebar-wrapper {
     position: relative;
     top: 0;
-    margin-bottom: 2.4rem;
+    margin-bottom: var(--mm-space-lg);
     max-height: none;
   }
 }
@@ -44,18 +44,18 @@ body {
 // HEADER - Mobile Compact
 // ============================================================================
 .d-header {
-  min-height: 5.6rem;
+  min-height: 3.5em;
 
   .wrap {
-    padding: 0 1.2rem;
+    padding: 0 var(--mm-space-sm);
   }
 
   .contents {
-    padding: 0.8rem 0;
+    padding: var(--mm-space-xs) 0;
   }
 
   .title {
-    font-size: 1.4rem;
+    font-size: 0.875em;
   }
 
   // Hide text labels on mobile
@@ -72,13 +72,9 @@ body {
 
 // Mobile menu
 .mobile-nav {
-  background: var(--secondary);
-  border-bottom: 1px solid var(--mm-gray-light);
-  padding: 1.2rem 1.6rem;
-
-  [data-theme='dark'] & {
-    border-bottom-color: var(--mm-gray-dark);
-  }
+  background: var(--mm-black);
+  border-bottom: 1px solid var(--mm-gray-dark);
+  padding: var(--mm-space-sm) var(--mm-space-md);
 }
 
 // ============================================================================
@@ -89,10 +85,10 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding-bottom: 0.8rem;
-  margin: 0 -1.6rem;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+  padding-bottom: var(--mm-space-xs);
+  margin: 0 calc(-1 * var(--mm-space-md));
+  padding-left: var(--mm-space-md);
+  padding-right: var(--mm-space-md);
 
   &::-webkit-scrollbar {
     display: none;
@@ -102,8 +98,8 @@ body {
     flex: 0 0 auto;
 
     > a {
-      padding: 1rem 1.4rem;
-      font-size: 1.4rem;
+      padding: 0.5em 0.875em;
+      font-size: 0.875em;
       white-space: nowrap;
     }
   }
@@ -113,25 +109,25 @@ body {
 // BUTTONS - Mobile Touch Friendly
 // ============================================================================
 .btn {
-  min-height: 4.4rem; // Apple's recommended touch target
-  padding: 1.2rem 2rem;
-  font-size: 1.5rem;
+  min-height: 2.75em; // Apple's recommended touch target
+  padding: var(--mm-space-sm) var(--mm-space-md);
+  font-size: 0.9375em;
 
   &-icon {
-    min-width: 4.4rem;
-    min-height: 4.4rem;
-    padding: 1rem;
+    min-width: 2.75em;
+    min-height: 2.75em;
+    padding: 0.625em;
   }
 }
 
 // Create topic button - fixed position on mobile
 #create-topic {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: var(--mm-space-md);
+  right: var(--mm-space-md);
   z-index: 100;
-  width: 5.6rem;
-  height: 5.6rem;
+  width: 3.5em;
+  height: 3.5em;
   padding: 0;
   border-radius: 50%;
   box-shadow: var(--mm-shadow-lg);
@@ -146,7 +142,7 @@ body {
 
   .d-icon {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.25em;
   }
 }
 
@@ -155,28 +151,28 @@ body {
 // ============================================================================
 .category-boxes {
   grid-template-columns: 1fr;
-  gap: 1.6rem;
-  margin: 2rem 0;
+  gap: var(--mm-space-md);
+  margin: var(--mm-space-md) 0;
 
   .category-box {
-    --mm-clip-md: 1.6rem;
+    --mm-clip-md: 1em;
 
     .category-details {
-      padding: 2rem;
+      padding: var(--mm-space-md);
       min-height: auto;
     }
 
     .category-title {
-      font-size: 1.8rem;
+      font-size: 1.125em;
     }
 
     .category-description {
-      font-size: 1.4rem;
+      font-size: 0.875em;
     }
 
     // Smaller decorative shape
     &::after {
-      width: 10rem;
+      width: 8em;
       opacity: 0.3;
     }
   }
@@ -186,7 +182,7 @@ body {
 // TOPIC LIST - Mobile Compact
 // ============================================================================
 .topic-list {
-  border-spacing: 0 0.8rem;
+  border-spacing: 0 var(--mm-space-xs);
 
   // Hide some columns on mobile
   th.posters,
@@ -199,19 +195,19 @@ body {
   }
 
   th {
-    padding: 0.8rem 1.2rem;
-    font-size: 1.1rem;
+    padding: var(--mm-space-xs) var(--mm-space-sm);
+    font-size: 0.6875em;
   }
 
   .topic-list-item {
-    --mm-clip-xs: 0.8rem;
+    --mm-clip-xs: 0.5em;
 
     td {
-      padding: 1.2rem;
+      padding: var(--mm-space-sm);
     }
 
     .title {
-      font-size: 1.5rem;
+      font-size: 0.9375em;
       line-height: 1.4;
     }
 
@@ -225,23 +221,23 @@ body {
 // POST LAYOUT - Mobile
 // ============================================================================
 .topic-post {
-  --mm-clip-md: 1.6rem;
-  margin-bottom: 1.6rem;
+  --mm-clip-md: 1em;
+  margin-bottom: var(--mm-space-md);
 
   .row {
-    padding: 1.6rem;
+    padding: var(--mm-space-md);
     display: block;
   }
 
   .topic-avatar {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
+    gap: var(--mm-space-sm);
+    margin-bottom: var(--mm-space-sm);
 
     img.avatar {
-      width: 4rem;
-      height: 4rem;
+      width: 2.5em;
+      height: 2.5em;
     }
   }
 
@@ -254,26 +250,26 @@ body {
     display: flex;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    gap: 0.4rem;
-    padding-bottom: 0.8rem;
+    gap: var(--mm-space-xs);
+    padding-bottom: var(--mm-space-xs);
 
     .btn {
       flex: 0 0 auto;
-      min-height: 4rem;
-      padding: 0.8rem 1.2rem;
+      min-height: 2.5em;
+      padding: var(--mm-space-xs) var(--mm-space-sm);
     }
   }
 }
 
 // Post content
 .cooked {
-  font-size: 1.5rem;
+  font-size: 0.9375em;
   line-height: 1.7;
 
-  h1 { font-size: 2.4rem; }
-  h2 { font-size: 2rem; }
-  h3 { font-size: 1.8rem; }
-  h4 { font-size: 1.6rem; }
+  h1 { font-size: 1.5em; }
+  h2 { font-size: 1.25em; }
+  h3 { font-size: 1.125em; }
+  h4 { font-size: 1em; }
 
   // Make images responsive
   img {
@@ -285,8 +281,8 @@ body {
   pre {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 1.2rem;
-    font-size: 1.3rem;
+    padding: var(--mm-space-sm);
+    font-size: 0.8125em;
   }
 
   // Tables scroll horizontally
@@ -301,26 +297,21 @@ body {
 // SIDEBAR - Mobile Collapsible
 // ============================================================================
 .sidebar-wrapper {
-  background: var(--mm-white-off);
-  border: 1px solid var(--mm-gray-light);
-  --mm-clip-md: 1.6rem;
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  --mm-clip-md: 1em;
 
   .sidebar-container {
-    padding: 1.2rem;
+    padding: var(--mm-space-sm);
   }
 
   .sidebar-section {
-    margin-bottom: 1.6rem;
+    margin-bottom: var(--mm-space-md);
   }
 
   .sidebar-section-link-wrapper a {
-    padding: 1.2rem 1.6rem;
-    font-size: 1.5rem;
-  }
-
-  [data-theme='dark'] & {
-    background: var(--mm-black-light);
-    border-color: var(--mm-gray-dark);
+    padding: var(--mm-space-sm) var(--mm-space-md);
+    font-size: 0.9375em;
   }
 }
 
@@ -337,24 +328,24 @@ body {
     width: 100%;
     max-width: none;
     z-index: 1000;
-    background: var(--secondary);
+    background: var(--mm-black);
     border-radius: 0;
     clip-path: none;
   }
 
   .search-input {
-    font-size: 1.6rem;
-    padding: 1.4rem 1.6rem;
+    font-size: 1em;
+    padding: var(--mm-space-sm) var(--mm-space-md);
   }
 
   .results {
-    max-height: calc(100vh - 8rem);
+    max-height: calc(100vh - 5em);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .search-result-topic {
-    padding: 1.4rem 1.6rem;
+    padding: var(--mm-space-sm) var(--mm-space-md);
   }
 }
 
@@ -375,32 +366,28 @@ body {
   clip-path: none;
 
   .modal-header {
-    padding: 1.6rem;
+    padding: var(--mm-space-md);
     position: sticky;
     top: 0;
-    background: var(--secondary);
+    background: var(--mm-black-light);
     z-index: 10;
 
     .title {
-      font-size: 1.8rem;
+      font-size: 1.125em;
     }
   }
 
   .modal-body {
-    padding: 1.6rem;
+    padding: var(--mm-space-md);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .modal-footer {
-    padding: 1.2rem 1.6rem;
+    padding: var(--mm-space-sm) var(--mm-space-md);
     position: sticky;
     bottom: 0;
-    background: var(--mm-white-off);
-
-    [data-theme='dark'] & {
-      background: var(--mm-black-light);
-    }
+    background: var(--mm-black-light);
   }
 }
 
@@ -413,17 +400,17 @@ body {
   right: 0;
   bottom: 0;
   width: 85%;
-  max-width: 32rem;
+  max-width: 320px;
   border-radius: 0;
   clip-path: none;
-  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
   .widget-link,
   .categories-link {
-    padding: 1.4rem 1.6rem;
-    min-height: 4.4rem;
+    padding: var(--mm-space-sm) var(--mm-space-md);
+    min-height: 2.75em;
   }
 }
 
@@ -444,7 +431,7 @@ body {
   }
 
   .reply-area {
-    padding: 1.2rem;
+    padding: var(--mm-space-sm);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -473,7 +460,7 @@ body {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     flex-wrap: nowrap;
-    padding-bottom: 0.8rem;
+    padding-bottom: var(--mm-space-xs);
 
     .btn {
       flex: 0 0 auto;
@@ -485,33 +472,33 @@ body {
 // CUSTOM SEARCH BANNER - Mobile Compact
 // ============================================================================
 .custom-search-banner-wrap {
-  --mm-clip-lg: 2rem;
-  padding: 3.2rem 2rem;
-  margin: 0 -1.6rem 2rem -1.6rem;
+  --mm-clip-lg: 1.5em;
+  padding: var(--mm-space-lg) var(--mm-space-md);
+  margin: 0 calc(-1 * var(--mm-space-md)) var(--mm-space-md) calc(-1 * var(--mm-space-md));
 
   .custom-search-banner-headline,
   h1 {
-    font-size: 2.4rem;
+    font-size: 1.5em;
     line-height: 1.2;
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: 0.9375em;
   }
 
   // Smaller decorative elements
   &::before {
-    width: 20rem;
-    height: 20rem;
-    right: -5rem;
-    top: -5rem;
+    width: 16em;
+    height: 16em;
+    right: -4em;
+    top: -4em;
   }
 
   &::after {
-    width: 15rem;
-    height: 15rem;
+    width: 12em;
+    height: 12em;
     left: -5%;
-    bottom: -8rem;
+    bottom: -6em;
   }
 }
 
@@ -524,15 +511,15 @@ input[type="password"],
 input[type="search"],
 textarea,
 select {
-  font-size: 1.6rem; // Prevents iOS zoom on focus
-  padding: 1.4rem 1.6rem;
-  min-height: 4.8rem;
+  font-size: 1em; // Prevents iOS zoom on focus
+  padding: var(--mm-space-sm) var(--mm-space-md);
+  min-height: 3em;
 }
 
 .select-kit {
   .select-kit-header {
-    min-height: 4.8rem;
-    padding: 1.2rem 1.6rem;
+    min-height: 3em;
+    padding: var(--mm-space-sm) var(--mm-space-md);
   }
 }
 
@@ -540,12 +527,12 @@ select {
 // ALERTS - Mobile
 // ============================================================================
 .alert {
-  padding: 1.2rem 1.6rem 1.2rem 2rem;
-  margin: 1.2rem 0;
-  font-size: 1.4rem;
+  padding: var(--mm-space-sm) var(--mm-space-md) var(--mm-space-sm) calc(var(--mm-space-md) + 0.4em);
+  margin: var(--mm-space-sm) 0;
+  font-size: 0.875em;
 
   &::before {
-    width: 0.4rem;
+    width: 0.3em;
   }
 }
 
@@ -553,9 +540,9 @@ select {
 // TAGS - Mobile Wrap
 // ============================================================================
 .discourse-tag {
-  font-size: 1.2rem;
-  padding: 0.4rem 1rem;
-  margin: 0.2rem;
+  font-size: 0.75em;
+  padding: 0.25em 0.625em;
+  margin: 0.125em;
 }
 
 .tag-list {
@@ -568,8 +555,8 @@ select {
 // USER CARD - Mobile
 // ============================================================================
 #user-card {
-  width: calc(100vw - 3.2rem) !important;
-  max-width: 36rem;
+  width: calc(100vw - var(--mm-space-lg)) !important;
+  max-width: 360px;
   left: 50% !important;
   transform: translateX(-50%);
 }
@@ -594,11 +581,11 @@ select {
   }
 
   #create-topic {
-    bottom: calc(2rem + env(safe-area-inset-bottom));
+    bottom: calc(var(--mm-space-md) + env(safe-area-inset-bottom));
   }
 
   .modal-inner-container .modal-footer {
-    padding-bottom: calc(1.2rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(var(--mm-space-sm) + env(safe-area-inset-bottom));
   }
 }
 
@@ -607,17 +594,17 @@ select {
 // ============================================================================
 @media (orientation: landscape) and (max-height: 500px) {
   .custom-search-banner-wrap {
-    padding: 2rem;
+    padding: var(--mm-space-md);
 
     .custom-search-banner-headline,
     h1 {
-      font-size: 2rem;
+      font-size: 1.25em;
     }
   }
 
   #reply-control.open {
     .d-editor-button-bar {
-      padding: 0.4rem 0;
+      padding: var(--mm-space-xs) 0;
     }
   }
 }
@@ -632,12 +619,4 @@ select {
   }
 }
 
-// ============================================================================
-// DARK MODE ADJUSTMENTS
-// ============================================================================
-@media (prefers-color-scheme: dark) {
-  // Ensure good contrast on OLED screens
-  body {
-    background: var(--mm-black);
-  }
-}
+// Dark mode is always enforced - no media query needed
