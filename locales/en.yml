@@ -1,3 +1,8 @@
 en:
   theme_metadata:
     description: "A MetaMask-branded theme based on Discourse Mint Theme."
+    settings:
+      enable_custom_homepage: "Enable the custom homepage with hero section and category grid"
+      hero_title: "Main heading displayed on the homepage hero section"
+      hero_subtitle: "Subtitle text displayed below the hero title"
+      homepage_categories: "Configure homepage categories (one per line). Format: slug|icon|description"

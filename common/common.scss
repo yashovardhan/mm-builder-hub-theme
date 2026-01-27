@@ -439,20 +439,26 @@ a {
   }
 }
 
-// Create topic button (special styling)
+// Create topic button (special styling - compact size)
 #create-topic {
   background: var(--mm-green);
   color: var(--mm-black);
   border: none;
-  border-radius: 10rem;
+  border-radius: 4px;
   font-weight: 500;
-  padding: 0.75em 1.5em;
-  box-shadow: var(--mm-shadow-sm);
+  font-size: 0.875em;
+  padding: 0.5em 1em;
+  box-shadow: none;
+  min-height: auto;
+  height: auto;
+
+  .d-icon {
+    margin-right: 4px;
+  }
 
   &:hover {
     background: var(--mm-green-light);
-    box-shadow: 0 4px 12px rgba(186, 242, 74, 0.3);
-    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(186, 242, 74, 0.2);
   }
 }
 
@@ -497,6 +503,11 @@ a {
   }
 }
 
+// Homepage categories wrapper
+.homepage-categories-wrapper {
+  margin: 16px 0;
+}
+
 // Category boxes
 .category-boxes {
   display: grid;
@@ -527,6 +538,14 @@ a {
       min-height: 120px;
       display: flex;
       flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .category-icon {
+      font-size: 2em;
+      margin-bottom: 8px;
+      line-height: 1;
     }
 
     // Color rotation for accent bars
@@ -630,6 +649,7 @@ a {
   border-spacing: 0 4px;
   background: transparent;
 
+  // Header row styling only (no layout changes)
   th {
     font-family: var(--mm-font-primary);
     font-size: 0.75em;
@@ -642,11 +662,14 @@ a {
     background: transparent;
   }
 
+  // Body cells styling only
+  td {
+    padding: 10px 12px;
+  }
+
   .topic-list-item {
-    position: relative;
     background: var(--mm-black-light);
-    transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
-    @include mm-accent-bar(var(--mm-green), 3px);
+    transition: background calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
 
     td {
       padding: 10px 12px;
@@ -654,36 +677,10 @@ a {
       vertical-align: middle;
       background: transparent;
       color: var(--mm-white);
-
-      &:first-child {
-        @include mm-clip-card(0.6em);
-        border-radius: 0;
-      }
-
-      &:last-child {
-        clip-path: polygon(
-          0 0,
-          100% 0,
-          100% calc(100% - 0.6em),
-          calc(100% - 0.6em) 100%,
-          0 100%
-        );
-      }
     }
 
-    // Color rotation
-    &:nth-child(4n+1)::before { background: var(--mm-orange); }
-    &:nth-child(4n+2)::before { background: var(--mm-green); }
-    &:nth-child(4n+3)::before { background: var(--mm-purple); }
-    &:nth-child(4n+4)::before { background: var(--mm-blue); }
-
     &:hover {
-      filter: drop-shadow(var(--mm-shadow-sm));
       background: var(--mm-black-mid);
-
-      &::before {
-        opacity: 1;
-      }
     }
   }
 }
@@ -1213,12 +1210,24 @@ textarea {
 // ============================================================================
 // CUSTOM SEARCH BANNER (Homepage Hero)
 // ============================================================================
+// Hide default welcome banner when custom homepage hero is present
+#main-outlet .custom-search-banner-wrap:has(.custom-search-banner-headline) ~ .welcome-banner,
+#main-outlet .custom-search-banner-wrap:has(.custom-search-banner-headline) + .welcome-banner {
+  display: none !important;
+}
+
+// Hide welcome banner if custom hero exists
+#main-outlet:has(.custom-search-banner-wrap .custom-search-banner-headline) > .welcome-banner {
+  display: none !important;
+}
+
 .custom-search-banner-wrap {
   position: relative;
   background: var(--mm-black-light);
   color: var(--mm-white);
   padding: 24px 20px;
   margin: 0 0 16px 0;
+  width: 100%;
   @include mm-clip-card(1.5em);
   overflow: hidden;
 
@@ -1502,9 +1511,15 @@ textarea {
   font-size: 0.875em;
 }
 
-// List controls
+// List controls - ensure single line layout
 .list-controls {
   margin-top: var(--mm-space-md);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mm-space-sm);
+  width: 100%;
 
   .combo-box .combo-box-header {
     background: var(--mm-black-light);
@@ -1512,6 +1527,76 @@ textarea {
     color: var(--mm-white);
     border-radius: 0;
     @include mm-clip-card(var(--mm-clip-xs));
+  }
+
+  // Navigation pills should be inline on single line
+  .nav-pills {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    
+    > li > a {
+      font-size: 1em; // Normal font size
+      padding: 8px 12px;
+    }
+  }
+
+  // Category/tag dropdowns
+  .category-breadcrumb,
+  .tag-drop {
+    flex-shrink: 0;
+  }
+
+  // New topic button should not stretch
+  #create-topic {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+}
+
+// Ensure navigation container stays in single row
+.navigation-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--mm-space-sm);
+}
+
+// ============================================================================
+// DOCS LAYOUT
+// ============================================================================
+.docs {
+  width: 100%;
+
+  .docs-search {
+    width: 100%;
+    margin-bottom: var(--mm-space-md);
+  }
+
+  // Fix centered loading container
+  .loading-container {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    width: 100%;
+  }
+
+  // Make docs-browse use full width
+  .docs-browse {
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  // Docs topic list should use full width
+  .docs-topic-list {
+    flex-grow: 1;
+    width: auto;
+    min-width: 0;
+  }
+
+  table {
+    width: 100%;
+    table-layout: auto !important;
   }
 }
 

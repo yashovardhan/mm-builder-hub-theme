@@ -44,40 +44,22 @@
 // ============================================================================
 // TWO-COLUMN LAYOUT
 // ============================================================================
+// Note: We don't override the default Discourse grid layout.
+// The sidebar should remain on the left as per Discourse default.
+// Only add minimal styling enhancements.
+
 #main-outlet-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 20px;
-  max-width: 1440px;
+  // Let Discourse handle the grid layout natively
+  // Just ensure proper max-width and centering
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
-
-  &.has-sidebar {
-    grid-template-columns: 240px 1fr;
-  }
-
-  .sidebar-wrapper {
-    grid-column: 2;
-    position: sticky;
-    top: 60px;
-    height: fit-content;
-    max-height: calc(100vh - 70px);
-  }
-
-  #main-outlet {
-    grid-column: 1;
-    min-width: 0;
-  }
 }
 
-// Without sidebar
-#main-outlet-wrapper:not(.has-sidebar) {
-  grid-template-columns: 1fr;
-  max-width: 1000px;
-
-  #main-outlet {
-    grid-column: 1;
-  }
+// Ensure main outlet takes proper width
+#main-outlet {
+  min-width: 0;
+  width: 100%;
 }
 
 // ============================================================================

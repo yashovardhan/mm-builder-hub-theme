@@ -1,0 +1,30 @@
+enable_custom_homepage:
+  type: bool
+  default: true
+  description:
+    en: Enable the custom homepage with hero section and category grid
+
+hero_title:
+  type: string
+  default: "Build the future of Web3 with MetaMask"
+  description:
+    en: Main heading displayed on the homepage hero section
+
+hero_subtitle:
+  type: string
+  default: "Join the MetaMask developer community and start building today"
+  description:
+    en: Subtitle text displayed below the hero title
+
+homepage_categories:
+  type: list
+  list_type: compact
+  default: |
+    getting-started|🚀|Begin your Web3 development journey
+    sdk-apis|📦|Integrate MetaMask into your dApp
+    snaps|🔌|Extend wallet functionality with Snaps
+    security|🔒|Best practices for secure development
+    smart-contracts|📝|Deploy and interact with contracts
+    showcase|💡|Share your MetaMask projects
+  description:
+    en: "Configure homepage categories (one per line). Format: slug|icon|description"

@@ -1,0 +1,30 @@
+<script type="text/discourse-plugin" version="0.8">
+  // Add custom classes to header for styling
+  api.onPageChange(() => {
+    const header = document.querySelector(".d-header");
+    if (header) {
+      header.classList.add("mm-header");
+    }
+  });
+</script>
+
+<!-- Custom header styling additions -->
+<style>
+  .d-header.mm-header {
+    background: var(--mm-black);
+    border-bottom: 1px solid var(--mm-gray-dark);
+  }
+  
+  .header-site-name {
+    font-family: var(--mm-font-primary);
+    font-weight: 500;
+    color: var(--mm-white);
+    margin-left: 8px;
+  }
+  
+  /* MetaMask logo styling if custom logo is uploaded */
+  .d-header .title img {
+    max-height: 32px;
+    width: auto;
+  }
+</style>
