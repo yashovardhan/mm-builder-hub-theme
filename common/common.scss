@@ -1870,6 +1870,160 @@ textarea {
 }
 
 // ============================================================================
+// MENTIONS - @username styling
+// ============================================================================
+a.mention,
+a.mention-group {
+  background: var(--mm-green);
+  color: var(--mm-black) !important;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--mm-green-light);
+    color: var(--mm-black) !important;
+  }
+}
+
+// ============================================================================
+// PINNED POSTS / CATEGORY BANNERS
+// ============================================================================
+// Category description banner (the teal/blue banner)
+.category-heading,
+.category-title-link,
+.category-title {
+  color: var(--mm-white) !important;
+}
+
+// Pinned topic banner styling
+.topic-status-info,
+.pinned-message,
+.unpinned-message {
+  background: var(--mm-black-light) !important;
+  border: 1px solid var(--mm-gray-dark);
+  color: var(--mm-white);
+  padding: var(--mm-space-sm) var(--mm-space-md);
+
+  a {
+    color: var(--mm-green);
+  }
+}
+
+// Category info box (the teal banner in topic view)
+.category-info-container,
+.topic-category {
+  background: var(--mm-black-mid) !important;
+  border: 1px solid var(--mm-gray-dark);
+  color: var(--mm-white);
+  
+  h3, h2, h1, p, span {
+    color: var(--mm-white) !important;
+  }
+
+  a {
+    color: var(--mm-green) !important;
+    
+    &:hover {
+      color: var(--mm-green-light) !important;
+    }
+  }
+}
+
+// Pinned category banner (the large teal welcome banner)
+.category-heading-description,
+.category-description,
+.cooked {
+  // Only target within category boxes, not all cooked content
+}
+
+// Category box in topic - the teal banner at top
+.topic-category .category-title-contents,
+.category-title-contents {
+  background: var(--mm-black-light);
+  
+  .category-title-link,
+  .category-name {
+    color: var(--mm-white) !important;
+  }
+}
+
+// The large category info banner on category pages
+.category-boxes .category-description,
+.category-box .category-description {
+  color: var(--mm-gray) !important;
+}
+
+// Fix the topic category box styling in topic view
+.topic-above-post-stream,
+.topic-area {
+  // The large category description box at top of topic
+  .category-heading,
+  .topic-header-extra,
+  [class*="category-heading"] {
+    background: var(--mm-black-light) !important;
+    border: 1px solid var(--mm-gray-dark);
+    padding: var(--mm-space-md);
+    margin-bottom: var(--mm-space-md);
+    
+    .category-title-contents,
+    .category-heading-description {
+      h2, h3, .category-title-link {
+        color: var(--mm-green) !important;
+      }
+      
+      p, .cooked, span {
+        color: var(--mm-gray);
+      }
+    }
+  }
+}
+
+// Override any teal/light blue category backgrounds
+.category-heading,
+.topic-category,
+.category-header-widget,
+.category-title-header,
+.topic-category-title {
+  background: var(--mm-black-light) !important;
+  
+  * {
+    color: var(--mm-white);
+  }
+  
+  a {
+    color: var(--mm-green) !important;
+  }
+}
+
+// Cooked content in category descriptions (the formatted text)
+.category-heading .cooked,
+.topic-above-post-stream .cooked,
+.category-description .cooked {
+  background: transparent !important;
+  color: var(--mm-gray) !important;
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--mm-green) !important;
+  }
+  
+  p, li {
+    color: var(--mm-gray) !important;
+  }
+  
+  a {
+    color: var(--mm-green) !important;
+  }
+}
+
+// Pinned topic box at top of category
+.pinned-button,
+.topic-statuses .pinned {
+  color: var(--mm-orange) !important;
+}
+
+// ============================================================================
 // RESPONSIVE UTILITIES
 // ============================================================================
 @media (max-width: 768px) {
