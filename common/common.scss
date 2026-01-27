@@ -1890,11 +1890,45 @@ a.mention-group {
 // ============================================================================
 // PINNED POSTS / CATEGORY BANNERS
 // ============================================================================
-// Category description banner (the teal/blue banner)
+// CRITICAL: Override light blue/teal category banners with dark theme
+// These need !important to override Discourse's inline styles and default category colors
 .category-heading,
 .category-title-link,
 .category-title {
   color: var(--mm-white) !important;
+}
+
+// Target the actual banner container aggressively
+.category-heading,
+div.category-heading,
+section.category-heading,
+[class*="category-heading"] {
+  background: var(--mm-black-light) !important;
+  background-color: var(--mm-black-light) !important;
+  border: 1px solid var(--mm-gray-dark) !important;
+  padding: var(--mm-space-md);
+  margin-bottom: var(--mm-space-md);
+  
+  // Override all child elements
+  * {
+    background: transparent !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--mm-green) !important;
+  }
+  
+  p, span, div, li {
+    color: var(--mm-gray) !important;
+  }
+  
+  a {
+    color: var(--mm-green) !important;
+    
+    &:hover {
+      color: var(--mm-green-light) !important;
+    }
+  }
 }
 
 // Pinned topic banner styling
@@ -1915,6 +1949,7 @@ a.mention-group {
 .category-info-container,
 .topic-category {
   background: var(--mm-black-mid) !important;
+  background-color: var(--mm-black-mid) !important;
   border: 1px solid var(--mm-gray-dark);
   color: var(--mm-white);
   
@@ -1931,17 +1966,11 @@ a.mention-group {
   }
 }
 
-// Pinned category banner (the large teal welcome banner)
-.category-heading-description,
-.category-description,
-.cooked {
-  // Only target within category boxes, not all cooked content
-}
-
 // Category box in topic - the teal banner at top
 .topic-category .category-title-contents,
 .category-title-contents {
-  background: var(--mm-black-light);
+  background: var(--mm-black-light) !important;
+  background-color: var(--mm-black-light) !important;
   
   .category-title-link,
   .category-name {
@@ -1963,6 +1992,7 @@ a.mention-group {
   .topic-header-extra,
   [class*="category-heading"] {
     background: var(--mm-black-light) !important;
+    background-color: var(--mm-black-light) !important;
     border: 1px solid var(--mm-gray-dark);
     padding: var(--mm-space-md);
     margin-bottom: var(--mm-space-md);
@@ -1980,20 +2010,25 @@ a.mention-group {
   }
 }
 
-// Override any teal/light blue category backgrounds
+// Override any teal/light blue category backgrounds - MAXIMUM SPECIFICITY
 .category-heading,
 .topic-category,
 .category-header-widget,
 .category-title-header,
-.topic-category-title {
-  background: var(--mm-black-light) !important;
-  
-  * {
-    color: var(--mm-white);
-  }
-  
-  a {
-    color: var(--mm-green) !important;
+.topic-category-title,
+div[class*="category"],
+section[class*="category"] {
+  &:not(.category-box):not(.category-boxes) {
+    background: var(--mm-black-light) !important;
+    background-color: var(--mm-black-light) !important;
+    
+    * {
+      color: var(--mm-white);
+    }
+    
+    a {
+      color: var(--mm-green) !important;
+    }
   }
 }
 
@@ -2002,6 +2037,7 @@ a.mention-group {
 .topic-above-post-stream .cooked,
 .category-description .cooked {
   background: transparent !important;
+  background-color: transparent !important;
   color: var(--mm-gray) !important;
   
   h1, h2, h3, h4, h5, h6 {
