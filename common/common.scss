@@ -1203,11 +1203,18 @@ a {
   font-weight: 400;
   line-height: 1.6 !important;
   margin-top: 0.5em;
+  @include mm-line-clamp(2); // Default to 2 lines
 
   // Hide if empty
   &:empty {
     display: none !important;
   }
+}
+
+// Expand excerpt on hover
+.topic-list-item:hover .topic-excerpt {
+  -webkit-line-clamp: 5; // Expand to 5 lines on hover
+  max-height: none;
 }
 
 .topic-excerpt-more {
