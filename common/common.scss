@@ -2312,28 +2312,7 @@ textarea {
   }
 }
 
-// Navigation pills styling only
-.nav-pills>li>a {
-  font-family: var(--mm-font-primary);
-  font-size: 0.875em;
-  font-weight: 500;
-  color: var(--mm-gray);
-  background: transparent;
-  border-radius: 6.25em;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
-
-  &:hover {
-    color: var(--mm-green);
-    background: var(--mm-black-light);
-  }
-
-  &.active {
-    color: var(--mm-green);
-    background: var(--mm-black-light);
-  }
-}
+// [Removed duplicate nav-pills block]
 
 // Category breadcrumb styling
 .category-breadcrumb {
@@ -2355,7 +2334,12 @@ textarea {
       font-weight: 500;
       display: flex;
       align-items: center;
+      justify-content: center; // Ensure text is centered
       height: 100%;
+      min-height: 2.25rem; // Force min-height
+      box-sizing: border-box;
+      padding: 0 1em; // Consistent padding
+      line-height: normal; // Reset line-height
     }
 
     a,
