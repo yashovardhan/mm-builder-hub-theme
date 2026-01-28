@@ -1212,9 +1212,12 @@ a {
 }
 
 // Expand excerpt on hover
+// Expand excerpt on hover
 .topic-list-item:hover .topic-excerpt {
-  -webkit-line-clamp: 5; // Expand to 5 lines on hover
-  max-height: none;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  max-height: none !important;
+  overflow: visible !important;
 }
 
 .topic-excerpt-more {
