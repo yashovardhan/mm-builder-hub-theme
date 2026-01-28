@@ -1104,23 +1104,6 @@ a {
 
     td {
       color: var(--mm-white);
-      vertical-align: top;
-      padding-top: 1.25rem;
-      padding-bottom: 1.25rem;
-    }
-  }
-
-  // Pinned/first topic - give it more prominence
-  .topic-list-item:first-child {
-    background-color: rgba(186, 242, 74, 0.03);
-    border-left: 3px solid var(--mm-green);
-
-    td:first-child {
-      padding-left: 0.75rem;
-    }
-
-    .topic-excerpt {
-      margin-top: 0.75rem;
     }
   }
 
@@ -2278,106 +2261,49 @@ textarea {
 
 // Topic excerpt - removed duplicate (see line 1199)
 
-// List controls - FULL WIDTH navigation bar
+// ============================================================================
+// LIST CONTROLS & NAVIGATION - Minimal styling (don't break Discourse layout)
+// ============================================================================
+
+// Only style appearance, NOT layout
 .list-controls {
-  margin: 1rem 0 1.5rem;
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 
   .combo-box .combo-box-header {
     background: var(--mm-black-light);
     border: 1px solid var(--mm-gray-dark);
     color: var(--mm-white);
     border-radius: 6.25em;
-    padding: 0.5em 1em;
-  }
-
-  // New topic button
-  #create-topic {
-    flex-shrink: 0;
-    margin-left: auto;
   }
 }
 
-// Navigation container - FULL WIDTH
-.navigation-container {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box;
+// Navigation pills styling only
+.nav-pills>li>a {
+  font-family: var(--mm-font-primary);
+  font-size: 0.875em;
+  font-weight: 500;
+  color: var(--mm-gray);
+  background: transparent;
+  border-radius: 6.25em;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+  &:hover {
+    color: var(--mm-green);
+    background: var(--mm-black-light);
+  }
+
+  &.active {
+    color: var(--mm-green);
+    background: var(--mm-black-light);
+  }
 }
 
-// Navigation pills - horizontal layout
-#navigation-bar,
-.nav-pills {
-  display: flex !important;
-  flex-wrap: wrap;
-  gap: 0.25rem;
+// Category breadcrumb styling only
+.category-breadcrumb li {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  width: auto;
-
-  >li {
-    margin: 0;
-
-    >a,
-    >.btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.625rem 1rem;
-      font-family: var(--mm-font-primary);
-      font-size: 0.875em;
-      font-weight: 500;
-      color: var(--mm-gray);
-      background: transparent;
-      border: none;
-      border-radius: 6.25em;
-      text-decoration: none;
-      transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
-      white-space: nowrap;
-
-      &:hover {
-        color: var(--mm-green);
-        background: var(--mm-black-light);
-      }
-
-      &.active {
-        color: var(--mm-green);
-        background: var(--mm-black-light);
-        font-weight: 500;
-      }
-    }
-  }
-}
-
-// Category breadcrumb - full width row
-.category-breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  width: 100% !important;
-
-  li {
-    margin: 0;
-  }
-}
-
-// Ensure topic list main container is full width
-.list-container {
-  width: 100% !important;
-  max-width: 100% !important;
 }
 
 // ============================================================================
