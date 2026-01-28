@@ -2068,13 +2068,62 @@ textarea {
     z-index: 1;
   }
 
-  input[type="text"] {
-    background: var(--mm-black-mid);
-    border-color: var(--mm-gray-dark);
-    color: var(--mm-white);
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 
-    &:focus {
-      border-color: var(--mm-green);
+    input[type="text"] {
+      background: var(--mm-black-mid);
+      border: 1px solid var(--mm-gray-dark); // ensure border is set
+      color: var(--mm-white);
+      border-radius: 6.25em; // Pill shape
+      padding-left: 3rem; // Space for search icon
+      padding-right: 3rem; // Space for filter icon
+      height: 3rem; // Explicit height
+      width: 100%;
+      box-sizing: border-box; // Ensure padding fits
+
+      &:focus {
+        border-color: var(--mm-green);
+        outline: none;
+      }
+    }
+
+    // Search Icon (Left)
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--mm-gray);
+      pointer-events: none; // Let clicks pass to input
+      z-index: 2;
+
+      .d-icon {
+        font-size: 1.125em;
+      }
+    }
+
+    // Advanced Search/Filter Icon (Right)
+    .show-advanced-search {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--mm-gray);
+      background: transparent;
+      border: none;
+      padding: 0;
+      z-index: 2;
+
+      &:hover {
+        color: var(--mm-green);
+      }
+
+      .d-icon {
+        font-size: 1.125em;
+      }
     }
   }
 }
@@ -2339,31 +2388,39 @@ textarea {
     margin: 0;
     height: 2.25rem; // Enforce consistent height
 
-    .select-kit-header {
-      font-size: 1em; // Inherit 0.875em
-      font-weight: 500;
+    // Target the select-kit wrapper specifically
+    .select-kit {
+      height: 100%;
       display: flex;
       align-items: center;
-      justify-content: center; // Ensure text is centered
-      height: 100%;
-      min-height: 2.25rem; // Force min-height
-      box-sizing: border-box;
-      padding: 0 1em; // Consistent padding
-      line-height: normal; // Reset line-height
+
+      .select-kit-header {
+        font-size: 1em; // Inherit 0.875em
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100% !important; // Force height match
+        min-height: 2.25rem !important;
+        box-sizing: border-box;
+        padding: 0 1em;
+        line-height: normal;
+        margin: 0; // Reset any margins
+      }
     }
 
     a,
     .badge-category {
-      font-size: 1em !important; // Force consistency
+      font-size: 1em !important;
       font-weight: 500;
       display: flex;
       align-items: center;
       height: 100%;
       color: var(--mm-gray);
+      text-decoration: none;
 
       &:hover {
         color: var(--mm-green);
-        text-decoration: none;
       }
     }
 
