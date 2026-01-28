@@ -2075,14 +2075,15 @@ textarea {
 
     input[type="text"] {
       background: var(--mm-black-mid);
-      border: 1px solid var(--mm-gray-dark); // ensure border is set
-      color: var(--mm-white);
-      border-radius: 6.25em; // Pill shape
-      padding-left: 3rem; // Space for search icon
-      padding-right: 3rem; // Space for filter icon
-      height: 3rem; // Explicit height
+      border: 1px solid var(--mm-gray-dark) !important; // ensure border is set
+      color: var(--mm-white) !important;
+      border-radius: 6.25em !important; // Force Pill shape
+      padding-left: 3rem !important; // Space for search icon
+      padding-right: 3rem !important; // Space for filter icon
+      height: 3rem !important; // Explicit height
       width: 100%;
-      box-sizing: border-box; // Ensure padding fits
+      box-sizing: border-box !important; // Ensure padding fits
+      margin: 0 !important; // Prevent margin overrides
 
       &:focus {
         border-color: var(--mm-green);
@@ -2390,22 +2391,22 @@ textarea {
 
     // Target the select-kit wrapper specifically
     .select-kit {
-      height: 100%;
-      display: flex;
-      align-items: center;
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
 
       .select-kit-header {
-        font-size: 1em; // Inherit 0.875em
+        font-size: 1em !important; // Inherit 0.875em
         font-weight: 500;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         height: 100% !important; // Force height match
         min-height: 2.25rem !important;
         box-sizing: border-box;
-        padding: 0 1em;
-        line-height: normal;
-        margin: 0; // Reset any margins
+        padding: 0 1em !important;
+        line-height: normal !important;
+        margin: 0 !important; // Reset any margins
       }
     }
 
