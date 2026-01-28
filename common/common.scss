@@ -2120,6 +2120,68 @@ body .custom-search-banner-wrap {
 }
 
 // ============================================================================
+// WELCOME BANNER SEARCH (from Discourse plugin - correct selectors)
+// ============================================================================
+// The search bar uses .search-input--welcome-banner as the container
+// This container has border-radius: 0px by default causing the "cut-off" look
+body .search-input--welcome-banner {
+  border-radius: 6.25em !important; // Force pill shape on CONTAINER
+  overflow: hidden !important; // Clip children to rounded shape
+  display: flex !important;
+  align-items: center !important;
+  background: var(--mm-black-mid) !important;
+  border: 1px solid var(--mm-gray-dark) !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  padding-left: 0.5em !important;
+  padding-right: 0.5em !important;
+}
+
+// The actual input inside the welcome banner
+body #welcome-banner-search-input,
+body .search-term__input {
+  border: none !important; // Remove input border (container has border)
+  background: transparent !important; // Transparent to show container bg
+  color: var(--mm-white) !important;
+  border-radius: 0 !important; // No border-radius needed on input
+  padding: 0.75em 1em !important;
+  height: auto !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  box-shadow: none !important;
+
+  &::placeholder {
+    color: var(--mm-gray) !important;
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// Icon wrapper ".searching" containing the advanced search button
+body .search-input--welcome-banner .searching {
+  display: flex !important;
+  align-items: center !important;
+  padding-right: 0.5em !important;
+}
+
+body .search-input--welcome-banner .show-advanced-search {
+  background: transparent !important;
+  border: none !important;
+  color: var(--mm-gray) !important;
+  padding: 0.5em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  &:hover {
+    color: var(--mm-green) !important;
+  }
+}
+
+// ============================================================================
 // FOOTER
 // ============================================================================
 .footer {
@@ -2442,6 +2504,68 @@ body .category-breadcrumb {
       display: flex;
       align-items: center;
       line-height: normal; // Reset line-height
+    }
+  }
+}
+
+// ============================================================================
+// NAVIGATION CONTAINER ALIGNMENT (from live DOM inspection)
+// ============================================================================
+// Fixes vertical misalignment between dropdowns and navigation links
+body .navigation-container {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0.5em !important;
+}
+
+// Category breadcrumb list containing dropdowns
+body .navigation-container .category-breadcrumb {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0.25em !important;
+}
+
+// The select-kit dropdowns (Category and Tags)
+body .category-breadcrumb__category-selector,
+body .tag-drop {
+  display: flex !important;
+  align-items: center !important;
+
+  // The header/button of the dropdown
+  .select-kit-header {
+    display: flex !important;
+    align-items: center !important;
+    height: 2.25rem !important;
+    min-height: 2.25rem !important;
+    padding: 0 1em !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+}
+
+// The navigation bar (Categories, Latest, Top links)
+body .navigation-container #navigation-bar {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+
+  li {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+
+    a {
+      display: flex !important;
+      align-items: center !important;
+      height: 2.25rem !important;
+      line-height: 1 !important;
+      padding: 0 1em !important;
     }
   }
 }
