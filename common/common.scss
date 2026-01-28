@@ -1196,18 +1196,16 @@ a {
   line-height: 1.5 !important;
 }
 
-// Topic excerpt - show full text for category descriptions
+// Topic excerpt - visible with proper line height
 .topic-excerpt {
+  display: block !important;
   font-size: 0.875em;
   color: var(--mm-gray) !important;
   font-weight: 400;
   line-height: 1.6 !important;
   margin-top: 0.5em;
-
-  // Only apply line clamp on long lists, not pinned topics
-  .topic-list-item:not(:first-child) & {
-    @include mm-line-clamp(3);
-  }
+  max-height: none !important;
+  overflow: visible !important;
 }
 
 .topic-excerpt-more {
@@ -2278,21 +2276,19 @@ textarea {
   }
 }
 
-// Topic excerpt
-.topic-excerpt {
-  color: var(--mm-gray-mid);
-  font-size: 0.875em;
-}
+// Topic excerpt - removed duplicate (see line 1199)
 
-// List controls - full width navigation
+// List controls - FULL WIDTH navigation bar
 .list-controls {
   margin: 1rem 0 1.5rem;
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
 
   .combo-box .combo-box-header {
     background: var(--mm-black-light);
@@ -2309,16 +2305,18 @@ textarea {
   }
 }
 
-// Navigation container - full width with proper spacing
+// Navigation container - FULL WIDTH
 .navigation-container {
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
 }
 
-// Navigation pills - full width horizontal layout
+// Navigation pills - horizontal layout
 #navigation-bar,
 .nav-pills {
   display: flex !important;
@@ -2362,16 +2360,24 @@ textarea {
   }
 }
 
-// Category breadcrumb - proper spacing
+// Category breadcrumb - full width row
 .category-breadcrumb {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   margin: 0;
+  width: 100% !important;
 
   li {
     margin: 0;
   }
+}
+
+// Ensure topic list main container is full width
+.list-container {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 // ============================================================================
