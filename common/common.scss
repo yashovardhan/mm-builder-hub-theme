@@ -359,7 +359,6 @@ a {
       gap: 0.3em;
     }
 
-    // Generic icons in header
     .icon {
       width: 2.625rem;
       height: 2.625rem;
@@ -374,43 +373,6 @@ a {
 
       &:hover {
         color: var(--mm-green);
-      }
-    }
-
-    // Scoped circular button styles for Header Icons
-    .btn-icon {
-      border-radius: 50%;
-      background: var(--mm-black-light);
-      color: var(--mm-white);
-      padding: 0; // Reset padding for precise centering
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      aspect-ratio: 1 / 1;
-      width: 2.625rem;
-      height: 2.625rem;
-      border: 1px solid var(--mm-gray-dark);
-      margin: 0;
-
-      @include mm-bp-max(tablet) {
-        width: 2.25rem;
-        height: 2.25rem;
-      }
-
-      .d-icon {
-        margin: 0;
-        color: var(--mm-white);
-      }
-
-      &:hover,
-      &:focus {
-        background: var(--mm-green);
-        border-color: var(--mm-green);
-        color: var(--mm-black);
-
-        .d-icon {
-          color: var(--mm-black);
-        }
       }
     }
 
@@ -755,19 +717,40 @@ a {
     }
   }
 
-  // Icon-only button - circular design
-  // SCOPED: Only apply to specific areas to avoid breaking dismiss buttons
-  // See .d-header-icons and .mobile-nav for the actual implementation
-  &-icon {
-    // Base icon button styles (safe to apply globally)
-    padding: 0.5em;
-    background: transparent;
-    border: none;
-    color: var(--mm-gray);
+  // Icon-only button - circular design (exclude dismiss buttons on notices/banners)
+  &-icon:not(.select-kit-header):not(.btn-flat):not(.modal-close):not(.close):not(.dismiss-link):not([class*="dismiss"]) {
+    border-radius: 50%;
+    background: var(--mm-black-light);
+    color: var(--mm-white);
+    padding: 0.95em;
+    aspect-ratio: 1 / 1;
+    line-height: 0;
+    min-width: 2.625rem;
+    min-height: 2.625rem;
+    width: 2.625rem;
+    height: 2.625rem;
+    border: 1px solid var(--mm-gray-dark);
 
-    &:hover {
-      background: var(--mm-black-light);
+    @include mm-bp-max(tablet) {
+      width: 2.25rem;
+      height: 2.25rem;
+      min-width: 2.25rem;
+      min-height: 2.25rem;
+    }
+
+    .d-icon {
+      margin: 0;
       color: var(--mm-white);
+    }
+
+    &:hover,
+    &:focus {
+      background: var(--mm-green);
+      border-color: var(--mm-green);
+
+      .d-icon {
+        color: var(--mm-black);
+      }
     }
   }
 
@@ -1003,50 +986,8 @@ a {
 }
 
 // ============================================================================
-// TOPIC LIST & NAVIGATION - Production Polish
+// TOPIC LIST - Production Polish
 // ============================================================================
-
-// List controls container (Navigation + Buttons)
-.list-controls {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-
-  .combo-box .combo-box-header {
-    background: var(--mm-black-light);
-    border: 1px solid var(--mm-gray-dark);
-    color: var(--mm-white);
-    border-radius: 6.25em;
-  }
-}
-
-// Navigation pills styling
-.nav-pills>li>a {
-  font-family: var(--mm-font-primary);
-  font-size: 0.875em;
-  font-weight: 500;
-  color: var(--mm-gray);
-  background: transparent;
-  border-radius: 6.25em;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
-
-  &:hover {
-    color: var(--mm-green);
-    background: var(--mm-black-light);
-  }
-
-  &.active {
-    color: var(--mm-green);
-    background: var(--mm-black-light);
-  }
-}
-
-// Category breadcrumb styling
-.category-breadcrumb li {
-  margin: 0;
-}
-
 .topic-list {
   border-collapse: separate;
   border-spacing: 0;
@@ -2321,9 +2262,52 @@ textarea {
   }
 }
 
+// Topic excerpt - removed duplicate (see line 1199)
+
 // ============================================================================
-// CLEANED UP SECTION - Moved to Topic List section or deprecated
+// LIST CONTROLS & NAVIGATION - Minimal styling (don't break Discourse layout)
 // ============================================================================
+
+// Only style appearance, NOT layout
+.list-controls {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .combo-box .combo-box-header {
+    background: var(--mm-black-light);
+    border: 1px solid var(--mm-gray-dark);
+    color: var(--mm-white);
+    border-radius: 6.25em;
+  }
+}
+
+// Navigation pills styling only
+.nav-pills>li>a {
+  font-family: var(--mm-font-primary);
+  font-size: 0.875em;
+  font-weight: 500;
+  color: var(--mm-gray);
+  background: transparent;
+  border-radius: 6.25em;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+  &:hover {
+    color: var(--mm-green);
+    background: var(--mm-black-light);
+  }
+
+  &.active {
+    color: var(--mm-green);
+    background: var(--mm-black-light);
+  }
+}
+
+// Category breadcrumb styling only
+.category-breadcrumb li {
+  margin: 0;
+}
 
 // ============================================================================
 // DOCS LAYOUT
@@ -2790,32 +2774,20 @@ section.category-heading,
   }
 }
 
-// Override any teal/light blue category backgrounds - TARGETED
+// Override any teal/light blue category backgrounds - MAXIMUM SPECIFICITY
 .category-heading,
 .topic-category,
 .category-header-widget,
 .category-title-header,
-.topic-category-title {
+.topic-category-title,
+div[class*="category"],
+section[class*="category"] {
   &:not(.category-box):not(.category-boxes) {
     background: var(--mm-black-light) !important;
     background-color: var(--mm-black-light) !important;
 
-    // Target specific text elements instead of wildcard
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .category-title-link {
-      color: var(--mm-white) !important;
-    }
-
-    p,
-    span,
-    div,
-    li {
-      color: var(--mm-gray);
+    * {
+      color: var(--mm-white);
     }
 
     a {
@@ -2824,11 +2796,12 @@ section.category-heading,
   }
 }
 
-// Cooked content in category descriptions
+// Cooked content in category descriptions (the formatted text)
 .category-heading .cooked,
 .topic-above-post-stream .cooked,
 .category-description .cooked {
   background: transparent !important;
+  background-color: transparent !important;
   color: var(--mm-gray) !important;
 
   h1,
