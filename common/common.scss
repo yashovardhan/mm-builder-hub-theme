@@ -717,8 +717,8 @@ a {
     }
   }
 
-  // Icon-only button - circular design
-  &-icon:not(.select-kit-header):not(.btn-flat):not(.modal-close) {
+  // Icon-only button - circular design (exclude dismiss buttons on notices/banners)
+  &-icon:not(.select-kit-header):not(.btn-flat):not(.modal-close):not(.close):not(.dismiss-link):not([class*="dismiss"]) {
     border-radius: 50%;
     background: var(--mm-black-light);
     color: var(--mm-white);
@@ -1179,16 +1179,18 @@ a {
   line-height: 1.5 !important;
 }
 
-// Topic excerpt - visible with proper line height
+// Topic excerpt - only show when there's content
 .topic-excerpt {
-  display: block !important;
   font-size: 0.875em;
   color: var(--mm-gray) !important;
   font-weight: 400;
-  line-height: 1.6 !important;
+  line-height: 1.6;
   margin-top: 0.5em;
-  max-height: none !important;
-  overflow: visible !important;
+
+  // Hide if empty
+  &:empty {
+    display: none;
+  }
 }
 
 .topic-excerpt-more {
