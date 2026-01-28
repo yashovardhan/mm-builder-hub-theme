@@ -1181,15 +1181,16 @@ a {
 
 // Topic excerpt - only show when there's content
 .topic-excerpt {
+  display: block !important;
   font-size: 0.875em;
   color: var(--mm-gray) !important;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.6 !important;
   margin-top: 0.5em;
 
   // Hide if empty
   &:empty {
-    display: none;
+    display: none !important;
   }
 }
 
