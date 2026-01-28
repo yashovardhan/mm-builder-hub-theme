@@ -1981,17 +1981,17 @@ textarea {
   padding: 24px 20px;
   margin: 0 0 16px 0;
   width: 100%;
-  @include mm-clip-card(1.5em);
-  overflow: hidden;
+  border-radius: 1.5em; // Use border-radius instead of clip-path to allow dropdowns
+  overflow: visible; // Allow search results to spill out
 
   // Decorative background shape
   &::before {
     content: '';
     position: absolute;
-    right: -80px;
-    top: -80px;
-    width: 200px;
-    height: 200px;
+    right: -20px; // Moved inside to avoid bleeding out too much
+    top: -20px;
+    width: 140px; // Smaller size
+    height: 140px;
     background: var(--mm-purple);
     opacity: 0.1;
     border-radius: 50%;
@@ -2002,9 +2002,9 @@ textarea {
     content: '';
     position: absolute;
     left: 10%;
-    bottom: -100px;
-    width: 150px;
-    height: 150px;
+    bottom: -50px; // Adjusted to be less intrusive
+    width: 100px; // Smaller size
+    height: 100px;
     background: var(--mm-green);
     opacity: 0.08;
     border-radius: 50%;
