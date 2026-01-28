@@ -545,7 +545,8 @@ a {
     >a {
       display: flex;
       align-items: center;
-      padding: 6px 12px;
+      padding: 0 12px; // Remove vertical padding
+      height: 2.25rem; // Enforce height consistency
       font-family: var(--mm-font-primary);
       font-size: 0.875em;
       font-weight: 500;
@@ -2340,17 +2341,31 @@ textarea {
   align-items: center;
   gap: 0.5em;
   font-family: var(--mm-font-primary);
-  font-size: 0.875em;
+  font-size: 0.875em; // Standardize base size
   color: var(--mm-gray);
 
   li {
     display: flex;
     align-items: center;
     margin: 0;
+    height: 2.25rem; // Enforce consistent height
 
-    a {
-      color: var(--mm-gray);
+    .select-kit-header {
+      font-size: 1em; // Inherit 0.875em
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    a,
+    .badge-category {
+      font-size: 1em !important; // Force consistency
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      color: var(--mm-gray);
 
       &:hover {
         color: var(--mm-green);
@@ -2364,6 +2379,26 @@ textarea {
       margin-left: 0.5em;
       color: var(--mm-gray-mid);
       opacity: 0.5;
+      font-size: 1em;
+      line-height: 1;
+    }
+  }
+}
+
+// Navigation Bar Consistency
+.list-controls {
+  .nav-pills {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+
+    >li>a {
+      font-size: 0.875em; // Match breadcrumb
+      height: 2.25rem; // Match breadcrumb height
+      padding: 0 1rem; // Use side padding only
+      display: flex;
+      align-items: center;
+      line-height: normal; // Reset line-height
     }
   }
 }
