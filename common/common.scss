@@ -2060,8 +2060,9 @@ body .custom-search-banner-wrap {
     z-index: 1;
   }
 
-  // Flattened selectors for search input and icons (removed .search-input-wrapper)
-  input[type="text"] {
+  // Flattened selectors for search input and icons
+  input[type="text"],
+  input[type="search"] {
     background: var(--mm-black-mid);
     border: 1px solid var(--mm-gray-dark) !important;
     color: var(--mm-white) !important;
@@ -2377,6 +2378,7 @@ body .category-breadcrumb {
     align-items: center !important;
     margin: 0 !important;
     height: 2.25rem !important; // Enforce consistent height
+    line-height: 1 !important; // Reset line-height to prevent vertical shift
 
     // Target the select-kit wrapper specifically
     .select-kit {
