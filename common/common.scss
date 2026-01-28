@@ -2060,71 +2060,60 @@ body .custom-search-banner-wrap {
     z-index: 1;
   }
 
-  p {
-    font-size: 1em;
-    color: var(--mm-white);
-    max-width: 600px;
-    position: relative;
+  // Flattened selectors for search input and icons (removed .search-input-wrapper)
+  input[type="text"] {
+    background: var(--mm-black-mid);
+    border: 1px solid var(--mm-gray-dark) !important;
+    color: var(--mm-white) !important;
+    border-radius: 6.25em !important; // Force Pill shape
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    height: 3rem !important;
+    width: 100%;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    position: relative; // Ensure z-index works
     z-index: 1;
+
+    &:focus {
+      border-color: var(--mm-green);
+      outline: none;
+    }
   }
 
-  .search-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+  // Search Icon (Left)
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--mm-gray);
+    pointer-events: none;
+    z-index: 2;
 
-    input[type="text"] {
-      background: var(--mm-black-mid);
-      border: 1px solid var(--mm-gray-dark) !important; // ensure border is set
-      color: var(--mm-white) !important;
-      border-radius: 6.25em !important; // Force Pill shape
-      padding-left: 3rem !important; // Space for search icon
-      padding-right: 3rem !important; // Space for filter icon
-      height: 3rem !important; // Explicit height
-      width: 100%;
-      box-sizing: border-box !important; // Ensure padding fits
-      margin: 0 !important; // Prevent margin overrides
+    .d-icon {
+      font-size: 1.125em;
+    }
+  }
 
-      &:focus {
-        border-color: var(--mm-green);
-        outline: none;
-      }
+  // Advanced Search/Filter Icon (Right)
+  .show-advanced-search {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--mm-gray);
+    background: transparent;
+    border: none;
+    padding: 0;
+    z-index: 2;
+
+    &:hover {
+      color: var(--mm-green);
     }
 
-    // Search Icon (Left)
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--mm-gray);
-      pointer-events: none; // Let clicks pass to input
-      z-index: 2;
-
-      .d-icon {
-        font-size: 1.125em;
-      }
-    }
-
-    // Advanced Search/Filter Icon (Right)
-    .show-advanced-search {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--mm-gray);
-      background: transparent;
-      border: none;
-      padding: 0;
-      z-index: 2;
-
-      &:hover {
-        color: var(--mm-green);
-      }
-
-      .d-icon {
-        font-size: 1.125em;
-      }
+    .d-icon {
+      font-size: 1.125em;
     }
   }
 }
