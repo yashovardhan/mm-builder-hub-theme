@@ -384,7 +384,8 @@ a {
         width: auto;
         aspect-ratio: auto;
         border-radius: 6.25em;
-        padding: 0.825rem 1.5rem;
+        padding: 0 1.5rem; // Use flex centering instead of padding for height
+        height: 2.625rem; // Explicit height to match other inputs
         background: var(--mm-black-light);
         border: 1px solid var(--mm-gray-dark);
 
@@ -456,15 +457,16 @@ a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 2.25rem;
+      width: auto;
+      min-width: 2.25rem;
       height: 2.25rem;
-      padding: 0.125rem;
+      padding: 0 0.75rem;
 
       .d-button-label {
-        font-size: 0.625rem;
+        font-size: 0.75rem;
         line-height: 1.1;
-        white-space: wrap;
-        margin-top: 0.125rem;
+        white-space: nowrap; // Prevent wrapping
+        margin-top: 0;
       }
     }
   }
@@ -519,6 +521,7 @@ a {
       background: var(--mm-black-light);
       color: var(--mm-white);
       font-family: var(--mm-font-primary);
+      height: 100%; // Ensure it fills container
 
       &:focus {
         border-color: var(--mm-green);
@@ -910,7 +913,8 @@ a {
       background-repeat: no-repeat;
       background-position: right center;
       background-size: contain;
-      opacity: 0.3;
+      opacity: 0.05; // Reduced from 0.3 to reduce noise
+
       pointer-events: none;
       z-index: 0;
     }
@@ -1107,10 +1111,8 @@ a {
     }
   }
 
-  // Link bottom line (category/tags) - show above title
+  // Link bottom line (category/tags) - show below title
   .link-bottom-line {
-    order: -1;
-
     .badge-category__wrapper {
       margin-bottom: 0.5rem;
     }
@@ -1168,6 +1170,19 @@ a {
 
   &:hover {
     color: var(--mm-green) !important;
+  }
+}
+
+// Topic status icons (lock, pin, etc.) alignment
+.topic-status {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 4px;
+
+  .d-icon {
+    font-size: 0.9em;
+    vertical-align: middle;
+    color: var(--mm-gray);
   }
 }
 
@@ -1685,6 +1700,15 @@ textarea {
         opacity: 1;
       }
     }
+
+    // Fix icon sizing in sidebar
+    .d-icon {
+      font-size: 1.1em;
+      width: 1.1em;
+      height: 1.1em;
+      margin-right: 0.5em;
+      color: inherit;
+    }
   }
 }
 
@@ -1697,6 +1721,9 @@ textarea {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--mm-gray-mid);
+    margin-top: 16px; // Add spacing above headers
+    margin-bottom: 8px;
+    display: block;
   }
 }
 
@@ -2219,11 +2246,14 @@ textarea {
 .user-title,
 .user-trust-level {
   font-family: var(--mm-font-primary);
+  font-family: var(--mm-font-primary);
   font-size: 0.75em;
-  padding: 0.125em 0.5em;
-  border-radius: 10rem;
-  background: var(--mm-black-mid);
+  padding: 0; // Remove pill padding
+  border-radius: 0;
+  background: transparent; // Remove button-like background
   color: var(--mm-gray);
+  font-weight: 500;
+  margin-left: 0.5em; // Add spacing if next to username
 }
 
 // Topic meta
@@ -2304,9 +2334,38 @@ textarea {
   }
 }
 
-// Category breadcrumb styling only
-.category-breadcrumb li {
-  margin: 0;
+// Category breadcrumb styling
+.category-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--mm-font-primary);
+  font-size: 0.875em;
+  color: var(--mm-gray);
+
+  li {
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    a {
+      color: var(--mm-gray);
+      font-weight: 500;
+
+      &:hover {
+        color: var(--mm-green);
+        text-decoration: none;
+      }
+    }
+
+    // Add separator
+    &:not(:last-child)::after {
+      content: '/';
+      margin-left: 0.5em;
+      color: var(--mm-gray-mid);
+      opacity: 0.5;
+    }
+  }
 }
 
 // ============================================================================
