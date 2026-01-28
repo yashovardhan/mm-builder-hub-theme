@@ -2012,7 +2012,7 @@ textarea {
   display: none !important;
 }
 
-.custom-search-banner-wrap {
+body .custom-search-banner-wrap {
   position: relative;
   background: var(--mm-black-light);
   color: var(--mm-white);
@@ -2375,19 +2375,19 @@ textarea {
 // [Removed duplicate nav-pills block]
 
 // Category breadcrumb styling
-.category-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+body .category-breadcrumb {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5em !important;
   font-family: var(--mm-font-primary);
   font-size: 0.875em; // Standardize base size
   color: var(--mm-gray);
 
   li {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    height: 2.25rem; // Enforce consistent height
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    height: 2.25rem !important; // Enforce consistent height
 
     // Target the select-kit wrapper specifically
     .select-kit {
