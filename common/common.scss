@@ -2338,13 +2338,41 @@ body .search-input--welcome-banner .show-advanced-search {
 // ============================================================================
 // ADMIN PANEL LAYOUT FIX
 // ============================================================================
-// Only apply overflow fixes to settings/config pages, NOT the dashboard
-.admin-config-area,
-.admin-config-page .admin-config-area__content {
-  min-width: 0;
-  overflow-x: auto;
+// Fix settings pages overflow without breaking dashboard
+
+// Specifically target settings/user pages, not dashboard
+body.admin-user,
+body.admin-users-list,
+.admin-user-index,
+.admin-users-list,
+.admin-config-page {
+  .admin-detail,
+  .admin-content,
+  .admin-container {
+    min-width: 0;
+    max-width: 100%;
+  }
   
-  // Forms in settings should not overflow
+  // Prevent wide forms from overflowing
+  form,
+  .form-horizontal {
+    max-width: 100%;
+  }
+  
+  .control-group,
+  .setting-row {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  
+  // Allow tables to scroll horizontally if needed
+  table {
+    max-width: 100%;
+  }
+}
+
+// Specific fix for settings pages
+.admin-config-area {
   .form-horizontal,
   .setting-row {
     max-width: 100%;
