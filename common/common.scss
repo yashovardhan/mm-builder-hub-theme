@@ -319,29 +319,20 @@ a {
     display: flex;
     align-items: center;
     height: 100%;
-    gap: 0 !important;
+    gap: 0.5rem !important;
   }
 
-  // Left panel (hamburger menu)
   .panel {
-    margin: 0 !important;
-    padding: 0 !important;
+    margin-right: 0.5rem !important;
     
     @include mm-bp-max(tablet) {
       position: static;
+      margin-right: 0.25rem !important;
     }
-  }
-  
-  // Reduce spacing on hamburger icon itself
-  .d-header-icons .icon#toggle-hamburger-menu,
-  #toggle-hamburger-menu {
-    margin-right: 0.5rem !important;
   }
 
   // Logo
   .title {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
     font-family: var(--mm-font-primary);
     font-weight: 500;
     font-size: 1em;
