@@ -319,15 +319,11 @@ a {
     display: flex;
     align-items: center;
     height: 100%;
-    gap: 0.5rem !important;
   }
 
   .panel {
-    margin-right: 0.5rem !important;
-    
     @include mm-bp-max(tablet) {
       position: static;
-      margin-right: 0.25rem !important;
     }
   }
 
