@@ -2338,17 +2338,61 @@ body .search-input--welcome-banner .show-advanced-search {
 // ============================================================================
 // ADMIN PANEL LAYOUT FIX
 // ============================================================================
-// Only apply overflow fixes to settings/config pages, NOT the dashboard
-.admin-config-area,
-.admin-config-page .admin-config-area__content {
-  min-width: 0;
-  overflow-x: auto;
+// Prevent admin content from overflowing the sidebar
+.admin-detail {
+  min-width: 0 !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+}
+
+.admin-contents,
+.admin-main-nav + section,
+.admin-config-area {
+  min-width: 0 !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+}
+
+// Admin page wrapper
+.admin-page-container,
+.admin-config-page {
+  display: flex !important;
+  min-width: 0 !important;
   
-  // Forms in settings should not overflow
-  .form-horizontal,
+  // Sidebar should not shrink
+  .admin-nav,
+  .admin-main-nav {
+    flex-shrink: 0 !important;
+  }
+  
+  // Content area should respect boundaries
+  .admin-detail,
+  .admin-config-area__content {
+    flex: 1 !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+  }
+}
+
+// Prevent tables and forms from causing overflow
+.admin-detail,
+.admin-config-area {
+  table {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    display: block !important;
+  }
+  
+  form,
+  .form-horizontal {
+    max-width: 100% !important;
+  }
+  
+  .control-group,
   .setting-row {
-    max-width: 100%;
-    overflow-wrap: break-word;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
   }
 }
 
