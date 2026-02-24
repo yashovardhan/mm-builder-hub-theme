@@ -48,18 +48,20 @@
 // The sidebar should remain on the left as per Discourse default.
 // Only add minimal styling enhancements.
 
-#main-outlet-wrapper {
-  // Let Discourse handle the grid layout natively
-  // Just ensure proper max-width and centering
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+body:not(.admin-area) {
+  #main-outlet-wrapper {
+    // Let Discourse handle the grid layout natively
+    // Just ensure proper max-width and centering
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
 
-// Ensure main outlet takes proper width
-#main-outlet {
-  min-width: 0;
-  width: 100%;
+  // Ensure main outlet takes proper width
+  #main-outlet {
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 // ============================================================================
@@ -267,9 +269,9 @@
 }
 
 // ============================================================================
-// TABLES - Desktop Full Width
+// TABLES - Desktop Full Width (exclude admin so Discourse layout is unchanged)
 // ============================================================================
-table {
+body:not(.admin-area) table {
   width: 100%;
   border-collapse: collapse;
   margin: var(--mm-space-lg) 0;
