@@ -336,7 +336,7 @@ table {
     padding: 0 var(--mm-space-xl);
   }
 
-  #main-outlet-wrapper {
+  body:not(.admin-area) #main-outlet-wrapper {
     max-width: 1600px;
     gap: var(--mm-space-xl);
     padding: 0 var(--mm-space-xl);
@@ -359,7 +359,7 @@ table {
     padding: 0 var(--mm-space-lg);
   }
 
-  #main-outlet-wrapper {
+  body:not(.admin-area) #main-outlet-wrapper {
     gap: var(--mm-space-lg);
     padding: 0 var(--mm-space-lg);
 
