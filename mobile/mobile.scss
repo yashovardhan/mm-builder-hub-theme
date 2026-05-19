@@ -28,18 +28,16 @@ body {
 }
 
 // Single column layout on mobile — hide community sidebar (use header menu)
-@include mm-forum-only {
-  #main-outlet-wrapper {
-    display: block;
-    padding: 0 12px;
-    width: 100%;
-    max-width: 100%;
+body:not(.admin-interface) #main-outlet-wrapper {
+  display: block;
+  padding: 0 12px;
+  width: 100%;
+  max-width: 100%;
 
-    .sidebar-wrapper,
-    .sidebar-container,
-    nav.sidebar {
-      display: none !important;
-    }
+  .sidebar-wrapper,
+  .sidebar-container,
+  nav.sidebar {
+    display: none !important;
   }
 }
 

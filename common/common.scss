@@ -150,13 +150,6 @@ $mm-desktop-max: calc(#{$mm-desktop} - 1px);
   }
 }
 
-// Community forum only — never apply layout hacks to admin (body.admin-interface)
-@mixin mm-forum-only {
-  body:not(.admin-interface) {
-    @content;
-  }
-}
-
 // Hover media query (touch-friendly - only applies hover on devices that support it)
 @mixin mm-hover {
   @media (hover: hover) {
@@ -262,8 +255,8 @@ body {
   background-color: var(--secondary);
 }
 
-// Topic list readability (forum pages only)
-@include mm-forum-only {
+// Topic list readability (forum pages only — not admin)
+body:not(.admin-interface) {
   .topic-list-main-link,
   .topic-list-item .main-link,
   .raw-topic-link,
@@ -3686,22 +3679,20 @@ section[class*="category"] {
 // ============================================================================
 @include mm-bp-max(tablet) {
   // Collapse community sidebar grid on narrow viewports (not admin panel)
-  @include mm-forum-only {
-    #main-outlet-wrapper {
-      display: block !important;
-      padding: 0 12px !important;
-      max-width: 100% !important;
+  body:not(.admin-interface) #main-outlet-wrapper {
+    display: block !important;
+    padding: 0 12px !important;
+    max-width: 100% !important;
 
-      &.has-sidebar {
-        grid-template-columns: 1fr !important;
-      }
+    &.has-sidebar {
+      grid-template-columns: 1fr !important;
     }
+  }
 
-    #main-outlet-wrapper .sidebar-wrapper,
-    #main-outlet-wrapper .sidebar-container,
-    #main-outlet-wrapper nav.sidebar {
-      display: none !important;
-    }
+  body:not(.admin-interface) #main-outlet-wrapper .sidebar-wrapper,
+  body:not(.admin-interface) #main-outlet-wrapper .sidebar-container,
+  body:not(.admin-interface) #main-outlet-wrapper nav.sidebar {
+    display: none !important;
   }
 
   #main-outlet {
