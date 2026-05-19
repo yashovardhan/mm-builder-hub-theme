@@ -5,11 +5,9 @@
 // ============================================================================
 
 // ============================================================================
-// LAYOUT ADJUSTMENTS
+// LAYOUT ADJUSTMENTS (max-width: layout-width.scss via common)
 // ============================================================================
 .wrap {
-  width: 100%;
-  max-width: none;
   padding: 0 20px;
 }
 
@@ -49,13 +47,6 @@
 // Only add minimal styling enhancements.
 
 body:not(.admin-interface) {
-  #main-outlet-wrapper {
-    width: 100%;
-    max-width: none;
-    padding: 0 20px;
-  }
-
-  // Ensure main outlet takes proper width
   #main-outlet {
     min-width: 0;
     width: 100%;

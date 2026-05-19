@@ -1,0 +1,118 @@
+// Breakpoints and shared mixins
+// ============================================================================
+// RESPONSIVE BREAKPOINTS - Production-ready breakpoint system
+// ============================================================================
+$mm-tablet: 769px;
+$mm-desktop: 1025px;
+$mm-tablet-max: calc(#{$mm-tablet} - 1px);
+$mm-desktop-max: calc(#{$mm-desktop} - 1px);
+
+// Min-width breakpoints (mobile-first)
+@mixin mm-bp($class) {
+  @if $class ==tablet {
+    @media screen and (min-width: $mm-tablet) {
+      @content;
+    }
+  }
+
+  @else if $class ==desktop {
+    @media screen and (min-width: $mm-desktop) {
+      @content;
+    }
+  }
+}
+
+// Max-width breakpoints (for mobile overrides)
+@mixin mm-bp-max($class) {
+  @if $class ==tablet {
+    @media screen and (max-width: $mm-tablet-max) {
+      @content;
+    }
+  }
+
+  @else if $class ==desktop {
+    @media screen and (max-width: $mm-desktop-max) {
+      @content;
+    }
+  }
+}
+
+// Hover media query (touch-friendly - only applies hover on devices that support it)
+@mixin mm-hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Line clamp utility for text truncation
+@mixin mm-line-clamp($lines: 2) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--line-clamp, $lines);
+}
+
+// Form item sizing mixin for consistent input/button heights
+@mixin mm-form-item-sizing {
+  height: 2.625rem;
+
+  @include mm-bp-max(tablet) {
+    height: 2.25rem;
+  }
+}
+
+// Compact search fields — global .btn / input pill styles overflow Discourse search UIs
+@mixin mm-search-compact-btn {
+  height: auto !important;
+  min-height: 0 !important;
+  width: auto;
+  max-width: 100%;
+  padding: 0 !important;
+  margin: 0;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  flex-direction: row;
+  flex-shrink: 0;
+  gap: 0;
+  line-height: 1.25;
+  transform: none !important;
+  white-space: nowrap;
+
+  .d-icon {
+    margin: 0 !important;
+  }
+
+  &:hover {
+    transform: none !important;
+  }
+}
+
+@mixin mm-search-compact-input {
+  flex: 1 1 auto;
+  min-width: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+  }
+
+  &::placeholder {
+    text-overflow: ellipsis;
+  }
+}

@@ -28,3 +28,11 @@ homepage_categories:
     showcase|💡|Share your MetaMask projects
   description:
     en: "Configure homepage categories (one per line). Format: slug|icon|description"
+
+layout_width:
+  type: enum
+  default: full
+  choices:
+    - full
+    - comfortable
+    - compact

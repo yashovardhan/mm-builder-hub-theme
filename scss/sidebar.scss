@@ -1,0 +1,99 @@
+// ============================================================================
+// SIDEBAR
+// ============================================================================
+#main-outlet-wrapper .sidebar-wrapper {
+  position: sticky;
+  top: 60px;
+  height: auto;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  margin-top: 8px;
+  @include mm-clip-card(1.2em);
+
+  .sidebar-container {
+    border: none;
+    background: transparent;
+    padding: 8px;
+  }
+}
+
+// Sidebar links
+.sidebar-section-link-wrapper {
+  a {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    font-family: var(--mm-font-primary);
+    font-size: 0.875em;
+    color: var(--mm-white);
+    text-decoration: none;
+    border-radius: 0;
+    transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--mm-green);
+      opacity: 0;
+      transition: opacity calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+    }
+
+    &:hover {
+      background: var(--mm-black-mid);
+      color: var(--mm-green);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      background: rgba(186, 242, 74, 0.1);
+      color: var(--mm-green);
+      font-weight: 500;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    // Fix icon sizing in sidebar
+    .d-icon {
+      font-size: 1.1em;
+      width: 1.1em;
+      height: 1.1em;
+      margin-right: 0.5em;
+      color: inherit;
+    }
+  }
+}
+
+// Sidebar section titles
+.sidebar-section-header-wrapper {
+  .sidebar-section-header-text {
+    font-family: var(--mm-font-primary);
+    font-size: 0.75em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--mm-gray-mid);
+    margin-top: 16px; // Add spacing above headers
+    margin-bottom: 8px;
+    display: block;
+  }
+}
+
+.sidebar-footer-wrapper {
+  background: transparent;
+  border-top: 1px solid var(--mm-gray-dark);
+  padding: var(--mm-space-md);
+}
+

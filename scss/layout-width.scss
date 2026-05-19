@@ -1,0 +1,31 @@
+// Layout width from theme setting: $layout_width (full | comfortable | compact)
+$layout_width: full !default;
+
+:root {
+  @if $layout_width == "full" {
+    --mm-layout-max-width: none;
+  } @else if $layout_width == "comfortable" {
+    --mm-layout-max-width: 1400px;
+  } @else {
+    --mm-layout-max-width: 1110px;
+  }
+
+  --d-max-width: var(--mm-layout-max-width);
+}
+
+html.admin-area #main-outlet-wrapper,
+body:not(.admin-interface) #main-outlet-wrapper {
+  width: 100%;
+  max-width: var(--mm-layout-max-width);
+  padding: 0 20px;
+
+  @if $layout_width != "full" {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--d-max-width);
+}

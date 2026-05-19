@@ -1,0 +1,354 @@
+// ============================================================================
+// MODALS - Production Polish
+// ============================================================================
+
+// Modal backdrop with fade animation
+.modal-backdrop,
+.d-modal__backdrop {
+  user-select: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: var(--mm-black);
+  animation: mm-fade 0.3s forwards;
+
+  @media (prefers-reduced-motion) {
+    animation-duration: 0s;
+  }
+
+  &.fade {
+    opacity: 0;
+  }
+}
+
+.modal-backdrop.fade.in,
+.d-modal__backdrop {
+  opacity: 0.7;
+}
+
+@keyframes mm-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.7;
+  }
+}
+
+// New Discourse modal structure
+.d-modal {
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1050;
+  overflow: auto;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-height: 80vh;
+    background-color: var(--primary-low);
+    border: 1px solid var(--mm-gray-dark);
+    box-shadow: var(--mm-shadow-lg);
+    width: calc(100% - 1.34em);
+    min-width: auto;
+    @include mm-clip-card(1.2em);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--mm-gray-dark);
+
+    .btn-icon.modal-close {
+      margin-left: auto;
+
+      .d-icon {
+        color: var(--mm-gray-mid);
+      }
+
+      &:hover,
+      &:focus {
+        .d-icon {
+          color: var(--mm-white);
+        }
+      }
+    }
+  }
+
+  &__title-text {
+    font-family: var(--mm-font-primary);
+    font-size: 1.25em;
+    font-weight: 500;
+    color: var(--mm-white);
+    margin: 0;
+
+    @include mm-bp-max(tablet) {
+      font-size: 1.125em;
+    }
+  }
+
+  &__subtitle-text {
+    margin: 0;
+    color: var(--mm-gray);
+  }
+
+  &__body {
+    overflow-y: auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    color: var(--mm-white);
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--mm-gray-dark);
+    gap: 0.5rem;
+  }
+
+  &__primary-action,
+  &__dismiss-action {
+    .btn {
+      text-transform: capitalize;
+    }
+  }
+}
+
+// Legacy modal container
+.modal-inner-container {
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  box-shadow: var(--mm-shadow-lg);
+  max-height: 80vh;
+  @include mm-clip-card(1.2em);
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--mm-gray-dark);
+    padding: 1rem 0.5rem 1rem 1.5rem;
+    background: var(--mm-black-light);
+
+    .title {
+      font-family: var(--mm-font-primary);
+      font-size: 1.25em;
+      font-weight: 500;
+      color: var(--mm-white);
+      margin: 0;
+
+      @include mm-bp-max(tablet) {
+        font-size: 1.125em;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    color: var(--mm-white);
+    overflow-y: auto;
+    max-height: 60vh;
+
+    @media screen and (max-height: 500px) {
+      max-height: 50vh;
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top: 1px solid var(--mm-gray-dark);
+    padding: 1rem 1.5rem;
+    background: var(--mm-black-light);
+    gap: 0.5rem;
+  }
+}
+
+// Fixed modal wrapper
+.fixed-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+  overflow: auto;
+}
+
+// ============================================================================
+// MENU PANELS
+// ============================================================================
+.menu-panel {
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  box-shadow: var(--mm-shadow-lg);
+  @include mm-clip-card(var(--mm-clip-md));
+
+  .widget-link,
+  .categories-link {
+    padding: var(--mm-space-sm) var(--mm-space-md);
+    color: var(--mm-white);
+    transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+    &:hover {
+      background: var(--mm-black-mid);
+      color: var(--mm-green);
+    }
+  }
+}
+
+// ============================================================================
+// SEARCH — compact surfaces (sidebar, header menu, topic, full-page)
+// Global .btn / input rules use pill sizing; reset inside search containers only.
+// ============================================================================
+.sidebar-search {
+  width: 100%;
+  min-width: 0;
+
+  &__input-container {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    gap: 0.35em;
+  }
+
+  &__icon.btn {
+    @include mm-search-compact-btn;
+  }
+
+  &__input[type="text"],
+  &__input[type="search"] {
+    @include mm-search-compact-input;
+    cursor: pointer;
+    color: var(--mm-white);
+  }
+
+  &__shortcut-hint {
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.2;
+    max-width: 5em;
+    padding: 0.15em 0.35em;
+    color: var(--mm-gray-mid);
+  }
+}
+
+.search-menu,
+.search-menu-container {
+  .search-input-wrapper {
+    min-width: 0;
+  }
+
+  // Welcome banner uses a pill shape — clip-path here crops the sides
+  .search-input:not(.search-input--welcome-banner) {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid var(--mm-gray-dark);
+    border-radius: 0;
+    background: var(--mm-black-light);
+    color: var(--mm-white);
+    @include mm-clip-card(var(--mm-clip-sm));
+
+    .search-term__input,
+    input[type="text"],
+    input[type="search"] {
+      @include mm-search-compact-input;
+      color: var(--mm-white);
+      font-family: var(--mm-font-primary);
+    }
+
+    .btn.search-icon,
+    .btn.search-context,
+    .show-advanced-search,
+    a.clear-search,
+    .searching > .btn {
+      @include mm-search-compact-btn;
+      color: var(--mm-gray);
+
+      @include mm-hover {
+        color: var(--mm-white);
+      }
+    }
+
+    &:focus-within {
+      border-color: var(--mm-green);
+      box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+    }
+  }
+
+  .results {
+    border: 1px solid var(--mm-gray-dark);
+    border-radius: 0;
+    background: var(--mm-black-light);
+    @include mm-clip-card(var(--mm-clip-md));
+    box-shadow: var(--mm-shadow-lg);
+  }
+
+  .search-result-topic {
+    padding: var(--mm-space-sm);
+    color: var(--mm-white);
+    transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+    &:hover {
+      background: var(--mm-black-mid);
+    }
+  }
+}
+
+.search-container .search-bar {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.5em;
+
+  input.search-query {
+    @include mm-search-compact-input;
+    flex: 1 1 auto;
+    min-height: 2.625rem;
+    padding: 0 1em !important;
+    border: 1px solid var(--mm-gray-dark) !important;
+    border-radius: 6.25em !important;
+    background: var(--mm-black-light) !important;
+    color: var(--mm-white);
+
+    &:focus {
+      border-color: var(--mm-green) !important;
+      box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15) !important;
+    }
+  }
+}
+
+.docs .docs-search {
+  input[type="text"],
+  input[type="search"] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+

@@ -1,0 +1,401 @@
+// ============================================================================
+// CUSTOM SEARCH BANNER (Homepage Hero)
+// ============================================================================
+// Hide default welcome banner when custom homepage hero is present
+#main-outlet .custom-search-banner-wrap:has(.custom-search-banner-headline)~.welcome-banner,
+#main-outlet .custom-search-banner-wrap:has(.custom-search-banner-headline)+.welcome-banner {
+  display: none !important;
+}
+
+// Hide welcome banner if custom hero exists
+#main-outlet:has(.custom-search-banner-wrap .custom-search-banner-headline)>.welcome-banner {
+  display: none !important;
+}
+
+body .custom-search-banner-wrap {
+  position: relative;
+  background: var(--mm-black-light);
+  color: var(--mm-white);
+  padding: 24px 20px;
+  margin: 0 0 16px 0;
+  width: 100%;
+  border-radius: 1.5em; // Use border-radius instead of clip-path to allow dropdowns
+  overflow: visible; // Allow search results to spill out
+
+  // Decorative background shapes (low z-index, stay inside box)
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--mm-purple);
+    opacity: 0.06;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 80px;
+    height: 80px;
+    background: var(--mm-green);
+    opacity: 0.05;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .custom-search-banner-headline,
+  h1 {
+    font-family: var(--mm-font-primary);
+    font-size: 1.75em;
+    font-weight: 500;
+    color: var(--mm-green);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  // Welcome banner search — flex pill (icon + field share one bar, no absolute overlap)
+  .welcome-banner__search-menu,
+  .search-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+    box-sizing: border-box;
+    gap: 0;
+
+    // search-banner theme: magnifying glass is a direct child before .search-menu-container
+    &:has(> .btn.search-icon:not(.has-search-button-text)) {
+      background: var(--mm-black-mid);
+      border: 1px solid var(--mm-gray-dark);
+      border-radius: 6.25em;
+      min-height: 2.75rem;
+      transition: border-color calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease),
+        box-shadow calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+      &:focus-within {
+        border-color: var(--mm-green);
+        box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+      }
+    }
+
+    // Undo core welcome-banner absolute layout + extra input inset
+    > .btn.search-icon:not(.has-search-button-text) + .search-menu-container .search-input--welcome-banner {
+      padding-left: 0 !important;
+    }
+
+    > .btn.search-icon:not(.has-search-button-text) {
+      @include mm-search-compact-btn;
+      position: static !important;
+      left: auto !important;
+      right: auto !important;
+      top: auto !important;
+      transform: none !important;
+      flex: 0 0 auto;
+      align-self: center;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 2.25rem !important;
+      min-width: 2.25rem !important;
+      min-height: 2.25rem !important;
+      height: 2.25rem !important;
+      margin: 0 0 0 0.65rem;
+      padding: 0 !important;
+      color: var(--mm-gray);
+      pointer-events: auto;
+
+      .d-icon {
+        font-size: 1.125em;
+        width: 1.125em;
+        height: 1.125em;
+        margin: 0 !important;
+      }
+
+      @include mm-hover {
+        color: var(--mm-white);
+        background: transparent !important;
+        transform: none !important;
+      }
+    }
+
+    .search-menu-container {
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .search-input-wrapper {
+      width: 100%;
+      min-width: 0;
+    }
+
+    // Core-only welcome banner (no search-banner sibling icon)
+    &:not(:has(> .btn.search-icon:not(.has-search-button-text))) .search-input--welcome-banner {
+      background: var(--mm-black-mid) !important;
+      border: 1px solid var(--mm-gray-dark) !important;
+      border-radius: 6.25em !important;
+      padding-left: 1em !important;
+
+      &:focus-within {
+        border-color: var(--mm-green) !important;
+        box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15) !important;
+      }
+    }
+
+    .search-input--welcome-banner {
+      clip-path: none !important;
+      display: flex !important;
+      align-items: center !important;
+      box-sizing: border-box !important;
+      position: relative !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 2.25rem !important;
+      margin: 0 !important;
+      padding: 0 0.5em 0 0 !important;
+      gap: 0.25em;
+      border: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      overflow: hidden;
+
+      &:focus-within {
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      > .btn.search-icon {
+        @include mm-search-compact-btn;
+        flex: 0 0 auto;
+        align-self: center;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 2.25rem !important;
+        min-width: 2.25rem !important;
+        min-height: 2.25rem !important;
+        height: 2.25rem !important;
+        margin: 0 0 0 0.35rem;
+        padding: 0 !important;
+        color: var(--mm-gray);
+
+        .d-icon {
+          font-size: 1.125em;
+          width: 1.125em;
+          height: 1.125em;
+        }
+
+        @include mm-hover {
+          color: var(--mm-white);
+          background: transparent !important;
+          transform: none !important;
+        }
+      }
+    }
+
+    #welcome-banner-search-input,
+    .search-input--welcome-banner .search-term__input {
+      @include mm-search-compact-input;
+      align-self: center;
+      color: var(--mm-white) !important;
+      padding: 0.65em 0.35em !important;
+      line-height: 1.25 !important;
+
+      &::placeholder {
+        color: var(--mm-gray) !important;
+      }
+    }
+
+    .search-input--welcome-banner .searching {
+      display: flex !important;
+      align-items: center !important;
+      align-self: center;
+      flex-shrink: 0 !important;
+      padding-right: 0.35em !important;
+
+      .show-advanced-search,
+      > .btn {
+        @include mm-search-compact-btn;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: var(--mm-gray) !important;
+
+        @include mm-hover {
+          color: var(--mm-green) !important;
+          transform: none !important;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// FOOTER
+// ============================================================================
+.footer {
+  background: var(--mm-black-light);
+  border-top: 1px solid var(--mm-gray-dark);
+  padding: var(--mm-space-xl) var(--mm-space-lg);
+  margin-top: var(--mm-space-xl);
+
+  a {
+    color: var(--mm-gray);
+
+    &:hover {
+      color: var(--mm-green);
+    }
+  }
+}
+
+// ============================================================================
+// USER AVATAR
+// ============================================================================
+.avatar {
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: border-color calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+  &:hover {
+    border-color: var(--mm-green);
+  }
+}
+
+// ============================================================================
+// SCROLLBAR
+// ============================================================================
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mm-black-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mm-gray-dark);
+  border-radius: 0;
+
+  &:hover {
+    background: var(--mm-green);
+  }
+}
+
+// ============================================================================
+// LOADING ANIMATIONS
+// ============================================================================
+@keyframes mm-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes mm-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Only center when actually showing a spinner (homepage grid or Discourse .visible).
+// Admin dashboard wraps all content in .loading-container when loaded — do not flex that.
+.loading-container.visible,
+.loading-container:has(> .spinner:only-child) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--mm-space-xl);
+
+  .spinner {
+    width: 2.5em;
+    height: 2.5em;
+    border: 3px solid var(--mm-gray-dark);
+    border-top-color: var(--mm-green);
+    border-radius: 50%;
+    animation: mm-spin 1s linear infinite;
+  }
+}
+
+// ============================================================================
+// ADDITIONAL DISCOURSE ELEMENTS
+// ============================================================================
+
+// User card
+#user-card,
+.user-card {
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  @include mm-clip-card(var(--mm-clip-md));
+  box-shadow: var(--mm-shadow-lg);
+
+  .user-info {
+    color: var(--mm-white);
+  }
+
+  .user-title {
+    color: var(--mm-gray);
+  }
+}
+
+// Topic timeline
+.topic-timeline {
+  .timeline-handle {
+    background: var(--mm-green);
+  }
+
+  .timeline-scrollarea {
+    border-color: var(--mm-gray-dark);
+  }
+}
+
+// Composer
+#reply-control {
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  background: var(--mm-black-light);
+  box-shadow: var(--mm-shadow-lg);
+
+  .reply-area {
+    padding: var(--mm-space-md);
+  }
+
+  .grippie {
+    background: var(--mm-green);
+    height: 4px;
+
+    &:hover {
+      background: var(--mm-green-light);
+    }
+  }
+}
+
+// Admin controls
+.admin-controls {
+  background: var(--mm-black-light);
+  border-bottom: 1px solid var(--mm-gray-dark);
+  padding: var(--mm-space-md);
+}
+

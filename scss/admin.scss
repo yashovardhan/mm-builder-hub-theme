@@ -1,0 +1,131 @@
+// ============================================================================
+// ADMIN — minimal overrides (layout is Discourse-native)
+// ============================================================================
+
+// html.admin-area + body.admin-interface; admin nav uses .sidebar-wrapper .admin-panel
+html.admin-area {
+  // Dashboard content lives in .loading-container after load — not a centered spinner
+  .loading-container {
+    display: block;
+    width: 100%;
+    padding: 0;
+    align-items: initial;
+    justify-content: initial;
+  }
+
+  .sidebar-wrapper .admin-panel {
+    background: var(--primary-low);
+    border: 1px solid var(--mm-gray-dark);
+  }
+
+  .admin-content.boxed.white {
+    background: var(--secondary);
+    color: var(--primary);
+  }
+
+  .section-title h2,
+  .section-title h2 a {
+    color: var(--primary);
+  }
+
+  .dashboard-next .section-body,
+  .admin-table-wrapper,
+  .directory-table {
+    color: var(--primary);
+  }
+
+  .admin-detail,
+  .admin-config-area__content {
+    .table-scroll-wrapper,
+    .admin-table-wrapper {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    form,
+    .form-horizontal {
+      max-width: 100%;
+    }
+
+    .control-group,
+    .setting-row {
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+  }
+}
+
+// Empty state
+.empty-state {
+  text-align: center;
+  padding: 4em 2em;
+
+  .empty-state-title {
+    font-family: var(--mm-font-primary);
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--mm-gray);
+    margin-bottom: var(--mm-space-md);
+  }
+
+  .empty-state-body {
+    font-size: 1em;
+    color: var(--mm-gray-mid);
+    max-width: 50em;
+    margin: 0 auto;
+  }
+}
+
+// Trust level icons
+.user-title,
+.user-trust-level {
+  font-family: var(--mm-font-primary);
+  font-family: var(--mm-font-primary);
+  font-size: 0.75em;
+  padding: 0; // Remove pill padding
+  border-radius: 0;
+  background: transparent; // Remove button-like background
+  color: var(--mm-gray);
+  font-weight: 500;
+  margin-left: 0.5em; // Add spacing if next to username
+}
+
+// Topic meta
+.topic-meta {
+  color: var(--mm-gray-mid);
+  font-size: 0.875em;
+}
+
+// Post actions
+.post-actions {
+  .btn {
+    padding: 0.5em 0.75em;
+    font-size: 0.875em;
+  }
+}
+
+// Topic map
+.topic-map {
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  @include mm-clip-card(var(--mm-clip-sm));
+  padding: var(--mm-space-md);
+}
+
+// Topic avatar
+.topic-avatar {
+  .avatar {
+    border-color: var(--mm-gray-dark);
+  }
+}
+
+// Topic status info
+.topic-status-info {
+  .topic-status {
+    color: var(--mm-gray);
+  }
+}
+
+// Topic excerpt - removed duplicate (see line 1199)
+

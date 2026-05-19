@@ -1,0 +1,187 @@
+// ============================================================================
+// LIST CONTROLS & NAVIGATION - Minimal styling (don't break Discourse layout)
+// ============================================================================
+
+// Only style appearance, NOT layout
+.list-controls {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .combo-box .combo-box-header {
+    background: var(--primary-low);
+    border: 1px solid var(--mm-gray-dark);
+    color: var(--primary);
+    border-radius: 6.25em;
+  }
+}
+
+// [Removed duplicate nav-pills block]
+
+// Category breadcrumb styling (topic/category list pages only)
+.navigation-topics,
+.categories-list {
+  .category-breadcrumb {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5em !important;
+  font-family: var(--mm-font-primary);
+  font-size: 0.875em; // Standardize base size
+  color: var(--mm-gray);
+
+  li {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    height: 2.25rem !important; // Enforce consistent height
+    line-height: 1 !important; // Reset line-height to prevent vertical shift
+
+    // Target the select-kit wrapper specifically
+    .select-kit {
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+
+      .select-kit-header {
+        font-size: 1em !important; // Inherit 0.875em
+        font-weight: 500;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100% !important; // Force height match
+        min-height: 2.25rem !important;
+        box-sizing: border-box;
+        padding: 0 1em !important;
+        line-height: normal !important;
+        margin: 0 !important; // Reset any margins
+      }
+    }
+
+    a,
+    .badge-category {
+      font-size: 1em !important;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      color: var(--mm-gray);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--mm-green);
+      }
+    }
+
+    // Add separator
+    &:not(:last-child)::after {
+      content: '/';
+      margin-left: 0.5em;
+      color: var(--mm-gray-mid);
+      opacity: 0.5;
+      font-size: 1em;
+      line-height: 1;
+    }
+  }
+  }
+}
+
+// Navigation Bar Consistency
+.list-controls {
+  .nav-pills {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+
+    >li>a {
+      font-size: 0.875em; // Match breadcrumb
+      height: 2.25rem; // Match breadcrumb height
+      padding: 0 1rem; // Use side padding only
+      display: flex;
+      align-items: center;
+      line-height: normal; // Reset line-height
+    }
+  }
+}
+
+// ============================================================================
+// NAVIGATION CONTAINER ALIGNMENT (topic/category list pages only)
+// ============================================================================
+.navigation-topics,
+.categories-list {
+  .navigation-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.5em;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.5rem 0;
+  }
+
+  .navigation-container .category-breadcrumb,
+  .navigation-container #navigation-bar {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .navigation-controls {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-shrink: 0;
+  }
+
+  .navigation-container .category-breadcrumb {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 0.25em;
+  }
+
+  .category-breadcrumb__category-selector,
+  .tag-drop {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    .select-kit-header {
+      display: flex;
+      align-items: center;
+      height: 2.25rem;
+      min-height: 2.25rem;
+      padding: 0 0.875em;
+      line-height: 1;
+      box-sizing: border-box;
+      margin: 0;
+    }
+  }
+
+  .navigation-container #navigation-bar {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    flex-shrink: 1;
+    min-width: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      flex-shrink: 0;
+
+      a {
+        display: flex;
+        align-items: center;
+        height: 2.25rem;
+        line-height: 1;
+        padding: 0 0.875em;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+

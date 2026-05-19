@@ -1,0 +1,522 @@
+// ============================================================================
+// DOCS LAYOUT
+// ============================================================================
+.docs {
+  width: 100%;
+
+  .docs-search {
+    width: 100%;
+    margin-bottom: var(--mm-space-md);
+  }
+
+  // Fix centered loading container
+  .loading-container {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    width: 100%;
+  }
+
+  // Make docs-browse use full width
+  .docs-browse {
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  // Docs topic list should use full width
+  .docs-topic-list {
+    flex-grow: 1;
+    width: auto;
+    min-width: 0;
+  }
+
+  table {
+    width: 100%;
+    table-layout: auto !important;
+  }
+}
+
+// Topic footer buttons
+.topic-footer-buttons {
+  .btn {
+    margin-right: var(--mm-space-xs);
+  }
+}
+
+// Topic progress
+.topic-progress {
+  background: var(--mm-gray-dark);
+
+  .topic-progress-bar {
+    background: var(--mm-green);
+  }
+}
+
+// Topic invited users
+.topic-invited-users {
+  .user-card {
+    background: var(--mm-black-light);
+  }
+}
+
+// Topic post count
+.topic-post-count {
+  color: var(--mm-gray-mid);
+}
+
+// Topic reply count
+.topic-reply-count {
+  color: var(--mm-gray-mid);
+}
+
+// Topic view count
+.topic-view-count {
+  color: var(--mm-gray-mid);
+}
+
+// Topic activity
+.topic-activity {
+  color: var(--mm-gray-mid);
+  font-size: 0.875em;
+}
+
+// Topic last activity
+.topic-last-activity {
+  color: var(--mm-gray-mid);
+  font-size: 0.875em;
+}
+
+// Topic posters
+.topic-posters {
+  .avatar {
+    border-color: var(--mm-gray-dark);
+  }
+}
+
+// Topic category
+.topic-category {
+  .badge-category {
+    background: var(--mm-black-light);
+    color: var(--mm-gray);
+  }
+}
+
+// Topic tags
+.topic-tags {
+  .discourse-tag {
+    margin-right: var(--mm-space-xs);
+  }
+}
+
+// Topic title wrapper
+.topic-title-wrapper {
+  .topic-title {
+    color: var(--mm-white);
+  }
+}
+
+// Topic body
+.topic-body {
+  color: var(--mm-gray);
+}
+
+// Topic post content
+.topic-post-content {
+  color: var(--mm-gray);
+}
+
+// Topic post header
+.topic-post-header {
+  border-bottom: 1px solid var(--mm-gray-dark);
+  padding-bottom: var(--mm-space-sm);
+  margin-bottom: var(--mm-space-md);
+}
+
+// Topic post footer
+.topic-post-footer {
+  border-top: 1px solid var(--mm-gray-dark);
+  padding-top: var(--mm-space-sm);
+  margin-top: var(--mm-space-md);
+}
+
+// Topic post actions
+.topic-post-actions {
+  .btn {
+    padding: 0.5em 0.75em;
+  }
+}
+
+// Topic post like count
+.topic-post-like-count {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post reply count
+.topic-post-reply-count {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post bookmark
+.topic-post-bookmark {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post share
+.topic-post-share {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post flag
+.topic-post-flag {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post edit
+.topic-post-edit {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post delete
+.topic-post-delete {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post recover
+.topic-post-recover {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post wiki
+.topic-post-wiki {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post unlist
+.topic-post-unlist {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post admin
+.topic-post-admin {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post moderator
+.topic-post-moderator {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post owner
+.topic-post-owner {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post staff
+.topic-post-staff {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post group
+.topic-post-group {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post user
+.topic-post-user {
+  color: var(--mm-gray-mid);
+}
+
+// Topic post date
+.topic-post-date {
+  color: var(--mm-gray-mid);
+  font-size: 0.875em;
+}
+
+// Topic post username
+.topic-post-username {
+  color: var(--mm-white);
+  font-weight: 500;
+}
+
+// Topic post user title
+.topic-post-user-title {
+  color: var(--mm-gray-mid);
+  font-size: 0.875em;
+}
+
+// Topic post user avatar
+.topic-post-user-avatar {
+  .avatar {
+    border-color: var(--mm-gray-dark);
+  }
+}
+
+// Topic post user elements (consolidated)
+.topic-post-user-info,
+.topic-post-user-trust-level,
+.topic-post-user-badge,
+.topic-post-user-location,
+.topic-post-user-website,
+.topic-post-user-bio,
+.topic-post-user-stats,
+.topic-post-user-joined,
+.topic-post-user-last-seen {
+  color: var(--mm-gray-mid);
+  font-size: 0.875em;
+}
+
+// Tooltips
+[data-tippy-root] {
+  .tippy-box {
+    background: var(--mm-black);
+    color: var(--mm-white);
+    border-radius: 0;
+    @include mm-clip-card(var(--mm-clip-xs));
+    font-family: var(--mm-font-primary);
+    font-size: 0.8125em;
+    padding: 0.5em 0.75em;
+    box-shadow: var(--mm-shadow-md);
+
+    .tippy-arrow {
+      color: var(--mm-black);
+    }
+  }
+}
+
+// Ember Power Select (Dropdowns)
+.ember-power-select-trigger {
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  background: var(--mm-black-light);
+  color: var(--mm-white);
+  @include mm-clip-card(var(--mm-clip-xs));
+
+  &:focus {
+    border-color: var(--mm-green);
+    box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+  }
+}
+
+.ember-power-select-dropdown {
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  background: var(--mm-black-light);
+  @include mm-clip-card(var(--mm-clip-sm));
+  box-shadow: var(--mm-shadow-lg);
+}
+
+// ============================================================================
+// MENTIONS - @username styling
+// ============================================================================
+a.mention,
+a.mention-group {
+  background: var(--mm-green);
+  color: var(--mm-black) !important;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--mm-green-light);
+    color: var(--mm-black) !important;
+  }
+}
+
+// ============================================================================
+// PINNED POSTS / CATEGORY BANNERS
+// ============================================================================
+// CRITICAL: Override light blue/teal category banners with dark theme
+// These need !important to override Discourse's inline styles and default category colors
+.category-heading,
+.category-title-link,
+.category-title {
+  color: var(--mm-white) !important;
+}
+
+// Target the actual banner container aggressively
+.category-heading,
+div.category-heading,
+section.category-heading,
+[class*="category-heading"] {
+  background: var(--mm-black-light) !important;
+  background-color: var(--mm-black-light) !important;
+  border: 1px solid var(--mm-gray-dark) !important;
+  padding: var(--mm-space-md);
+  margin-bottom: var(--mm-space-md);
+
+  // Override all child elements
+  * {
+    background: transparent !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--mm-green) !important;
+  }
+
+  p,
+  span,
+  div,
+  li {
+    color: var(--mm-gray) !important;
+  }
+
+  a {
+    color: var(--mm-green) !important;
+
+    &:hover {
+      color: var(--mm-green-light) !important;
+    }
+  }
+}
+
+// Pinned topic banner styling
+.topic-status-info,
+.pinned-message,
+.unpinned-message {
+  background: var(--mm-black-light) !important;
+  border: 1px solid var(--mm-gray-dark);
+  color: var(--mm-white);
+  padding: var(--mm-space-sm) var(--mm-space-md);
+
+  a {
+    color: var(--mm-green);
+  }
+}
+
+// Category info box (the teal banner in topic view)
+.category-info-container,
+.topic-category {
+  background: var(--mm-black-mid) !important;
+  background-color: var(--mm-black-mid) !important;
+  border: 1px solid var(--mm-gray-dark);
+  color: var(--mm-white);
+
+  h3,
+  h2,
+  h1,
+  p,
+  span {
+    color: var(--mm-white) !important;
+  }
+
+  a {
+    color: var(--mm-green) !important;
+
+    &:hover {
+      color: var(--mm-green-light) !important;
+    }
+  }
+}
+
+// Category box in topic - the teal banner at top
+.topic-category .category-title-contents,
+.category-title-contents {
+  background: var(--mm-black-light) !important;
+  background-color: var(--mm-black-light) !important;
+
+  .category-title-link,
+  .category-name {
+    color: var(--mm-white) !important;
+  }
+}
+
+// The large category info banner on category pages
+.category-boxes .category-description,
+.category-box .category-description,
+.category-box .description,
+.category-box .subcategories {
+  color: var(--mm-gray) !important;
+}
+
+// Fix the topic category box styling in topic view
+.topic-above-post-stream,
+.topic-area {
+
+  // The large category description box at top of topic
+  .category-heading,
+  .topic-header-extra,
+  [class*="category-heading"] {
+    background: var(--mm-black-light) !important;
+    background-color: var(--mm-black-light) !important;
+    border: 1px solid var(--mm-gray-dark);
+    padding: var(--mm-space-md);
+    margin-bottom: var(--mm-space-md);
+
+    .category-title-contents,
+    .category-heading-description {
+
+      h2,
+      h3,
+      .category-title-link {
+        color: var(--mm-green) !important;
+      }
+
+      p,
+      .cooked,
+      span {
+        color: var(--mm-gray);
+      }
+    }
+  }
+}
+
+// Override any teal/light blue category backgrounds - MAXIMUM SPECIFICITY
+.category-heading,
+.topic-category,
+.category-header-widget,
+.category-title-header,
+.topic-category-title,
+div[class*="category"],
+section[class*="category"] {
+  &:not(.category-box):not(.category-boxes) {
+    background: var(--mm-black-light) !important;
+    background-color: var(--mm-black-light) !important;
+
+    * {
+      color: var(--mm-white);
+    }
+
+    a {
+      color: var(--mm-green) !important;
+    }
+  }
+}
+
+// Cooked content in category descriptions (the formatted text)
+.category-heading .cooked,
+.topic-above-post-stream .cooked,
+.category-description .cooked {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--mm-gray) !important;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--mm-green) !important;
+  }
+
+  p,
+  li {
+    color: var(--mm-gray) !important;
+  }
+
+  a {
+    color: var(--mm-green) !important;
+  }
+}
+
+// Pinned topic box at top of category
+.pinned-button,
+.topic-statuses .pinned {
+  color: var(--mm-orange) !important;
+}
+
