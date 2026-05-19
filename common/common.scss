@@ -158,6 +158,60 @@ $mm-desktop-max: calc(#{$mm-desktop} - 1px);
   }
 }
 
+// Compact search fields — global .btn / input pill styles overflow Discourse search UIs
+@mixin mm-search-compact-btn {
+  height: auto !important;
+  min-height: 0 !important;
+  width: auto;
+  max-width: 100%;
+  padding: 0 !important;
+  margin: 0;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  flex-direction: row;
+  flex-shrink: 0;
+  gap: 0;
+  line-height: 1.25;
+  transform: none !important;
+  white-space: nowrap;
+
+  .d-icon {
+    margin: 0 !important;
+  }
+
+  &:hover {
+    transform: none !important;
+  }
+}
+
+@mixin mm-search-compact-input {
+  flex: 1 1 auto;
+  min-width: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+  }
+
+  &::placeholder {
+    text-overflow: ellipsis;
+  }
+}
+
 // BASE STYLES - Force Dark Mode
 // ============================================================================
 html {
@@ -376,24 +430,39 @@ a {
       }
     }
 
+    // Desktop search pill — parent .icon is fixed-size; allow room for label
+    li.search-dropdown {
+      @include mm-bp(tablet) {
+        width: auto;
+        height: auto;
+        flex-shrink: 0;
+        overflow: visible;
+      }
+    }
+
     // Search button with "Search" text on desktop
     #search-button {
       @include mm-bp(tablet) {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        width: auto;
+        justify-content: center;
+        gap: 0.5rem;
+        width: auto !important;
+        min-width: 0;
+        flex-shrink: 0;
+        white-space: nowrap;
         aspect-ratio: auto;
         border-radius: 6.25em;
-        padding: 0 1.5rem; // Use flex centering instead of padding for height
-        height: 2.625rem; // Explicit height to match other inputs
+        padding: 0 1.5rem;
+        height: 2.625rem !important;
         background: var(--mm-black-light);
         border: 1px solid var(--mm-gray-dark);
 
         &::after {
           content: "Search";
-          display: inline-flex;
+          display: inline;
+          flex-shrink: 0;
           color: var(--mm-white);
-          margin-right: 0.5rem;
         }
 
         &:hover,
@@ -408,6 +477,7 @@ a {
 
       .d-icon {
         width: 0.625rem;
+        flex-shrink: 0;
       }
     }
 
@@ -511,23 +581,9 @@ a {
     margin: 0;
   }
 
-  // Search menu dropdown
+  // Header search dropdown — layout in SEARCH section (avoid styling bare inputs here)
   .search-menu {
     border-radius: 0;
-
-    input[type="text"] {
-      border-radius: 0;
-      border: 1px solid var(--mm-gray-dark);
-      background: var(--mm-black-light);
-      color: var(--mm-white);
-      font-family: var(--mm-font-primary);
-      height: 100%; // Ensure it fills container
-
-      &:focus {
-        border-color: var(--mm-green);
-        box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
-      }
-    }
   }
 }
 
@@ -870,6 +926,11 @@ a {
       background: transparent;
       height: 100%;
       @include mm-accent-bar(var(--mm-green), 4px);
+
+      // Native Discourse boxes (no homepage .category-details wrapper)
+      &:not(:has(.category-details)) {
+        padding: 16px;
+      }
     }
 
     .category-details {
@@ -934,31 +995,103 @@ a {
   }
 }
 
-// Category title
-.category-box .category-title,
-.category-box .category-title-link {
-  font-family: var(--mm-font-primary);
-  font-size: 1.25em;
-  font-weight: 500;
-  color: var(--mm-white);
-  text-decoration: none;
-  position: relative;
-  z-index: 1;
-
-  &:hover {
-    color: var(--mm-green);
-    text-decoration: none;
+// Category box typography (native Discourse + homepage grid)
+.category-box {
+  h3,
+  .category-title {
+    font-family: var(--mm-font-primary);
+    font-size: 1.125em;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 0 0 var(--mm-space-sm);
+    color: var(--mm-white);
+    position: relative;
+    z-index: 1;
   }
-}
 
-// Category description
-.category-box .category-description {
-  font-size: 0.875em;
-  color: var(--mm-gray);
-  margin-top: 8px;
-  position: relative;
-  z-index: 1;
-  line-height: 1.4;
+  .category-title-link {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+
+    &:hover {
+      color: var(--mm-green);
+      text-decoration: none;
+    }
+  }
+
+  // Discourse uses .description; homepage grid uses .category-description
+  .category-description,
+  .description {
+    font-family: var(--mm-font-primary);
+    font-size: 0.875em;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--mm-gray);
+    margin: 0 0 var(--mm-space-md);
+    position: relative;
+    z-index: 1;
+
+    p {
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      color: inherit;
+      margin: 0 0 var(--mm-space-xs);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: var(--mm-green);
+
+      &:hover {
+        color: var(--mm-green-light);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .subcategories {
+    font-family: var(--mm-font-primary);
+    font-size: 0.875em;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+
+    .subcategory,
+    .subcategory-link {
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      color: var(--mm-gray);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--mm-green);
+        text-decoration: none;
+      }
+    }
+
+    a {
+      color: var(--mm-gray);
+
+      &:hover {
+        color: var(--mm-green);
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 // Responsive
@@ -1654,6 +1787,120 @@ textarea {
 }
 
 // ============================================================================
+// SITE BANNER (global notice — Office Hours, etc.)
+// ============================================================================
+// Discourse floats .floated-buttons so text wraps beside the controls; we want
+// edit/dismiss top-right with copy on a full-width row beneath.
+#banner {
+  padding: 1em 1.25em;
+  margin-bottom: 1em;
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  color: var(--mm-white);
+  max-height: none;
+  overflow: visible;
+  @include mm-accent-bar(var(--mm-green), 4px);
+
+  #banner-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 1rem;
+    row-gap: 0.625rem;
+  }
+
+  .floated-buttons {
+    grid-column: 2;
+    grid-row: 1;
+    float: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.375rem;
+    margin: 0;
+
+    .btn {
+      float: none;
+      flex-shrink: 0;
+      min-width: unset;
+      min-height: unset;
+      width: auto;
+      height: auto;
+      aspect-ratio: unset;
+      padding: 0.4em 0.75em;
+      font-size: 0.8125em;
+      font-weight: 500;
+      line-height: 1.2;
+      border-radius: 6.25em;
+      background: transparent;
+      border: 1px solid var(--mm-gray-dark);
+      color: var(--mm-gray);
+      transform: none;
+      box-shadow: none;
+
+      .d-icon {
+        color: var(--mm-gray-mid);
+        margin: 0;
+      }
+
+      @include mm-hover {
+        background: var(--mm-black-mid);
+        border-color: var(--mm-gray-mid);
+        color: var(--mm-white);
+        transform: none;
+
+        .d-icon {
+          color: var(--mm-white);
+        }
+      }
+    }
+
+    .btn.close {
+      padding: 0.4em;
+      width: 2rem;
+      height: 2rem;
+      min-width: 2rem;
+      min-height: 2rem;
+      border-radius: 50%;
+
+      .d-icon {
+        margin: 0;
+      }
+    }
+  }
+
+  #banner-content > p,
+  #banner-content > ul,
+  #banner-content > ol,
+  #banner-content > hr,
+  #banner-content > div:not(.floated-buttons) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  #banner-content > p:first-of-type {
+    margin-top: 0;
+  }
+
+  #banner-content > p:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: var(--mm-green);
+
+    @include mm-hover {
+      color: var(--mm-green-light);
+    }
+  }
+}
+
+// ============================================================================
 // SIDEBAR
 // ============================================================================
 #main-outlet-wrapper .sidebar-wrapper {
@@ -1971,17 +2218,86 @@ textarea {
 }
 
 // ============================================================================
-// SEARCH
+// SEARCH — compact surfaces (sidebar, header menu, topic, full-page)
+// Global .btn / input rules use pill sizing; reset inside search containers only.
 // ============================================================================
-.search-menu {
-  .search-input {
+.sidebar-search {
+  width: 100%;
+  min-width: 0;
+
+  &__input-container {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    gap: 0.35em;
+  }
+
+  &__icon.btn {
+    @include mm-search-compact-btn;
+  }
+
+  &__input[type="text"],
+  &__input[type="search"] {
+    @include mm-search-compact-input;
+    cursor: pointer;
+    color: var(--mm-white);
+  }
+
+  &__shortcut-hint {
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.2;
+    max-width: 5em;
+    padding: 0.15em 0.35em;
+    color: var(--mm-gray-mid);
+  }
+}
+
+.search-menu,
+.search-menu-container {
+  .search-input-wrapper {
+    min-width: 0;
+  }
+
+  // Welcome banner uses a pill shape — clip-path here crops the sides
+  .search-input:not(.search-input--welcome-banner) {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
     border: 1px solid var(--mm-gray-dark);
     border-radius: 0;
     background: var(--mm-black-light);
     color: var(--mm-white);
     @include mm-clip-card(var(--mm-clip-sm));
 
-    &:focus {
+    .search-term__input,
+    input[type="text"],
+    input[type="search"] {
+      @include mm-search-compact-input;
+      color: var(--mm-white);
+      font-family: var(--mm-font-primary);
+    }
+
+    .btn.search-icon,
+    .btn.search-context,
+    .show-advanced-search,
+    a.clear-search,
+    .searching > .btn {
+      @include mm-search-compact-btn;
+      color: var(--mm-gray);
+
+      @include mm-hover {
+        color: var(--mm-white);
+      }
+    }
+
+    &:focus-within {
       border-color: var(--mm-green);
       box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
     }
@@ -2003,6 +2319,37 @@ textarea {
     &:hover {
       background: var(--mm-black-mid);
     }
+  }
+}
+
+.search-container .search-bar {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.5em;
+
+  input.search-query {
+    @include mm-search-compact-input;
+    flex: 1 1 auto;
+    min-height: 2.625rem;
+    padding: 0 1em !important;
+    border: 1px solid var(--mm-gray-dark) !important;
+    border-radius: 6.25em !important;
+    background: var(--mm-black-light) !important;
+    color: var(--mm-white);
+
+    &:focus {
+      border-color: var(--mm-green) !important;
+      box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15) !important;
+    }
+  }
+}
+
+.docs .docs-search {
+  input[type="text"],
+  input[type="search"] {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -2070,125 +2417,129 @@ body .custom-search-banner-wrap {
     z-index: 1;
   }
 
-  // Flattened selectors for search input and icons
-  input[type="text"],
-  input[type="search"] {
-    background: var(--mm-black-mid);
-    border: 1px solid var(--mm-gray-dark) !important;
-    color: var(--mm-white) !important;
-    border-radius: 6.25em !important; // Force Pill shape
-    padding-left: 3rem !important;
-    padding-right: 3rem !important;
-    height: 3rem !important;
+  // Welcome banner search — layout handled in section below
+  .welcome-banner__search-menu,
+  .search-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
     width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+    box-sizing: border-box;
+
+    .search-menu-container {
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .search-input-wrapper {
+      width: 100%;
+      min-width: 0;
+    }
+
+    // Discourse search-banner theme: icon is a sibling before the menu container
+    .btn.search-icon {
+      position: absolute;
+      left: calc(1rem - 0.65em);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      height: auto;
+      margin: 0;
+      padding: 0.25em;
+      background: transparent;
+      border: none;
+      color: var(--mm-gray);
+      pointer-events: auto;
+      line-height: 1;
+
+      .d-icon {
+        font-size: 1.125em;
+      }
+
+      @include mm-hover {
+        color: var(--mm-white);
+        background: transparent;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// WELCOME BANNER SEARCH (Discourse core + search-banner theme component)
+// ============================================================================
+body .custom-search-banner-wrap,
+body .welcome-banner__wrap {
+  .search-input--welcome-banner,
+  .search-input {
+    clip-path: none !important;
+    border-radius: 6.25em !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    background: var(--mm-black-mid) !important;
+    border: 1px solid var(--mm-gray-dark) !important;
     box-sizing: border-box !important;
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
     margin: 0 !important;
-    position: relative; // Ensure z-index works
-    z-index: 1;
+    padding: 0.25em 0.5em 0.25em 2em !important; // left inset for external .btn.search-icon
+
+    &:focus-within {
+      border-color: var(--mm-green) !important;
+      box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15) !important;
+    }
+  }
+
+  #welcome-banner-search-input,
+  .search-term__input {
+    border: none !important;
+    background: transparent !important;
+    color: var(--mm-white) !important;
+    border-radius: 0 !important;
+    clip-path: none !important;
+    padding: 0.75em 0.5em !important;
+    height: auto !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    text-overflow: ellipsis !important;
+
+    &::placeholder {
+      color: var(--mm-gray) !important;
+    }
 
     &:focus {
-      border-color: var(--mm-green);
-      outline: none;
+      outline: none !important;
+      box-shadow: none !important;
     }
   }
 
-  // Search Icon (Left)
-  .search-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--mm-gray);
-    pointer-events: none;
-    z-index: 2;
-
-    .d-icon {
-      font-size: 1.125em;
-    }
+  .searching {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    padding-right: 0.25em !important;
   }
 
-  // Advanced Search/Filter Icon (Right)
   .show-advanced-search {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--mm-gray);
-    background: transparent;
-    border: none;
-    padding: 0;
-    z-index: 2;
-
-    &:hover {
-      color: var(--mm-green);
-    }
-
-    .d-icon {
-      font-size: 1.125em;
-    }
-  }
-}
-
-// ============================================================================
-// WELCOME BANNER SEARCH (from Discourse plugin - correct selectors)
-// ============================================================================
-// The search bar uses .search-input--welcome-banner as the container
-// This container has border-radius: 0px by default causing the "cut-off" look
-body .search-input--welcome-banner {
-  border-radius: 6.25em !important; // Force pill shape on CONTAINER
-  overflow: hidden !important; // Clip children to rounded shape
-  display: flex !important;
-  align-items: center !important;
-  background: var(--mm-black-mid) !important;
-  border: 1px solid var(--mm-gray-dark) !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  padding-left: 0.5em !important;
-  padding-right: 0.5em !important;
-}
-
-// The actual input inside the welcome banner
-body #welcome-banner-search-input,
-body .search-term__input {
-  border: none !important; // Remove input border (container has border)
-  background: transparent !important; // Transparent to show container bg
-  color: var(--mm-white) !important;
-  border-radius: 0 !important; // No border-radius needed on input
-  padding: 0.75em 1em 0.75em 3.5em !important; // Extra left padding for icon
-  height: auto !important;
-  flex: 1 !important;
-  min-width: 0 !important;
-  box-shadow: none !important;
-  text-overflow: ellipsis !important;
-
-  &::placeholder {
+    background: transparent !important;
+    border: none !important;
     color: var(--mm-gray) !important;
-  }
+    padding: 0.5em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
 
-  &:focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-}
-
-// Icon wrapper ".searching" containing the advanced search button
-body .search-input--welcome-banner .searching {
-  display: flex !important;
-  align-items: center !important;
-  padding-right: 0.5em !important;
-}
-
-body .search-input--welcome-banner .show-advanced-search {
-  background: transparent !important;
-  border: none !important;
-  color: var(--mm-gray) !important;
-  padding: 0.5em !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  &:hover {
-    color: var(--mm-green) !important;
+    @include mm-hover {
+      color: var(--mm-green) !important;
+    }
   }
 }
 
@@ -3122,7 +3473,9 @@ section.category-heading,
 
 // The large category info banner on category pages
 .category-boxes .category-description,
-.category-box .category-description {
+.category-box .category-description,
+.category-box .description,
+.category-box .subcategories {
   color: var(--mm-gray) !important;
 }
 

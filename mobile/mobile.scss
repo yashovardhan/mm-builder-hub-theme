@@ -224,7 +224,12 @@ body .navigation-container #navigation-bar {
       font-size: 1em;
     }
 
-    .category-description {
+    .category-description,
+    .description {
+      font-size: 0.8125em;
+    }
+
+    .subcategories {
       font-size: 0.8125em;
     }
 
@@ -610,6 +615,17 @@ select {
   button.close {
     min-width: 44px;
     min-height: 44px;
+  }
+}
+
+#banner {
+  padding: 1em;
+
+  .floated-buttons .btn.close {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
   }
 }
 
