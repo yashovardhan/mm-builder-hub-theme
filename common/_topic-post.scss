@@ -1,0 +1,273 @@
+// ============================================================================
+// TOPIC/POST PAGE
+// ============================================================================
+.topic-post {
+  position: relative;
+  background: var(--mm-black-light);
+  border: none;
+  border-radius: 0;
+  margin-bottom: 12px;
+  padding: 0;
+  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+  @include mm-clip-card(1.2em);
+
+  .row {
+    padding: 12px 16px;
+  }
+
+  // First post styling
+  &:first-child {
+    @include mm-accent-bar(var(--mm-green), 4px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // Reply styling
+  &:not(:first-child) {
+    @include mm-accent-bar(var(--mm-purple), 3px);
+  }
+
+  &:hover {
+    filter: drop-shadow(var(--mm-shadow-sm));
+    background: var(--mm-black-mid);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+// Post content
+.cooked {
+  font-family: var(--mm-font-primary);
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--mm-white);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    color: var(--mm-white);
+  }
+
+  p {
+    margin-bottom: 8px;
+    color: var(--mm-white);
+  }
+
+  a {
+    color: var(--mm-green);
+
+    &:hover {
+      color: var(--mm-green-light);
+    }
+  }
+}
+
+// ============================================================================
+// CODE BLOCKS - MetaMask Prism Style
+// ============================================================================
+pre,
+code {
+  font-family: var(--mm-font-mono);
+  border-radius: 0;
+}
+
+code {
+  background: var(--mm-black-mid);
+  color: var(--mm-green);
+  padding: 0.125em 0.375em;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--mm-black);
+  color: var(--mm-white);
+  padding: var(--mm-space-md);
+  overflow-x: auto;
+  @include mm-clip-card(var(--mm-clip-sm));
+
+  code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+}
+
+// Syntax highlighting colors
+.hljs-keyword {
+  color: var(--mm-purple);
+}
+
+.hljs-string {
+  color: var(--mm-green);
+}
+
+.hljs-number {
+  color: var(--mm-orange);
+}
+
+.hljs-comment {
+  color: var(--mm-gray-mid);
+}
+
+.hljs-function {
+  color: var(--mm-blue);
+}
+
+// ============================================================================
+// FORMS & INPUTS - Production Polish
+// ============================================================================
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="number"],
+textarea {
+  font-family: var(--mm-font-primary);
+  font-size: 0.875em;
+  padding: 0.75em 1em;
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 6.25em;
+  background: var(--mm-black-light);
+  color: var(--mm-white);
+  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+  min-height: 2.25rem;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: var(--mm-green);
+    box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+  }
+
+  &:hover:not(:focus) {
+    border-color: var(--mm-gray-mid);
+  }
+
+  &::placeholder {
+    color: var(--mm-gray-mid);
+  }
+
+  &[disabled],
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @include mm-bp-max(tablet) {
+    font-size: 0.8125em;
+    padding: 0.625em 0.875em;
+  }
+}
+
+// Textarea specific - use rounded rectangle instead of pill
+textarea {
+  border-radius: 0.75em;
+  min-height: 6rem;
+  resize: vertical;
+}
+
+// Editor
+.d-editor-textarea-wrapper {
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  background: var(--mm-black-light);
+  @include mm-clip-card(var(--mm-clip-sm));
+
+  &:focus-within {
+    border-color: var(--mm-green);
+    box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+  }
+}
+
+// Select kit - Enhanced dropdowns
+.select-kit {
+  .select-kit-header {
+    border: 1px solid var(--mm-gray-dark);
+    border-radius: 6.25em;
+    background: var(--mm-black-light);
+    color: var(--mm-white);
+    padding: 0.5em 1em;
+    min-height: 2.25rem;
+    transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+    &:hover {
+      border-color: var(--mm-green);
+    }
+
+    &:focus,
+    &.is-focused {
+      border-color: var(--mm-green);
+      box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+      outline: none;
+    }
+
+    .d-icon {
+      color: var(--mm-gray-mid);
+    }
+  }
+
+  .select-kit-body {
+    border: 1px solid var(--mm-gray-dark);
+    border-radius: 0;
+    background: var(--mm-black-light);
+    @include mm-clip-card(var(--mm-clip-sm));
+    box-shadow: var(--mm-shadow-lg);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1060;
+  }
+
+  .select-kit-row {
+    color: var(--mm-white);
+    padding: 0.625rem 1rem;
+    transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+    &.is-selected {
+      background: rgba(186, 242, 74, 0.15);
+      color: var(--mm-green);
+    }
+
+    &:hover {
+      background: var(--mm-black-mid);
+      color: var(--mm-white);
+    }
+
+    &.is-highlighted {
+      background: var(--mm-black-mid);
+    }
+  }
+
+  // Combo box specific styles
+  &.combo-box {
+    .combo-box-header {
+      background: var(--mm-black-light);
+      border: 1px solid var(--mm-gray-dark);
+      color: var(--mm-white);
+      border-radius: 6.25em;
+      padding: 0.5em 1em;
+      min-height: 2.25rem;
+
+      &:hover {
+        border-color: var(--mm-green);
+      }
+    }
+  }
+
+  // Category dropdown
+  &.category-drop {
+    .select-kit-header {
+      min-height: 2.25rem;
+    }
+  }
+}
+

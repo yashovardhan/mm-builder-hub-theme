@@ -1,0 +1,64 @@
+// ============================================================================
+// BADGES & PILLS - MetaMask Style
+// ============================================================================
+.badge-category-bg,
+.badge-category-parent-bg {
+  border-radius: 10rem;
+}
+
+.badge-category {
+  font-family: var(--mm-font-primary);
+  font-size: 0.75em;
+  font-weight: 500;
+  padding: 0.25em 0.625em;
+  border-radius: 10rem;
+  text-transform: none;
+}
+
+// Custom badge styles
+.badge-wrapper {
+  &.bullet {
+    .badge-category-bg {
+      width: 0.625em;
+      height: 0.625em;
+      border-radius: 50%;
+    }
+  }
+
+  &.box {
+    .badge-category-bg {
+      padding: 0.25em 0.625em;
+      border-radius: 10rem;
+    }
+  }
+}
+
+// Discourse badges
+.user-badge,
+.badge-card {
+  border-radius: 0;
+  @include mm-clip-card(var(--mm-clip-xs));
+  border: none;
+  background: var(--mm-black-light);
+}
+
+// Tag pills
+.discourse-tag {
+  font-family: var(--mm-font-primary);
+  font-size: 0.75em;
+  font-weight: 500;
+  padding: 0.25em 0.625em;
+  border-radius: 10rem;
+  background: var(--mm-black-light);
+  color: var(--mm-gray);
+  border: 1px solid var(--mm-gray-dark);
+  text-decoration: none;
+  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+  &:hover {
+    background: var(--mm-green);
+    color: var(--mm-black);
+    border-color: var(--mm-green);
+  }
+}
+

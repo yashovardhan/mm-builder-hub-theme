@@ -16,6 +16,12 @@ hero_subtitle:
   description:
     en: Subtitle text displayed below the hero title
 
+hero_routes:
+  type: string
+  default: "discovery.categories,discovery.latest,discovery.top"
+  description:
+    en: "Comma-separated Discourse route names that show the custom hero (category grid only appears on discovery.categories)"
+
 homepage_categories:
   type: list
   list_type: compact

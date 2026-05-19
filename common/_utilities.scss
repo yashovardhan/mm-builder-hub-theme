@@ -1,0 +1,65 @@
+// Pinned topic box at top of category
+.pinned-button,
+.topic-statuses .pinned {
+  color: var(--mm-orange) !important;
+}
+
+// ============================================================================
+// 404 PAGE
+// ============================================================================
+.page-not-found {
+  .search-form,
+  form.search {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75em;
+
+    input[type="text"],
+    input[type="search"] {
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+
+    .btn {
+      flex: 0 0 auto;
+      align-self: center;
+    }
+  }
+
+  .popular-topics a,
+  .recent-topics a {
+    color: var(--mm-green);
+
+    &:visited {
+      color: var(--mm-green);
+    }
+
+    &:hover {
+      color: var(--mm-green-light);
+    }
+  }
+}
+
+// ============================================================================
+// MAIN OUTLET — consistent horizontal rhythm
+// ============================================================================
+#main-outlet {
+  > .alert,
+  > .custom-search-banner-wrap {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+// Subcategory rows in native category list
+.category-box.is-subcategory,
+.subcategory-list .category-box {
+  margin-left: 1rem;
+
+  .category-title {
+    font-size: 1em;
+  }
+}

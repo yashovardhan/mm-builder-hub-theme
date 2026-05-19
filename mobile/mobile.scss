@@ -27,17 +27,24 @@ body {
   padding-top: 8px;
 }
 
-// Single column layout on mobile
+// Single column layout on mobile — sidebar hidden (nav via header menu)
 #main-outlet-wrapper {
   display: block;
   padding: 0 12px;
+  width: 100%;
+  max-width: 100%;
 
-  .sidebar-wrapper {
-    position: relative;
-    top: 0;
-    margin-bottom: 12px;
-    max-height: none;
+  .sidebar-wrapper,
+  .sidebar-container,
+  nav.sidebar {
+    display: none !important;
   }
+}
+
+#main-outlet {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 // ============================================================================
@@ -47,26 +54,76 @@ body {
   min-height: 3.5em;
 
   .wrap {
-    padding: 0 var(--mm-space-sm);
+    padding: 0 12px;
   }
 
   .contents {
     padding: var(--mm-space-xs) 0;
+    flex-wrap: nowrap;
+    min-width: 0;
   }
 
   .title {
     font-size: 0.875em;
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+
+    a {
+      color: var(--mm-white) !important;
+    }
   }
 
-  // Hide text labels on mobile
-  .header-buttons .btn-text {
-    display: none;
+  .panel {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .header-buttons,
+  .auth-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.25em;
+    flex-shrink: 0;
   }
 
   .d-header-icons {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.25em;
+    flex-shrink: 0;
+
     .icon {
-      padding: 0.8rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    #search-button {
+      width: 2.25rem !important;
+      height: 2.25rem !important;
+      min-width: 2.25rem;
+      padding: 0 !important;
+      border-radius: 50% !important;
+      aspect-ratio: 1 / 1;
+
+      &::after {
+        display: none !important;
+        content: none !important;
+      }
+
+      .d-icon {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .login-button,
+  button.sign-up-button {
+    flex-shrink: 0;
   }
 }
 
@@ -75,6 +132,35 @@ body {
   background: var(--mm-black);
   border-bottom: 1px solid var(--mm-gray-dark);
   padding: var(--mm-space-sm) var(--mm-space-md);
+}
+
+// ============================================================================
+// LIST CONTROLS / NAVIGATION CONTAINER - Mobile
+// ============================================================================
+body .navigation-container {
+  flex-wrap: wrap !important;
+  min-height: auto !important;
+  padding: 0.5rem 0 !important;
+  gap: 0.5em !important;
+}
+
+body .navigation-container .category-breadcrumb {
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+body .navigation-container #navigation-bar {
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 // ============================================================================
@@ -293,27 +379,7 @@ body {
   }
 }
 
-// ============================================================================
-// SIDEBAR - Mobile Collapsible
-// ============================================================================
-.sidebar-wrapper {
-  background: var(--mm-black-light);
-  border: 1px solid var(--mm-gray-dark);
-  --mm-clip-md: 1em;
-
-  .sidebar-container {
-    padding: var(--mm-space-sm);
-  }
-
-  .sidebar-section {
-    margin-bottom: var(--mm-space-md);
-  }
-
-  .sidebar-section-link-wrapper a {
-    padding: var(--mm-space-sm) var(--mm-space-md);
-    font-size: 0.9375em;
-  }
-}
+// Sidebar hidden on mobile — see #main-outlet-wrapper above
 
 // ============================================================================
 // SEARCH - Mobile Full Screen
@@ -474,7 +540,10 @@ body {
 .custom-search-banner-wrap {
   --mm-clip-lg: 1em;
   padding: 16px 14px;
-  margin: 0 -12px 12px -12px;
+  margin: 0 0 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 
   .custom-search-banner-headline,
   h1 {
@@ -527,12 +596,46 @@ select {
 // ALERTS - Mobile
 // ============================================================================
 .alert {
-  padding: var(--mm-space-sm) var(--mm-space-md) var(--mm-space-sm) calc(var(--mm-space-md) + 0.4em);
-  margin: var(--mm-space-sm) 0;
+  padding: 16px 40px 16px 18px;
+  margin: 12px 0;
   font-size: 0.875em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: normal;
+  overflow-wrap: break-word;
 
   &::before {
     width: 0.3em;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  &.alert-success {
+    background: var(--mm-green);
+    color: var(--mm-black);
+
+    a {
+      color: var(--mm-black);
+      font-weight: 500;
+    }
+  }
+
+  &.alert-info a {
+    color: var(--mm-blue-dark);
+    font-weight: 500;
+  }
+
+  .close,
+  button.close {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    top: 4px;
+    right: 4px;
   }
 }
 

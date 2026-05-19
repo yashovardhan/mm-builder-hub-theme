@@ -1,0 +1,215 @@
+// ============================================================================
+// BUTTONS - MetaMask Button System (Dark Mode) - Production Polish
+// ============================================================================
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse; // Icon after text (antimony pattern)
+  gap: 0.45em;
+  padding: 0.85em 1.65em;
+  font-family: var(--mm-font-primary);
+  font-size: 0.875em;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 6.25em;
+  cursor: pointer;
+  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+  @include mm-form-item-sizing;
+
+  @include mm-bp-max(tablet) {
+    font-size: 0.8125em;
+    padding: 0.75em 1.25em;
+  }
+
+  .d-icon {
+    margin-left: 0.45em;
+    margin-right: 0;
+  }
+
+  .d-button-label+.d-icon {
+    margin-left: 0.45em;
+    margin-right: 0;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mm-green);
+    outline-offset: 2px;
+  }
+
+  &[disabled],
+  &.disabled {
+    &:not(.is-loading) {
+      opacity: 0.4;
+    }
+
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  // Default button
+  &-default {
+    background: var(--mm-black-light);
+    color: var(--mm-white);
+    border: 1px solid var(--mm-gray-dark);
+
+    &:hover {
+      background: var(--mm-gray-dark);
+      color: var(--mm-white);
+      border-color: var(--mm-green);
+    }
+  }
+
+  // Primary button (Green in dark mode)
+  &-primary {
+    background: var(--mm-green);
+    color: var(--mm-black);
+    box-shadow: var(--mm-shadow-sm);
+
+    &:hover {
+      background: var(--mm-green-light);
+      color: var(--mm-black);
+      box-shadow: 0 4px 12px rgba(186, 242, 74, 0.3);
+    }
+
+    &:focus-visible {
+      outline-color: var(--mm-green-light);
+    }
+  }
+
+  // Text button (inverted primary)
+  &-text {
+    background: var(--mm-green);
+    color: var(--mm-black);
+
+    .d-icon {
+      color: var(--mm-black);
+    }
+
+    &:hover {
+      background: var(--mm-black);
+      color: var(--mm-green);
+      border-color: var(--mm-green);
+
+      .d-icon {
+        color: var(--mm-green);
+      }
+    }
+  }
+
+  // Danger button
+  &-danger {
+    background: transparent;
+    color: var(--mm-orange);
+    border: 1px solid var(--mm-orange);
+
+    &:hover {
+      background: var(--mm-orange);
+      color: var(--mm-white);
+    }
+  }
+
+  // Icon-only button - circular design (exclude dismiss buttons on notices/banners)
+  &-icon:not(.select-kit-header):not(.btn-flat):not(.modal-close):not(.close):not(.dismiss-link):not([class*="dismiss"]) {
+    border-radius: 50%;
+    background: var(--mm-black-light);
+    color: var(--mm-white);
+    padding: 0.95em;
+    aspect-ratio: 1 / 1;
+    line-height: 0;
+    min-width: 2.625rem;
+    min-height: 2.625rem;
+    width: 2.625rem;
+    height: 2.625rem;
+    border: 1px solid var(--mm-gray-dark);
+
+    @include mm-bp-max(tablet) {
+      width: 2.25rem;
+      height: 2.25rem;
+      min-width: 2.25rem;
+      min-height: 2.25rem;
+    }
+
+    .d-icon {
+      margin: 0;
+      color: var(--mm-white);
+    }
+
+    &:hover,
+    &:focus {
+      background: var(--mm-green);
+      border-color: var(--mm-green);
+
+      .d-icon {
+        color: var(--mm-black);
+      }
+    }
+  }
+
+  // Flat button
+  &-flat {
+    background: transparent;
+    color: var(--mm-white);
+    padding: 0.5em 0.75em;
+    height: auto;
+    border: none;
+
+    &:hover {
+      background: var(--mm-black-light);
+      transform: none;
+    }
+  }
+}
+
+// Create topic button (special styling - rounded pill)
+#create-topic {
+  background: var(--mm-green);
+  color: var(--mm-black);
+  border: none;
+  border-radius: 6.25em;
+  font-weight: 500;
+  font-size: 0.875em;
+  padding: 0.85em 1.65em;
+  box-shadow: none;
+  @include mm-form-item-sizing;
+
+  @include mm-bp-max(tablet) {
+    padding: 0.75em 1.25em;
+    font-size: 0.8125em;
+  }
+
+  .d-icon {
+    margin-left: 0.45em;
+    margin-right: 0;
+  }
+
+  &:hover {
+    background: var(--mm-green-light);
+    box-shadow: 0 2px 8px rgba(186, 242, 74, 0.2);
+  }
+}
+
+// Hover states for non-flat buttons (touch-friendly)
+.discourse-no-touch .btn:not(.btn-flat):hover,
+.discourse-no-touch .btn:not(.btn-flat).btn-hover {
+  transform: translateY(-1px);
+}
+

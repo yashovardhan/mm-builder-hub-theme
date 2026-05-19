@@ -1,0 +1,394 @@
+// ============================================================================
+// ALERTS & NOTIFICATIONS - MetaMask Admonition Style
+// ============================================================================
+.alert {
+  position: relative;
+  padding: 10px 14px 10px 18px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 0;
+  @include mm-clip-card(0.8em);
+
+  // Left accent bar
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.5em;
+    height: 100%;
+    background: var(--mm-blue);
+  }
+
+  &.alert-info {
+    background: rgba(137, 176, 255, 0.1);
+    color: var(--mm-blue-light);
+    border-left: 0.5em solid var(--mm-blue);
+
+    &::before {
+      background: var(--mm-blue);
+    }
+  }
+
+  &.alert-success {
+    background: var(--mm-green);
+    color: var(--mm-black);
+    border-left: 0.5em solid var(--mm-green-dark);
+
+    &::before {
+      background: var(--mm-green-dark);
+    }
+
+    a {
+      color: var(--mm-black);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+
+      &:hover {
+        color: var(--mm-black-mid);
+      }
+    }
+  }
+
+  &.alert-info a {
+    color: var(--mm-blue-dark);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+
+    &:hover {
+      color: var(--mm-blue);
+    }
+  }
+
+  .close,
+  button.close {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.alert-warning {
+    background: rgba(255, 92, 22, 0.1);
+    color: var(--mm-orange-light);
+    border-left: 0.5em solid var(--mm-orange);
+
+    &::before {
+      background: var(--mm-orange);
+    }
+  }
+
+  &.alert-error,
+  &.alert-danger {
+    background: rgba(255, 92, 22, 0.1);
+    color: var(--mm-orange-light);
+    border-left: 0.5em solid var(--mm-orange);
+
+    &::before {
+      background: var(--mm-orange);
+    }
+  }
+}
+
+// ============================================================================
+// SIDEBAR
+// ============================================================================
+#main-outlet-wrapper .sidebar-wrapper {
+  position: sticky;
+  top: 60px;
+  height: auto;
+  max-height: calc(100vh - 70px);
+  overflow: hidden;
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  margin-top: 8px;
+  @include mm-clip-card(1.2em);
+
+  .sidebar-section-link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sidebar-container {
+    border: none;
+    background: transparent;
+    padding: 8px;
+  }
+}
+
+// Sidebar links
+.sidebar-section-link-wrapper {
+  a {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    font-family: var(--mm-font-primary);
+    font-size: 0.875em;
+    color: var(--mm-white);
+    text-decoration: none;
+    border-radius: 0;
+    transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--mm-green);
+      opacity: 0;
+      transition: opacity calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+    }
+
+    &:hover {
+      background: var(--mm-black-mid);
+      color: var(--mm-green);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      background: rgba(186, 242, 74, 0.1);
+      color: var(--mm-green);
+      font-weight: 500;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    // Fix icon sizing in sidebar
+    .d-icon {
+      font-size: 1.1em;
+      width: 1.1em;
+      height: 1.1em;
+      margin-right: 0.5em;
+      color: inherit;
+    }
+  }
+}
+
+// Sidebar section titles
+.sidebar-section-header-wrapper {
+  .sidebar-section-header-text {
+    font-family: var(--mm-font-primary);
+    font-size: 0.75em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--mm-gray-mid);
+    margin-top: 16px; // Add spacing above headers
+    margin-bottom: 8px;
+    display: block;
+  }
+}
+
+.sidebar-footer-wrapper {
+  background: transparent;
+  border-top: 1px solid var(--mm-gray-dark);
+  padding: var(--mm-space-md);
+}
+
+// ============================================================================
+// MODALS - Production Polish
+// ============================================================================
+
+// Modal backdrop with fade animation
+.modal-backdrop,
+.d-modal__backdrop {
+  user-select: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: var(--mm-black);
+  animation: mm-fade 0.3s forwards;
+
+  @media (prefers-reduced-motion) {
+    animation-duration: 0s;
+  }
+
+  &.fade {
+    opacity: 0;
+  }
+}
+
+.modal-backdrop.fade.in,
+.d-modal__backdrop {
+  opacity: 0.7;
+}
+
+@keyframes mm-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.7;
+  }
+}
+
+// New Discourse modal structure
+.d-modal {
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1050;
+  overflow: auto;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-height: 80vh;
+    background-color: var(--mm-black-light);
+    border: 1px solid var(--mm-gray-dark);
+    box-shadow: var(--mm-shadow-lg);
+    width: calc(100% - 1.34em);
+    min-width: auto;
+    @include mm-clip-card(1.2em);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--mm-gray-dark);
+
+    .btn-icon.modal-close {
+      margin-left: auto;
+
+      .d-icon {
+        color: var(--mm-gray-mid);
+      }
+
+      &:hover,
+      &:focus {
+        .d-icon {
+          color: var(--mm-white);
+        }
+      }
+    }
+  }
+
+  &__title-text {
+    font-family: var(--mm-font-primary);
+    font-size: 1.25em;
+    font-weight: 500;
+    color: var(--mm-white);
+    margin: 0;
+
+    @include mm-bp-max(tablet) {
+      font-size: 1.125em;
+    }
+  }
+
+  &__subtitle-text {
+    margin: 0;
+    color: var(--mm-gray);
+  }
+
+  &__body {
+    overflow-y: auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    color: var(--mm-white);
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--mm-gray-dark);
+    gap: 0.5rem;
+  }
+
+  &__primary-action,
+  &__dismiss-action {
+    .btn {
+      text-transform: capitalize;
+    }
+  }
+}
+
+// Legacy modal container
+.modal-inner-container {
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  border-radius: 0;
+  box-shadow: var(--mm-shadow-lg);
+  max-height: 80vh;
+  @include mm-clip-card(1.2em);
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--mm-gray-dark);
+    padding: 1rem 0.5rem 1rem 1.5rem;
+    background: var(--mm-black-light);
+
+    .title {
+      font-family: var(--mm-font-primary);
+      font-size: 1.25em;
+      font-weight: 500;
+      color: var(--mm-white);
+      margin: 0;
+
+      @include mm-bp-max(tablet) {
+        font-size: 1.125em;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    color: var(--mm-white);
+    overflow-y: auto;
+    max-height: 60vh;
+
+    @media screen and (max-height: 500px) {
+      max-height: 50vh;
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top: 1px solid var(--mm-gray-dark);
+    padding: 1rem 1.5rem;
+    background: var(--mm-black-light);
+    gap: 0.5rem;
+  }
+}
+
+// Fixed modal wrapper
+.fixed-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+  overflow: auto;
+}
