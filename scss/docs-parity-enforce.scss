@@ -1,7 +1,7 @@
 // Final cascade layer — wins over desktop/mobile.scss and Discourse core.
 // Import last from common.scss, desktop.scss, and mobile.scss.
 
-// Header — taller bar + larger logo
+// Header — docs-aligned bar + logo scale
 .d-header {
   height: var(--mm-header-height-desktop) !important;
   min-height: var(--mm-header-height-desktop) !important;
@@ -21,7 +21,7 @@
   .title img {
     height: var(--mm-header-logo-height) !important;
     width: auto !important;
-    max-height: none !important;
+    max-height: var(--mm-header-logo-height) !important;
   }
 }
 

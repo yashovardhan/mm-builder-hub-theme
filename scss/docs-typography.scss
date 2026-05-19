@@ -65,12 +65,12 @@
   // Layout (docs --page-padding-x)
   --mm-page-padding-x: 1.6rem;
 
-  // Header chrome (taller than default Discourse; logo scaled up for docs parity)
-  --mm-header-height-desktop: 6.5rem;
-  --mm-header-height-mobile: 4.5rem;
-  --mm-header-logo-height: 3rem;
-  --mm-header-icon-size: 3rem;
-  --mm-header-icon-size-mobile: 2.75rem;
+  // Header chrome (docs navbar: logo 3.2rem @ 10px root = 32px; bar ~7.6rem @ 10px = 76px)
+  --mm-header-height-desktop: 4.75rem;
+  --mm-header-height-mobile: 3.75rem;
+  --mm-header-logo-height: 2rem;
+  --mm-header-icon-size: 2rem;
+  --mm-header-icon-size-mobile: 2.25rem;
 
   // Map Discourse relative scale → docs sizes (forum chrome uses --font-*)
   --font-0: var(--mm-text-body);
