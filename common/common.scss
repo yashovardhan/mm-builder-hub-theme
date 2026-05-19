@@ -82,6 +82,7 @@
   --mm-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.6);
 
   // Discourse Variable Overrides
+  --d-max-width: none;
   --d-input-border-radius: 0;
   --d-nav-underline-height: 0;
 
@@ -380,7 +381,6 @@ a {
   }
 
   .wrap {
-    max-width: calc(1440px + 1.34em);
     padding: 0 1rem;
 
     @include mm-bp(desktop) {
@@ -2834,8 +2834,8 @@ body .custom-search-banner-wrap {
 // html.admin-area + body.admin-interface; admin nav uses .sidebar-wrapper .admin-panel
 html.admin-area {
   #main-outlet-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
     padding: 0 20px;
   }
 
