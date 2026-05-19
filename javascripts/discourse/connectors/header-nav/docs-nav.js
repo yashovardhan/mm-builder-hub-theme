@@ -1,5 +1,4 @@
 import Component from "@glimmer/component";
-import { inject as service } from "@ember/service";
 
 const DOCS_LINKS = [
   { label: "Docs", href: "https://docs.metamask.io/" },
@@ -9,10 +8,16 @@ const DOCS_LINKS = [
 ];
 
 export default class DocsNav extends Component {
-  @service siteSettings;
+  get themeSettings() {
+    return this.args.themeSettings || (typeof settings !== "undefined" ? settings : {});
+  }
 
   get enabled() {
-    return this.siteSettings.show_docs_nav_links;
+    const value = this.themeSettings.show_docs_nav_links;
+    if (value === false || value === "false") {
+      return false;
+    }
+    return true;
   }
 
   get links() {

@@ -1,0 +1,130 @@
+// Final cascade layer — wins over desktop/mobile.scss and Discourse core.
+// Import last from common.scss, desktop.scss, and mobile.scss.
+
+// Announcement bar (must be visible when connector renders)
+.mm-announcement-bar {
+  display: flex !important;
+  min-height: var(--mm-announcement-height) !important;
+  font-size: var(--mm-text-body-sm) !important;
+}
+
+// Header — docs navbar scale
+.d-header {
+  .title,
+  .title a,
+  .header-site-name {
+    font-size: var(--mm-text-nav) !important;
+    font-weight: var(--mm-font-weight-medium) !important;
+  }
+
+  .title img {
+    height: 2rem !important;
+    width: auto !important;
+    max-height: none !important;
+  }
+}
+
+.mm-header-docs-nav a {
+  font-size: var(--mm-text-nav) !important;
+  font-weight: var(--mm-font-weight-medium) !important;
+}
+
+// Homepage hero (beats desktop.scss 2em override)
+.custom-search-banner-wrap {
+  .custom-search-banner-headline,
+  > .custom-search-banner-content h1,
+  h1 {
+    font-size: var(--mm-text-home-title) !important;
+    line-height: var(--mm-leading-home-title) !important;
+    font-weight: var(--mm-font-weight-medium) !important;
+  }
+
+  .custom-search-banner-content > p,
+  > p {
+    font-size: var(--mm-text-home-subtitle) !important;
+    line-height: var(--mm-leading-body) !important;
+  }
+}
+
+// Category cards
+.category-boxes .category-box,
+.category-box {
+  h3.category-title,
+  .category-box-heading h3,
+  .category-title {
+    font-size: var(--mm-text-card-title) !important;
+    font-weight: var(--mm-font-weight-medium) !important;
+  }
+
+  .category-description,
+  .description {
+    font-size: var(--mm-text-body) !important;
+  }
+
+  .category-icon {
+    font-size: var(--mm-text-card-title) !important;
+  }
+}
+
+// Topic list + topic page titles
+.topic-list-item .title,
+.topic-list-item .main-link a.title,
+.raw-topic-link {
+  font-size: var(--mm-text-nav) !important;
+  font-weight: var(--mm-font-weight-medium) !important;
+}
+
+.topic-title-wrapper .topic-title,
+.topic-title-wrapper .fancy-title,
+#topic-title .fancy-title,
+.extra-info-wrapper .topic-link {
+  font-size: var(--mm-text-topic-title) !important;
+  font-weight: var(--mm-font-weight-medium) !important;
+  line-height: var(--mm-leading-h1) !important;
+}
+
+// Post prose (beats components.scss .cooked block)
+.cooked,
+.d-editor-preview,
+.d-editor .d-editor-input {
+  font-size: var(--mm-text-body) !important;
+  line-height: var(--mm-leading-body) !important;
+
+  h1 {
+    font-size: var(--mm-text-prose-h1) !important;
+    line-height: var(--mm-leading-prose-h1) !important;
+    margin-top: 2.4rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  h2 {
+    font-size: var(--mm-text-prose-h2) !important;
+    line-height: var(--mm-leading-prose-h2) !important;
+    margin-top: 2.4rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  h3 {
+    font-size: var(--mm-text-prose-h3) !important;
+    margin-top: 2.4rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  h4 {
+    font-size: var(--mm-text-prose-h4) !important;
+  }
+
+  h5 {
+    font-size: var(--mm-text-prose-h5) !important;
+  }
+
+  h6 {
+    font-size: var(--mm-text-prose-h6) !important;
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child {
+    margin-top: 0 !important;
+  }
+}

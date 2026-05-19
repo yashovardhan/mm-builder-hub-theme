@@ -206,12 +206,14 @@ body:not(.admin-interface) {
 
   .custom-search-banner-headline,
   h1 {
-    font-size: 2em;
+    font-size: var(--mm-text-home-title);
+    line-height: var(--mm-leading-home-title);
     max-width: 700px;
   }
 
   p {
-    font-size: 1em;
+    font-size: var(--mm-text-home-subtitle);
+    line-height: var(--mm-leading-body);
     max-width: 600px;
   }
 
