@@ -2729,7 +2729,10 @@ body .custom-search-banner-wrap {
   }
 }
 
-.loading-container {
+// Only center when actually showing a spinner (homepage grid or Discourse .visible).
+// Admin dashboard wraps all content in .loading-container when loaded — do not flex that.
+.loading-container.visible,
+.loading-container:has(> .spinner:only-child) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2809,24 +2812,40 @@ body .custom-search-banner-wrap {
 // ADMIN PANEL LAYOUT
 // ============================================================================
 
-// On admin pages, disable the community sidebar grid so admin gets full width.
-// Discourse adds .admin-area to body on all /admin routes.
-body.admin-area {
+// Discourse admin template: html.admin-area + body.admin-interface (not body.admin-area).
+html.admin-area {
   #main-outlet-wrapper {
     display: block !important;
     padding: 0 20px !important;
     max-width: 1400px !important;
+    margin: 0 auto;
   }
 
-  // Community sidebar is not relevant on admin pages; hide it so it doesn't
-  // consume grid space or render alongside the admin nav.
+  // Community sidebar is not relevant on admin pages.
   #main-outlet-wrapper .sidebar-wrapper {
     display: none !important;
   }
+
+  // Dashboard and reports render inside .loading-container after load — keep block flow.
+  .loading-container {
+    display: block;
+    width: 100%;
+    padding: 0;
+    align-items: initial;
+    justify-content: initial;
+  }
+
+  .admin-contents.dashboard,
+  .dashboard-next.general {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
 }
 
-// Classic admin layout (.admin-contents wraps nav + detail as flex siblings)
-.admin-contents {
+// Classic admin layout: nav + detail as flex siblings (not used on dashboard-only pages)
+.admin-contents:has(.admin-main-nav) {
   display: flex;
   align-items: flex-start;
   gap: 0;
@@ -3681,7 +3700,7 @@ section[class*="category"] {
 // ============================================================================
 @include mm-bp-max(tablet) {
   // Collapse sidebar grid from desktop.scss (240px + 1fr) — main cause of ~100px column
-  body:not(.admin-area) #main-outlet-wrapper {
+  body:not(.admin-interface) #main-outlet-wrapper {
     display: block !important;
     padding: 0 12px !important;
     max-width: 100% !important;

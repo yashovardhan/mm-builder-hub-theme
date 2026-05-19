@@ -28,7 +28,8 @@ body {
 }
 
 // Single column layout on mobile — hide sidebar (use header menu)
-#main-outlet-wrapper {
+// Exclude admin: Discourse uses body.admin-interface + html.admin-area.
+body:not(.admin-interface) #main-outlet-wrapper {
   display: block;
   padding: 0 12px;
   width: 100%;
@@ -39,6 +40,11 @@ body {
   nav.sidebar {
     display: none !important;
   }
+}
+
+html.admin-area #main-outlet-wrapper {
+  padding: 0 12px;
+  max-width: 100%;
 }
 
 #main-outlet {
