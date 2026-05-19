@@ -11,18 +11,7 @@ export default class HomepageGrid extends Component {
   
   constructor() {
     super(...arguments);
-    this._onRouteChange = () => this.loadCategories();
-    if (typeof this.router.on === "function") {
-      this.router.on("routeDidChange", this._onRouteChange);
-    }
     this.loadCategories();
-  }
-
-  willDestroy() {
-    super.willDestroy(...arguments);
-    if (typeof this.router.off === "function") {
-      this.router.off("routeDidChange", this._onRouteChange);
-    }
   }
   
   get themeSettings() {
@@ -30,28 +19,10 @@ export default class HomepageGrid extends Component {
     return this.args.themeSettings || (typeof settings !== 'undefined' ? settings : {});
   }
   
-  get heroRoutes() {
-    const raw =
-      this.themeSettings.hero_routes ||
-      "discovery.categories,discovery.latest,discovery.top";
-    return raw
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean);
-  }
-
-  get shouldDisplayHero() {
+  get shouldDisplay() {
+    const routeName = this.router.currentRouteName;
     const enabled = this.themeSettings.enable_custom_homepage;
-    return (
-      enabled && this.heroRoutes.includes(this.router.currentRouteName)
-    );
-  }
-
-  get shouldDisplayCategoryGrid() {
-    return (
-      this.shouldDisplayHero &&
-      this.router.currentRouteName === "discovery.categories"
-    );
+    return routeName === "discovery.categories" && enabled;
   }
   
   get heroTitle() {
@@ -63,9 +34,8 @@ export default class HomepageGrid extends Component {
   }
   
   async loadCategories() {
-    if (!this.shouldDisplayCategoryGrid) {
+    if (!this.shouldDisplay) {
       this.categories = [];
-      this.isLoading = false;
       return;
     }
     

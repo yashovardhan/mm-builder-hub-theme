@@ -27,7 +27,7 @@ body {
   padding-top: 8px;
 }
 
-// Single column layout on mobile — sidebar hidden (nav via header menu)
+// Single column layout on mobile — hide sidebar (use header menu)
 #main-outlet-wrapper {
   display: block;
   padding: 0 12px;
@@ -68,15 +68,10 @@ body {
     min-width: 0;
     flex: 1 1 auto;
     overflow: hidden;
-
-    a {
-      color: var(--mm-white) !important;
-    }
   }
 
   .panel {
     flex: 0 0 auto;
-    min-width: 0;
   }
 
   .header-buttons,
@@ -108,22 +103,12 @@ body {
       min-width: 2.25rem;
       padding: 0 !important;
       border-radius: 50% !important;
-      aspect-ratio: 1 / 1;
 
       &::after {
         display: none !important;
         content: none !important;
       }
-
-      .d-icon {
-        margin: 0 auto;
-      }
     }
-  }
-
-  .login-button,
-  button.sign-up-button {
-    flex-shrink: 0;
   }
 }
 
@@ -135,27 +120,14 @@ body {
 }
 
 // ============================================================================
-// LIST CONTROLS / NAVIGATION CONTAINER - Mobile
+// LIST CONTROLS - Mobile
 // ============================================================================
 body .navigation-container {
   flex-wrap: wrap !important;
   min-height: auto !important;
-  padding: 0.5rem 0 !important;
-  gap: 0.5em !important;
 }
 
-body .navigation-container .category-breadcrumb {
-  flex: 1 1 100% !important;
-  width: 100% !important;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
+body .navigation-container .category-breadcrumb,
 body .navigation-container #navigation-bar {
   flex: 1 1 100% !important;
   width: 100% !important;
@@ -379,7 +351,27 @@ body .navigation-container #navigation-bar {
   }
 }
 
-// Sidebar hidden on mobile — see #main-outlet-wrapper above
+// ============================================================================
+// SIDEBAR - Mobile Collapsible
+// ============================================================================
+.sidebar-wrapper {
+  background: var(--mm-black-light);
+  border: 1px solid var(--mm-gray-dark);
+  --mm-clip-md: 1em;
+
+  .sidebar-container {
+    padding: var(--mm-space-sm);
+  }
+
+  .sidebar-section {
+    margin-bottom: var(--mm-space-md);
+  }
+
+  .sidebar-section-link-wrapper a {
+    padding: var(--mm-space-sm) var(--mm-space-md);
+    font-size: 0.9375em;
+  }
+}
 
 // ============================================================================
 // SEARCH - Mobile Full Screen
@@ -603,39 +595,21 @@ select {
   max-width: 100%;
   box-sizing: border-box;
   word-break: normal;
-  overflow-wrap: break-word;
 
   &::before {
     width: 0.3em;
   }
 
-  a {
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
-  }
-
-  &.alert-success {
-    background: var(--mm-green);
+  &.alert-success a {
     color: var(--mm-black);
-
-    a {
-      color: var(--mm-black);
-      font-weight: 500;
-    }
-  }
-
-  &.alert-info a {
-    color: var(--mm-blue-dark);
     font-weight: 500;
+    text-decoration: underline;
   }
 
   .close,
   button.close {
     min-width: 44px;
     min-height: 44px;
-    padding: 10px;
-    top: 4px;
-    right: 4px;
   }
 }
 

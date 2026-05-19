@@ -1,4 +1,4 @@
-{{#if this.shouldDisplayHero}}
+{{#if this.shouldDisplay}}
   <div class="custom-search-banner-wrap">
     <div class="custom-search-banner-content">
       {{#if this.heroTitle}}
@@ -9,16 +9,13 @@
       {{/if}}
     </div>
   </div>
-{{/if}}
 
-{{#if this.shouldDisplayCategoryGrid}}
   {{#if this.isLoading}}
     <div class="loading-container">
       <div class="spinner"></div>
     </div>
   {{else if this.categories}}
     <div class="homepage-categories-wrapper">
-      <h2 class="homepage-section-heading">Featured categories</h2>
       <div class="category-boxes">
         {{#each this.categories as |category|}}
           <div class="category-box">
