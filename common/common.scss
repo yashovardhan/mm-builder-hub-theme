@@ -440,44 +440,65 @@ a {
       }
     }
 
-    // Search button with "Search" text on desktop
+    // Search pill on desktop — overrides .btn / .btn-flat / .btn-icon stacking
     #search-button {
       @include mm-bp(tablet) {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+        display: inline-flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
         width: auto !important;
         min-width: 0;
+        min-height: 2.625rem !important;
         flex-shrink: 0;
         white-space: nowrap;
         aspect-ratio: auto;
-        border-radius: 6.25em;
-        padding: 0 1.5rem;
+        box-sizing: border-box;
+        border-radius: 6.25em !important;
+        padding: 0 1rem !important;
         height: 2.625rem !important;
-        background: var(--mm-black-light);
-        border: 1px solid var(--mm-gray-dark);
+        line-height: 1 !important;
+        font-size: 0.875em;
+        font-weight: 500;
+        background: var(--mm-black-light) !important;
+        border: 1px solid var(--mm-gray-dark) !important;
+        color: var(--mm-white);
+        transform: none;
+
+        .d-icon {
+          order: 1;
+          width: 1em !important;
+          height: 1em !important;
+          font-size: 1em !important;
+          margin: 0 !important;
+          flex-shrink: 0;
+          color: inherit;
+        }
 
         &::after {
+          order: 2;
           content: "Search";
-          display: inline;
+          display: block;
           flex-shrink: 0;
-          color: var(--mm-white);
+          color: inherit;
+          font-size: inherit;
+          font-weight: inherit;
+          line-height: 1;
         }
 
         &:hover,
         &:focus {
-          border-color: var(--mm-green);
-
-          &::after {
-            color: var(--mm-green);
-          }
+          transform: none;
+          border-color: var(--mm-green) !important;
+          color: var(--mm-green);
         }
       }
 
-      .d-icon {
-        width: 0.625rem;
-        flex-shrink: 0;
+      @include mm-bp-max(tablet) {
+        .d-icon {
+          margin: 0 !important;
+        }
       }
     }
 
@@ -997,6 +1018,35 @@ a {
 
 // Category box typography (native Discourse + homepage grid)
 .category-box {
+  .category-details,
+  .category-box-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .category-box-heading {
+    width: 100%;
+    margin-bottom: var(--mm-space-sm);
+
+    a[href],
+    .parent-box-link {
+      display: block;
+      width: 100%;
+    }
+
+    h3 {
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    // Badge padding shifts the title right of the description without this reset
+    .badge-category {
+      padding-inline: 0;
+      padding-block: 0.25em;
+    }
+  }
+
   h3,
   .category-title {
     font-family: var(--mm-font-primary);
@@ -1007,6 +1057,10 @@ a {
     color: var(--mm-white);
     position: relative;
     z-index: 1;
+  }
+
+  .category-box-heading h3 {
+    margin-bottom: 0;
   }
 
   .category-title-link {
@@ -1036,6 +1090,17 @@ a {
     margin: 0 0 var(--mm-space-md);
     position: relative;
     z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+    padding-inline: 0;
+    box-sizing: border-box;
+
+    .overflow,
+    .overflow > div {
+      padding: 0;
+      margin: 0;
+    }
 
     p {
       font-family: inherit;
@@ -1090,6 +1155,16 @@ a {
         color: var(--mm-green);
         text-decoration: none;
       }
+    }
+  }
+
+  // Square badge: align body copy with category title text (after square + gap)
+  &:has(.category-box-heading .badge-category.--style-square) {
+    --mm-category-body-indent: calc(1.125em * 0.75 * 1.08);
+
+    .description,
+    .category-description {
+      padding-inline-start: var(--mm-category-body-indent);
     }
   }
 }
@@ -1789,114 +1864,60 @@ textarea {
 // ============================================================================
 // SITE BANNER (global notice — Office Hours, etc.)
 // ============================================================================
-// Discourse floats .floated-buttons so text wraps beside the controls; we want
-// edit/dismiss top-right with copy on a full-width row beneath.
+// Layout only — keep Discourse background/colours; undo global .btn pill styles.
 #banner {
-  padding: 1em 1.25em;
-  margin-bottom: 1em;
-  background: var(--mm-black-light);
-  border: 1px solid var(--mm-gray-dark);
-  color: var(--mm-white);
-  max-height: none;
-  overflow: visible;
-  @include mm-accent-bar(var(--mm-green), 4px);
-
   #banner-content {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    column-gap: 1rem;
-    row-gap: 0.625rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .floated-buttons {
-    grid-column: 2;
-    grid-row: 1;
     float: none !important;
+    order: -1;
+    align-self: flex-end;
+    flex-shrink: 0;
+    margin: 0 0 0.5rem;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.375rem;
-    margin: 0;
 
-    .btn {
-      float: none;
-      flex-shrink: 0;
+    > .btn {
+      padding-top: 0;
+      padding-bottom: 0;
       min-width: unset;
       min-height: unset;
       width: auto;
       height: auto;
       aspect-ratio: unset;
-      padding: 0.4em 0.75em;
-      font-size: 0.8125em;
-      font-weight: 500;
-      line-height: 1.2;
-      border-radius: 6.25em;
+      border: none;
+      border-radius: 0;
       background: transparent;
-      border: 1px solid var(--mm-gray-dark);
-      color: var(--mm-gray);
-      transform: none;
       box-shadow: none;
+      transform: none;
+      color: var(--primary-high);
 
       .d-icon {
-        color: var(--mm-gray-mid);
+        color: var(--primary-medium);
         margin: 0;
       }
 
       @include mm-hover {
-        background: var(--mm-black-mid);
-        border-color: var(--mm-gray-mid);
-        color: var(--mm-white);
+        background: transparent;
+        border: none;
         transform: none;
+        color: var(--primary);
 
         .d-icon {
-          color: var(--mm-white);
+          color: var(--primary-high);
         }
       }
     }
 
-    .btn.close {
-      padding: 0.4em;
-      width: 2rem;
-      height: 2rem;
-      min-width: 2rem;
-      min-height: 2rem;
-      border-radius: 50%;
-
-      .d-icon {
-        margin: 0;
-      }
+    .desktop-view & .btn.close {
+      margin-left: 0.25em;
     }
   }
 
-  #banner-content > p,
-  #banner-content > ul,
-  #banner-content > ol,
-  #banner-content > hr,
-  #banner-content > div:not(.floated-buttons) {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    margin: 0;
-
-    &:not(:last-child) {
-      margin-bottom: 0.5em;
-    }
-  }
-
-  #banner-content > p:first-of-type {
+  #banner-content > p:first-child {
     margin-top: 0;
-  }
-
-  #banner-content > p:last-child {
-    margin-bottom: 0;
-  }
-
-  a {
-    color: var(--mm-green);
-
-    @include mm-hover {
-      color: var(--mm-green-light);
-    }
   }
 }
 
@@ -2417,12 +2438,12 @@ body .custom-search-banner-wrap {
     z-index: 1;
   }
 
-  // Welcome banner search — layout handled in section below
+  // Welcome banner search — icon is a direct child before .search-menu-container
   .welcome-banner__search-menu,
   .search-menu {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     max-width: 600px;
     margin-inline: auto;
@@ -2439,31 +2460,35 @@ body .custom-search-banner-wrap {
       min-width: 0;
     }
 
-    // Discourse search-banner theme: icon is a sibling before the menu container
-    .btn.search-icon {
+    // search-banner theme: sibling icon — global .btn pill styles blow this up without a hard reset
+    > .btn.search-icon:not(.has-search-button-text) {
+      @include mm-search-compact-btn;
       position: absolute;
       left: calc(1rem - 0.65em);
       top: 50%;
       transform: translateY(-50%);
-      z-index: 3;
-      height: auto;
-      margin: 0;
-      padding: 0.25em;
-      background: transparent;
-      border: none;
+      z-index: 2;
+      width: auto !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      aspect-ratio: auto !important;
       color: var(--mm-gray);
       pointer-events: auto;
-      line-height: 1;
 
       .d-icon {
-        font-size: 1.125em;
+        font-size: 1em;
+        width: 1em;
+        height: 1em;
       }
 
       @include mm-hover {
         color: var(--mm-white);
-        background: transparent;
+        background: transparent !important;
+        transform: translateY(-50%);
       }
     }
+
   }
 }
 
@@ -2472,11 +2497,16 @@ body .custom-search-banner-wrap {
 // ============================================================================
 body .custom-search-banner-wrap,
 body .welcome-banner__wrap {
-  .search-input--welcome-banner,
-  .search-input {
+  // search-banner theme: sibling magnifying glass sits over the input without this inset
+  .welcome-banner__search-menu > .btn.search-icon:not(.has-search-button-text) + .search-menu-container .search-input--welcome-banner,
+  .search-menu > .btn.search-icon:not(.has-search-button-text) + .search-menu-container .search-input--welcome-banner {
+    padding-left: 2.75rem !important;
+  }
+
+  .search-input--welcome-banner {
     clip-path: none !important;
     border-radius: 6.25em !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     display: flex !important;
     align-items: center !important;
     background: var(--mm-black-mid) !important;
@@ -2486,59 +2516,60 @@ body .welcome-banner__wrap {
     width: 100% !important;
     min-width: 0 !important;
     margin: 0 !important;
-    padding: 0.25em 0.5em 0.25em 2em !important; // left inset for external .btn.search-icon
+    // Avoid padding shorthand — it overrides sibling-icon padding-left below
+    padding-block: 0.25em !important;
+    padding-right: 0.5em !important;
+    padding-left: 0.65em !important;
+    gap: 0.25em;
 
     &:focus-within {
       border-color: var(--mm-green) !important;
       box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15) !important;
     }
+
+    // Glimmer search menu may render icon inside the input row
+    > .btn.search-icon {
+      @include mm-search-compact-btn;
+      flex-shrink: 0;
+      position: static;
+      width: auto !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      color: var(--mm-gray);
+      margin-left: 0.35em;
+
+      @include mm-hover {
+        color: var(--mm-white);
+        background: transparent !important;
+      }
+    }
   }
 
   #welcome-banner-search-input,
-  .search-term__input {
-    border: none !important;
-    background: transparent !important;
+  .search-input--welcome-banner .search-term__input {
+    @include mm-search-compact-input;
     color: var(--mm-white) !important;
-    border-radius: 0 !important;
-    clip-path: none !important;
-    padding: 0.75em 0.5em !important;
-    height: auto !important;
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    width: 100% !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    text-overflow: ellipsis !important;
+    padding: 0.65em 0.5em !important;
 
     &::placeholder {
       color: var(--mm-gray) !important;
     }
-
-    &:focus {
-      outline: none !important;
-      box-shadow: none !important;
-    }
   }
 
-  .searching {
+  .search-input--welcome-banner .searching {
     display: flex !important;
     align-items: center !important;
     flex-shrink: 0 !important;
-    padding-right: 0.25em !important;
-  }
+    padding-right: 0.15em !important;
 
-  .show-advanced-search {
-    background: transparent !important;
-    border: none !important;
-    color: var(--mm-gray) !important;
-    padding: 0.5em !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-shrink: 0 !important;
+    .show-advanced-search,
+    > .btn {
+      @include mm-search-compact-btn;
+      color: var(--mm-gray) !important;
 
-    @include mm-hover {
-      color: var(--mm-green) !important;
+      @include mm-hover {
+        color: var(--mm-green) !important;
+      }
     }
   }
 }
