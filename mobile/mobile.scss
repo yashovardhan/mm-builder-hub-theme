@@ -215,22 +215,27 @@ body .navigation-container #navigation-bar {
   .category-box {
     --mm-clip-md: 0.8em;
 
-    .category-details {
-      padding: 12px;
-      min-height: auto;
+    a.category-details,
+    .category-box-inner:not(:has(> a.category-details)) {
+      padding: 1rem;
     }
 
-    .category-title {
-      font-size: 1em;
+    a.category-details {
+      min-height: 0;
     }
 
-    .category-description,
-    .description {
-      font-size: 0.8125em;
+    .category-box-heading h3,
+    h3.category-title {
+      font-size: 1rem;
     }
 
-    .subcategories {
-      font-size: 0.8125em;
+    .description,
+    .category-description {
+      font-size: 0.8125rem;
+    }
+
+    .subcategories .badge-category {
+      font-size: 0.75rem;
     }
 
     // Smaller decorative shape

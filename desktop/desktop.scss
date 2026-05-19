@@ -72,9 +72,13 @@ body:not(.admin-area) {
   gap: 16px;
 
   .category-box {
-    .category-details {
-      padding: 20px;
-      min-height: 140px;
+    a.category-details {
+      padding: 1.5rem;
+      min-height: 8.75rem;
+    }
+
+    .category-box-inner:not(:has(> a.category-details)) {
+      padding: 1.5rem;
     }
 
     // Larger decorative shape on desktop
