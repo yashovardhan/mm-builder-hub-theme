@@ -2812,18 +2812,13 @@ body .custom-search-banner-wrap {
 // ADMIN PANEL LAYOUT
 // ============================================================================
 
-// Discourse admin template: html.admin-area + body.admin-interface (not body.admin-area).
+// Discourse admin: html.admin-area + body.admin-interface.
+// Admin nav lives in .sidebar-wrapper (admin panel) — do not hide it or force block layout on the grid.
 html.admin-area {
   #main-outlet-wrapper {
-    display: block !important;
-    padding: 0 20px !important;
-    max-width: 1400px !important;
+    max-width: 1400px;
     margin: 0 auto;
-  }
-
-  // Community sidebar is not relevant on admin pages.
-  #main-outlet-wrapper .sidebar-wrapper {
-    display: none !important;
+    padding: 0 20px;
   }
 
   // Dashboard and reports render inside .loading-container after load — keep block flow.
@@ -2841,6 +2836,12 @@ html.admin-area {
     flex-direction: column;
     width: 100%;
     min-width: 0;
+  }
+
+  // Admin sidebar panel (reuses .sidebar-wrapper; distinct from community sidebar)
+  .sidebar-wrapper .admin-panel {
+    background: var(--mm-black-light);
+    border: 1px solid var(--mm-gray-dark);
   }
 }
 
@@ -3710,9 +3711,9 @@ section[class*="category"] {
     }
   }
 
-  #main-outlet-wrapper .sidebar-wrapper,
-  #main-outlet-wrapper .sidebar-container,
-  #main-outlet-wrapper nav.sidebar {
+  body:not(.admin-interface) #main-outlet-wrapper .sidebar-wrapper,
+  body:not(.admin-interface) #main-outlet-wrapper .sidebar-container,
+  body:not(.admin-interface) #main-outlet-wrapper nav.sidebar {
     display: none !important;
   }
 
