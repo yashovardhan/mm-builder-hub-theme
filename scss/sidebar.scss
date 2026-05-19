@@ -3,9 +3,9 @@
 // ============================================================================
 #main-outlet-wrapper .sidebar-wrapper {
   position: sticky;
-  top: 60px;
+  top: var(--mm-header-height-desktop);
   height: auto;
-  max-height: calc(100vh - 70px);
+  max-height: calc(100vh - var(--mm-header-height-desktop) - 1rem);
   overflow-y: auto;
   background: var(--mm-black-light);
   border: 1px solid var(--mm-gray-dark);

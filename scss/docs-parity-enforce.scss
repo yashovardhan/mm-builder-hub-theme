@@ -1,8 +1,16 @@
 // Final cascade layer — wins over desktop/mobile.scss and Discourse core.
 // Import last from common.scss, desktop.scss, and mobile.scss.
 
-// Header — docs navbar scale
+// Header — taller bar + larger logo
 .d-header {
+  height: var(--mm-header-height-desktop) !important;
+  min-height: var(--mm-header-height-desktop) !important;
+
+  @include mm-bp-max(tablet) {
+    height: var(--mm-header-height-mobile) !important;
+    min-height: var(--mm-header-height-mobile) !important;
+  }
+
   .title,
   .title a,
   .header-site-name {
@@ -11,7 +19,7 @@
   }
 
   .title img {
-    height: 2rem !important;
+    height: var(--mm-header-logo-height) !important;
     width: auto !important;
     max-height: none !important;
   }

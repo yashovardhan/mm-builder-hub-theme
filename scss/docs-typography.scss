@@ -65,6 +65,13 @@
   // Layout (docs --page-padding-x)
   --mm-page-padding-x: 1.6rem;
 
+  // Header chrome (taller than default Discourse; logo scaled up for docs parity)
+  --mm-header-height-desktop: 6.5rem;
+  --mm-header-height-mobile: 4.5rem;
+  --mm-header-logo-height: 3rem;
+  --mm-header-icon-size: 3rem;
+  --mm-header-icon-size-mobile: 2.75rem;
+
   // Map Discourse relative scale → docs sizes (forum chrome uses --font-*)
   --font-0: var(--mm-text-body);
   --font-down-1: var(--mm-text-body-sm);

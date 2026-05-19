@@ -2,10 +2,10 @@
 // ============================================================================
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: var(--mm-header-height-desktop);
 
   @include mm-bp-max(tablet) {
-    scroll-padding-top: 3.8125rem;
+    scroll-padding-top: var(--mm-header-height-mobile);
   }
 }
 

@@ -56,7 +56,7 @@ html.admin-area #main-outlet-wrapper {
 // HEADER - Mobile Compact
 // ============================================================================
 .d-header {
-  min-height: 3.5em;
+  min-height: var(--mm-header-height-mobile);
 
   .wrap {
     padding: 0 12px;
