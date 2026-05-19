@@ -54,10 +54,20 @@ body .custom-search-banner-wrap {
   .custom-search-banner-headline,
   h1 {
     font-family: var(--mm-font-primary);
-    font-size: var(--font-up-3);
-    font-weight: 500;
+    font-size: var(--mm-text-hero);
+    font-weight: var(--mm-font-weight-medium);
+    line-height: var(--mm-leading-hero);
     color: var(--mm-green);
     margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .custom-search-banner-content > p {
+    font-size: var(--mm-text-body-lg);
+    line-height: var(--mm-leading-body-lg);
+    color: var(--primary-high);
+    margin: 0 0 16px;
     position: relative;
     z-index: 1;
   }

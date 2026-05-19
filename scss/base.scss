@@ -7,10 +7,8 @@ html {
 
 body {
   font-family: var(--mm-font-primary);
-  font-size: var(--font-0);
-  line-height: var(--cooked-line-height);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: var(--mm-text-body);
+  line-height: var(--mm-leading-body);
   background-color: var(--secondary);
   color: var(--primary);
 }
@@ -65,8 +63,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--mm-font-display);
-  font-weight: 500;
+  font-family: var(--mm-font-primary);
+  font-weight: var(--mm-font-weight-normal);
   margin-bottom: var(--mm-space-md);
   color: var(--mm-white);
 }

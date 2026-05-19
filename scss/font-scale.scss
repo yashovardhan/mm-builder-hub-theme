@@ -1,13 +1,17 @@
-// Base font size from theme setting: $font_scale (compact | comfortable | large)
+// Root size — docs use 10px; Discourse needs ~16px for em-based chrome.
+// Comfortable = 16px body (docs type-paragraph-m). Compact/large scale all --mm-text-* rem values.
+
 $font_scale: comfortable !default;
 
 html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   @if $font_scale == "compact" {
-    font-size: 15px;
+    font-size: 14px; // docs type-paragraph-s as base
   } @else if $font_scale == "large" {
-    font-size: 18px;
+    font-size: 18px; // docs type-paragraph-l as base
   } @else {
-    // comfortable — matches Discourse default (16px)
-    font-size: 16px;
+    font-size: 16px; // docs type-paragraph-m — matches docs.metamask.io body copy
   }
 }

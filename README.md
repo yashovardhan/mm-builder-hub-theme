@@ -12,7 +12,7 @@ A dark mode Discourse theme for the MetaMask Developer Builder Hub, featuring a 
 
 ## Brand
 
-Colors and logos follow the official [MetaMask brand assets](https://metamask.io/assets). Typography matches [docs.metamask.io](https://docs.metamask.io): **Geist** for UI body text, **MM Sans** for headings, **MM Sans Mono** for code.
+Colors and logos follow the official [MetaMask brand assets](https://metamask.io/assets). Typography matches [docs.metamask.io](https://docs.metamask.io): **Geist** for UI and headings, **MM Sans Mono** for code, with the same px scale as the docs site (16px body, 24px h1, 38px hero, etc.). See `scss/docs-typography.scss`.
 
 ### Fonts vs Discourse admin
 

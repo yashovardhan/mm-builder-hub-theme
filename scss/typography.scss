@@ -1,5 +1,10 @@
-// MetaMask typography — Geist body, MM Sans headings (docs.metamask.io)
-// Uses --font-* from Discourse core (relative to html base set in font-scale.scss)
+// Typography aligned with https://docs.metamask.io/
+// Geist everywhere (docs use Geist for html + h1–h6; MM Sans is CMS-only).
+
+html {
+  font-weight: var(--mm-font-weight-normal);
+  line-height: var(--mm-leading-body);
+}
 
 body,
 button,
@@ -7,64 +12,85 @@ input,
 select,
 textarea {
   font-family: var(--mm-font-primary);
+  font-size: var(--mm-text-body);
+  line-height: var(--mm-leading-body);
 }
 
-// Headings — Discourse scale instead of custom em ladder
+// Headings — docs type scale (Geist, not MM Sans)
 h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.type-heading-xl,
-.type-heading-l,
-.type-heading-m,
-.type-heading-s,
-.type-heading-xs,
-.type-heading-xxs {
-  font-family: var(--mm-font-display);
-}
-
-h1,
-.type-heading-xl {
-  font-size: var(--font-up-4);
-  line-height: var(--line-height-medium);
-  letter-spacing: -0.02em;
-}
-
-h2,
-.type-heading-l {
-  font-size: var(--font-up-3);
-  line-height: var(--line-height-medium);
-}
-
-h3,
 .type-heading-m {
-  font-size: var(--font-up-2);
-  line-height: var(--line-height-medium);
+  font-family: var(--mm-font-primary);
+  font-size: var(--mm-text-h1);
+  font-weight: var(--mm-font-weight-normal);
+  line-height: var(--mm-leading-h1);
+  letter-spacing: normal;
+}
+
+h2,
+.type-heading-sm {
+  font-family: var(--mm-font-primary);
+  font-size: var(--mm-text-h2);
+  font-weight: var(--mm-font-weight-normal);
+  line-height: var(--mm-leading-h2);
+}
+
+h3,
+.type-heading-s {
+  font-family: var(--mm-font-primary);
+  font-size: var(--mm-text-h3);
+  font-weight: var(--mm-font-weight-normal);
+  line-height: var(--mm-leading-h3);
 }
 
 h4,
-.type-heading-s {
-  font-size: var(--font-up-1);
-  line-height: var(--line-height-large);
+.type-heading-xs {
+  font-family: var(--mm-font-primary);
+  font-size: var(--mm-text-h4);
+  font-weight: var(--mm-font-weight-normal);
+  line-height: var(--mm-leading-h4);
 }
 
 h5,
-.type-heading-xs,
 h6,
 .type-heading-xxs {
-  font-size: var(--font-0);
-  line-height: var(--line-height-large);
+  font-family: var(--mm-font-primary);
+  font-size: var(--mm-text-h5);
+  font-weight: var(--mm-font-weight-normal);
+  line-height: var(--mm-leading-h5);
+}
+
+// Marketing / hero (docs homepage)
+.type-heading-l,
+.type-heading-xl {
+  font-family: var(--mm-font-primary);
+  font-size: var(--mm-text-hero);
+  font-weight: var(--mm-font-weight-medium);
+  line-height: var(--mm-leading-hero);
 }
 
 p,
-.type-paragraph {
-  font-size: var(--font-0);
-  line-height: var(--cooked-line-height);
+.type-paragraph,
+.type-paragraph-m {
+  font-size: var(--mm-text-body);
+  line-height: var(--mm-leading-body);
 }
 
-// Primary UI chrome (nav, buttons, lists) — match stock Discourse, not 0.875em
+.type-paragraph-l {
+  font-size: var(--mm-text-body-lg);
+  line-height: var(--mm-leading-body-lg);
+}
+
+.type-paragraph-s {
+  font-size: var(--mm-text-body-sm);
+  line-height: var(--mm-leading-body);
+}
+
+strong,
+b {
+  font-weight: var(--mm-font-weight-medium);
+}
+
+// Primary UI chrome
 .nav-pills > li > a,
 .list-controls .nav-pills > li > a,
 .list-controls .combo-box .combo-box-header,
@@ -79,24 +105,31 @@ p,
 .raw-topic-link,
 .d-header .title,
 .d-header .header-buttons .btn {
-  font-size: var(--font-0);
+  font-size: var(--mm-text-body);
+}
+
+.d-header .title {
+  font-weight: var(--mm-font-weight-medium);
 }
 
 .custom-search-banner-wrap .custom-search-banner-headline,
 .custom-search-banner-wrap h1 {
-  font-size: var(--font-up-3);
+  font-size: var(--mm-text-hero);
+  font-weight: var(--mm-font-weight-medium);
+  line-height: var(--mm-leading-hero);
 }
 
 .category-box .category-title,
 .category-box h3 {
-  font-size: var(--font-up-1);
+  font-size: var(--mm-text-h3);
+  font-weight: var(--mm-font-weight-medium);
 }
 
 .category-box .category-description {
-  font-size: var(--font-down-1);
+  font-size: var(--mm-text-body-sm);
 }
 
-// Secondary / meta text
+// Secondary / meta
 .topic-excerpt,
 .relative-date,
 .posters,
@@ -106,16 +139,62 @@ p,
 .num.posts,
 .sidebar-section-header-text,
 .empty-state-body {
-  font-size: var(--font-down-1);
+  font-size: var(--mm-text-body-sm);
+  line-height: var(--mm-leading-body);
 }
 
-// Cooked post body
+// Cooked posts — docs .contentful-rich-text-styles / .markdown body
 .cooked {
-  font-size: var(--font-0);
-  line-height: var(--cooked-line-height);
+  font-size: var(--mm-text-body);
+  line-height: var(--mm-leading-body);
+  color: var(--primary-high);
 
-  pre,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--primary);
+    margin-top: 2.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child {
+    margin-top: 0;
+  }
+
+  p,
+  li {
+    margin-bottom: 1rem;
+  }
+
+  pre {
+    font-size: var(--mm-text-code-block);
+    line-height: var(--mm-leading-code-block);
+  }
+
   code {
     font-family: var(--mm-font-mono);
+    font-size: var(--mm-text-code);
+    font-weight: var(--mm-font-weight-medium);
   }
+
+  pre code {
+    font-size: 1em;
+    font-weight: var(--mm-font-weight-normal);
+  }
+
+  a {
+    font-weight: var(--mm-font-weight-normal);
+    text-underline-offset: 0.3rem;
+  }
+}
+
+// Composer matches cooked
+.d-editor-preview {
+  font-size: var(--mm-text-body);
+  line-height: var(--mm-leading-body);
 }

@@ -77,9 +77,9 @@
   --mm-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
   --mm-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.6);
 
-  // Discourse font hooks (see scss/fonts-enforce.scss — admin /config/fonts cannot list custom faces)
+  // Discourse font hooks (admin /config/fonts cannot list custom faces — theme wins)
   --font-family: var(--mm-font-primary);
-  --heading-font-family: var(--mm-font-display);
+  --heading-font-family: var(--mm-font-primary);
 
   // Discourse Variable Overrides (--d-max-width set in layout-width.scss)
   --d-input-border-radius: 0;

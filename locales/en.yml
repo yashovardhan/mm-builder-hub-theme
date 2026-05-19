@@ -7,4 +7,4 @@ en:
       hero_subtitle: "Subtitle text displayed below the hero title"
       homepage_categories: "Configure homepage categories (one per line). Format: slug|icon|description"
       layout_width: "How wide the main layout spans on large screens (full, comfortable, or compact)"
-      font_scale: "Base text size for the forum (compact, comfortable matches Discourse, or large)"
+      font_scale: "Base text size (comfortable = 16px like docs.metamask.io; compact = 14px; large = 18px)"

@@ -8,7 +8,7 @@
 :root,
 html {
   --font-family: var(--mm-font-primary) !important;
-  --heading-font-family: var(--mm-font-display) !important;
+  --heading-font-family: var(--mm-font-primary) !important;
 }
 
 html,
@@ -16,7 +16,7 @@ body {
   font-family: var(--mm-font-primary) !important;
 }
 
-// Headings (Discourse $heading-font-family + cooked content)
+// Headings — docs use Geist for h1–h6 (MM Sans is CMS-only)
 h1,
 h2,
 h3,
@@ -35,7 +35,7 @@ h6,
 .d-editor .d-editor-input h4,
 .d-editor .d-editor-input h5,
 .d-editor .d-editor-input h6 {
-  font-family: var(--mm-font-display) !important;
+  font-family: var(--mm-font-primary) !important;
 }
 
 // Monospace (composer preview, posts, admin code)
