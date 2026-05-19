@@ -3,11 +3,11 @@
 // ALWAYS DARK MODE - No light mode support
 // ============================================================================
 
-@import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
-
+@import "fonts";
 @import "tokens";
 @import "mixins";
 @import "layout-width";
+@import "font-scale";
 @import "base";
 @import "header";
 @import "components";
@@ -18,3 +18,4 @@
 @import "navigation";
 @import "docs";
 @import "responsive";
+@import "typography";

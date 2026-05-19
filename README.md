@@ -10,20 +10,26 @@ A dark mode Discourse theme for the MetaMask Developer Builder Hub, featuring a 
 - **Responsive**: Mobile-optimized layouts
 - **Fully Configurable**: Categories configured via Discourse admin panel
 
-## Color Scheme
+## Brand
 
-- **Light Orange**: #FFA680
-- **Orange**: #FF5C16 (Primary accent)
-- **Dark Orange**: #661800
-- **Light Purple**: #EAC2FF
-- **Purple**: #d075ff
-- **Dark Purple**: #3d065f (Code blocks)
-- **Light Green**: #E5FFC3
-- **Green**: #BAF24A
-- **Dark Green**: #013330
-- **Light Blue**: #CCE7FF
-- **Blue**: #89B0FF
-- **Dark Blue**: #190066
+Colors and logos follow the official [MetaMask brand assets](https://metamask.io/assets). Typography matches [docs.metamask.io](https://docs.metamask.io): **Geist** for UI body text, **MM Sans** for headings, **MM Sans Mono** for code.
+
+### Color palette
+
+| Token | Hex | Use |
+|-------|-----|-----|
+| Orange | `#FF5C16` | Primary accent, danger |
+| Light Orange | `#FFA680` | Warnings, highlights |
+| Dark Orange | `#661800` | Orange depth |
+| Green | `#BAF24A` | Success, links, CTAs |
+| Light Green | `#E5FFC3` | Green tints |
+| Dark Green | `#013330` | Green depth |
+| Purple | `#d075ff` | Accents, code blocks |
+| Light Purple | `#EAC2FF` | Purple tints |
+| Dark Purple | `#3d065f` | Code block backgrounds |
+| Blue | `#89B0FF` | Info |
+| Light Blue | `#CCE7FF` | Blue tints |
+| Dark Blue | `#190066` | Blue depth |
 
 ## Installation
 

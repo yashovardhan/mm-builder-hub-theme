@@ -1,0 +1,121 @@
+// MetaMask typography — Geist body, MM Sans headings (docs.metamask.io)
+// Uses --font-* from Discourse core (relative to html base set in font-scale.scss)
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--mm-font-primary);
+}
+
+// Headings — Discourse scale instead of custom em ladder
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.type-heading-xl,
+.type-heading-l,
+.type-heading-m,
+.type-heading-s,
+.type-heading-xs,
+.type-heading-xxs {
+  font-family: var(--mm-font-display);
+}
+
+h1,
+.type-heading-xl {
+  font-size: var(--font-up-4);
+  line-height: var(--line-height-medium);
+  letter-spacing: -0.02em;
+}
+
+h2,
+.type-heading-l {
+  font-size: var(--font-up-3);
+  line-height: var(--line-height-medium);
+}
+
+h3,
+.type-heading-m {
+  font-size: var(--font-up-2);
+  line-height: var(--line-height-medium);
+}
+
+h4,
+.type-heading-s {
+  font-size: var(--font-up-1);
+  line-height: var(--line-height-large);
+}
+
+h5,
+.type-heading-xs,
+h6,
+.type-heading-xxs {
+  font-size: var(--font-0);
+  line-height: var(--line-height-large);
+}
+
+p,
+.type-paragraph {
+  font-size: var(--font-0);
+  line-height: var(--cooked-line-height);
+}
+
+// Primary UI chrome (nav, buttons, lists) — match stock Discourse, not 0.875em
+.nav-pills > li > a,
+.list-controls .nav-pills > li > a,
+.list-controls .combo-box .combo-box-header,
+.navigation-topics .navigation-container #navigation-bar li a,
+.category-breadcrumb li a,
+.category-breadcrumb .select-kit-header,
+.btn,
+.select-kit .select-kit-header,
+.topic-list-item .main-link,
+.topic-list-item .title,
+.topic-list .topic-list-data,
+.raw-topic-link,
+.d-header .title,
+.d-header .header-buttons .btn {
+  font-size: var(--font-0);
+}
+
+.custom-search-banner-wrap .custom-search-banner-headline,
+.custom-search-banner-wrap h1 {
+  font-size: var(--font-up-3);
+}
+
+.category-box .category-title,
+.category-box h3 {
+  font-size: var(--font-up-1);
+}
+
+.category-box .category-description {
+  font-size: var(--font-down-1);
+}
+
+// Secondary / meta text
+.topic-excerpt,
+.relative-date,
+.posters,
+.topic-statuses,
+.age,
+.num.views,
+.num.posts,
+.sidebar-section-header-text,
+.empty-state-body {
+  font-size: var(--font-down-1);
+}
+
+// Cooked post body
+.cooked {
+  font-size: var(--font-0);
+  line-height: var(--cooked-line-height);
+
+  pre,
+  code {
+    font-family: var(--mm-font-mono);
+  }
+}

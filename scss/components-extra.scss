@@ -92,13 +92,13 @@
 
   &__title-text {
     font-family: var(--mm-font-primary);
-    font-size: 1.25em;
+    font-size: var(--font-up-1);
     font-weight: 500;
     color: var(--mm-white);
     margin: 0;
 
     @include mm-bp-max(tablet) {
-      font-size: 1.125em;
+      font-size: var(--font-up-1);
     }
   }
 
@@ -150,13 +150,13 @@
 
     .title {
       font-family: var(--mm-font-primary);
-      font-size: 1.25em;
+      font-size: var(--font-up-1);
       font-weight: 500;
       color: var(--mm-white);
       margin: 0;
 
       @include mm-bp-max(tablet) {
-        font-size: 1.125em;
+        font-size: var(--font-up-1);
       }
     }
   }
@@ -298,7 +298,7 @@
 
     &:focus-within {
       border-color: var(--mm-green);
-      box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+      box-shadow: 0 0 0 3px var(--mm-green-a15);
     }
   }
 
@@ -339,7 +339,7 @@
 
     &:focus {
       border-color: var(--mm-green) !important;
-      box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15) !important;
+      box-shadow: 0 0 0 3px var(--mm-green-a15) !important;
     }
   }
 }

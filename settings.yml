@@ -36,3 +36,11 @@ layout_width:
     - full
     - comfortable
     - compact
+
+font_scale:
+  type: enum
+  default: comfortable
+  choices:
+    - compact
+    - comfortable
+    - large

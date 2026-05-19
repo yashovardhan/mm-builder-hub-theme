@@ -118,7 +118,7 @@
         .d-icon {
           width: 0.875em !important;
           height: 0.875em !important;
-          font-size: 0.875em !important;
+          font-size: var(--font-0) !important;
           margin: 0 !important;
           color: inherit;
         }
@@ -190,7 +190,7 @@
       padding: 0 0.75rem;
 
       .d-button-label {
-        font-size: 0.75rem;
+        font-size: var(--font-down-2);
         line-height: 1.1;
         white-space: nowrap; // Prevent wrapping
         margin-top: 0;

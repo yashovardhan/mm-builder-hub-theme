@@ -76,13 +76,13 @@
 // Topic activity
 .topic-activity {
   color: var(--mm-gray-mid);
-  font-size: 0.875em;
+  font-size: var(--font-0);
 }
 
 // Topic last activity
 .topic-last-activity {
   color: var(--mm-gray-mid);
-  font-size: 0.875em;
+  font-size: var(--font-0);
 }
 
 // Topic posters
@@ -228,7 +228,7 @@
 // Topic post date
 .topic-post-date {
   color: var(--mm-gray-mid);
-  font-size: 0.875em;
+  font-size: var(--font-0);
 }
 
 // Topic post username
@@ -240,7 +240,7 @@
 // Topic post user title
 .topic-post-user-title {
   color: var(--mm-gray-mid);
-  font-size: 0.875em;
+  font-size: var(--font-0);
 }
 
 // Topic post user avatar
@@ -261,7 +261,7 @@
 .topic-post-user-joined,
 .topic-post-user-last-seen {
   color: var(--mm-gray-mid);
-  font-size: 0.875em;
+  font-size: var(--font-0);
 }
 
 // Tooltips
@@ -272,7 +272,7 @@
     border-radius: 0;
     @include mm-clip-card(var(--mm-clip-xs));
     font-family: var(--mm-font-primary);
-    font-size: 0.8125em;
+    font-size: var(--font-down-1);
     padding: 0.5em 0.75em;
     box-shadow: var(--mm-shadow-md);
 
@@ -292,7 +292,7 @@
 
   &:focus {
     border-color: var(--mm-green);
-    box-shadow: 0 0 0 3px rgba(186, 242, 74, 0.15);
+    box-shadow: 0 0 0 3px var(--mm-green-a15);
   }
 }
 

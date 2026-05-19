@@ -1,0 +1,13 @@
+// Base font size from theme setting: $font_scale (compact | comfortable | large)
+$font_scale: comfortable !default;
+
+html {
+  @if $font_scale == "compact" {
+    font-size: 15px;
+  } @else if $font_scale == "large" {
+    font-size: 18px;
+  } @else {
+    // comfortable — matches Discourse default (16px)
+    font-size: 16px;
+  }
+}

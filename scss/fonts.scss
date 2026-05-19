@@ -1,0 +1,47 @@
+// Official MetaMask web fonts (same files as docs.metamask.io)
+// Brand reference: https://metamask.io/assets
+
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://docs.metamask.io/assets/fonts/Geist-Regular-bddca65ad845ef52ee29cf64a6d177fc.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://docs.metamask.io/assets/fonts/Geist-Medium-4d9cac5f65d9e08a0a4fc6f36e0c38f6.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://docs.metamask.io/assets/fonts/Geist-Bold-2d867dfd3467e03d638f4f6a843b722e.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'MM Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://docs.metamask.io/assets/fonts/MM_Sans-Regular-0861ce41df3335e955b1fe61d228ea26.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'MM Sans Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://docs.metamask.io/assets/fonts/MM_Sans_Mono-Regular-514033706991b8cf07d2af42578aaca2.woff2')
+    format('woff2');
+}

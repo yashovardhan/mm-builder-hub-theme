@@ -63,7 +63,7 @@ html.admin-area {
 
   .empty-state-title {
     font-family: var(--mm-font-primary);
-    font-size: 1.5em;
+    font-size: var(--font-up-2);
     font-weight: 500;
     color: var(--mm-gray);
     margin-bottom: var(--mm-space-md);
@@ -81,8 +81,7 @@ html.admin-area {
 .user-title,
 .user-trust-level {
   font-family: var(--mm-font-primary);
-  font-family: var(--mm-font-primary);
-  font-size: 0.75em;
+  font-size: var(--font-down-1);
   padding: 0; // Remove pill padding
   border-radius: 0;
   background: transparent; // Remove button-like background
@@ -94,14 +93,14 @@ html.admin-area {
 // Topic meta
 .topic-meta {
   color: var(--mm-gray-mid);
-  font-size: 0.875em;
+  font-size: var(--font-0);
 }
 
 // Post actions
 .post-actions {
   .btn {
     padding: 0.5em 0.75em;
-    font-size: 0.875em;
+    font-size: var(--font-0);
   }
 }
 
