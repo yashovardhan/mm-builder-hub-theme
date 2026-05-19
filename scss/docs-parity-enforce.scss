@@ -1,13 +1,6 @@
 // Final cascade layer — wins over desktop/mobile.scss and Discourse core.
 // Import last from common.scss, desktop.scss, and mobile.scss.
 
-// Announcement bar (must be visible when connector renders)
-.mm-announcement-bar {
-  display: flex !important;
-  min-height: var(--mm-announcement-height) !important;
-  font-size: var(--mm-text-body-sm) !important;
-}
-
 // Header — docs navbar scale
 .d-header {
   .title,
