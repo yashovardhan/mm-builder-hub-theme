@@ -1,0 +1,72 @@
+// Enforce MetaMask fonts site-wide.
+//
+// Admin → Settings → Fonts only lists Discourse-bundled families (Inter, etc.).
+// Core SCSS uses var(--font-family) and var(--heading-font-family), set inline from
+// those site settings. We override those variables (and html/body) so the theme
+// always wins regardless of admin font picks.
+
+:root,
+html {
+  --font-family: var(--mm-font-primary) !important;
+  --heading-font-family: var(--mm-font-display) !important;
+}
+
+html,
+body {
+  font-family: var(--mm-font-primary) !important;
+}
+
+// Headings (Discourse $heading-font-family + cooked content)
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.cooked h1,
+.cooked h2,
+.cooked h3,
+.cooked h4,
+.cooked h5,
+.cooked h6,
+.d-editor .d-editor-input h1,
+.d-editor .d-editor-input h2,
+.d-editor .d-editor-input h3,
+.d-editor .d-editor-input h4,
+.d-editor .d-editor-input h5,
+.d-editor .d-editor-input h6 {
+  font-family: var(--mm-font-display) !important;
+}
+
+// Monospace (composer preview, posts, admin code)
+pre,
+code,
+kbd,
+samp,
+.d-editor-preview,
+.d-editor-preview pre,
+.d-editor-preview code,
+.cooked pre,
+.cooked code,
+.onebox code,
+.admin-contents code,
+.admin-contents pre {
+  font-family: var(--mm-font-mono) !important;
+}
+
+// Icon fonts must keep their own stack (avoid inheriting Geist from body !important)
+.fa,
+.fab,
+.far,
+.fas,
+.fal,
+.fad,
+[class^='fa-'],
+[class*=' fa-'] {
+  font-family: var(--fa-style-family, 'Font Awesome 6 Free') !important;
+}
+
+.fab,
+[class^='fab-'] {
+  font-family: var(--fa-style-family, 'Font Awesome 6 Brands') !important;
+}

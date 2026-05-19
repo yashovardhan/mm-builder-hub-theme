@@ -14,6 +14,12 @@ A dark mode Discourse theme for the MetaMask Developer Builder Hub, featuring a 
 
 Colors and logos follow the official [MetaMask brand assets](https://metamask.io/assets). Typography matches [docs.metamask.io](https://docs.metamask.io): **Geist** for UI body text, **MM Sans** for headings, **MM Sans Mono** for code.
 
+### Fonts vs Discourse admin
+
+**Admin → Settings → Fonts** only lists fonts bundled with Discourse (Inter, Arial, etc.). You cannot add Geist or MM Sans there. This theme loads those faces via `scss/fonts.scss` and enforces them in `scss/fonts-enforce.scss` by overriding Discourse’s `--font-family` and `--heading-font-family` CSS variables. Admin font settings are ignored for appearance; leave them at any value or match “Inter” — the theme wins.
+
+For production, consider self-hosting the `.woff2` files in the theme `assets/` folder instead of loading from `docs.metamask.io`.
+
 ### Color palette
 
 | Token | Hex | Use |
