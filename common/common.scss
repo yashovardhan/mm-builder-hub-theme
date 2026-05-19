@@ -84,6 +84,24 @@
   // Discourse Variable Overrides
   --d-input-border-radius: 0;
   --d-nav-underline-height: 0;
+
+  // Bridge MetaMask palette → Discourse semantic tokens (always dark)
+  --primary: var(--mm-white);
+  --secondary: var(--mm-black);
+  --tertiary: var(--mm-green);
+  --quaternary: var(--mm-purple);
+  --header_background: var(--mm-black);
+  --header_primary: var(--mm-white);
+  --highlight: var(--mm-green);
+  --danger: var(--mm-orange);
+  --success: var(--mm-green);
+  --love: var(--mm-purple);
+  --selected: var(--mm-black-light);
+  --hover: var(--mm-black-mid);
+  --primary-low: var(--mm-black-light);
+  --primary-medium: var(--mm-gray-mid);
+  --primary-high: var(--mm-gray);
+  --secondary-low: var(--mm-black-mid);
 }
 
 // Reduced motion support
@@ -129,6 +147,13 @@ $mm-desktop-max: calc(#{$mm-desktop} - 1px);
     @media screen and (max-width: $mm-desktop-max) {
       @content;
     }
+  }
+}
+
+// Community forum only — never apply layout hacks to admin (body.admin-interface)
+@mixin mm-forum-only {
+  body:not(.admin-interface) {
+    @content;
   }
 }
 
@@ -225,44 +250,45 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--mm-black) !important;
-  color: var(--mm-white) !important;
+  background-color: var(--secondary);
+  color: var(--primary);
 }
 
-// Force dark backgrounds and proper text colors throughout
+// Dark surfaces via Discourse tokens
 #main-outlet,
 #main-outlet-wrapper,
 .container,
 .wrap {
-  background-color: var(--mm-black) !important;
+  background-color: var(--secondary);
 }
 
-// Global text color fixes for readability
-.topic-list-main-link,
-.topic-list-item .main-link,
-.raw-topic-link,
-.category-name,
-.badge-category__name,
-.topic-title,
-.fancy-title,
-.topic-list-item .title,
-.category-title,
-.category-title-link,
-.topic-list-data,
-.topic-list-item td {
-  color: var(--mm-white) !important;
-}
+// Topic list readability (forum pages only)
+@include mm-forum-only {
+  .topic-list-main-link,
+  .topic-list-item .main-link,
+  .raw-topic-link,
+  .category-name,
+  .badge-category__name,
+  .topic-title,
+  .fancy-title,
+  .topic-list-item .title,
+  .category-title,
+  .category-title-link,
+  .topic-list-data,
+  .topic-list-item td {
+    color: var(--primary);
+  }
 
-// Secondary text colors
-.topic-excerpt,
-.category-description,
-.topic-statuses,
-.relative-date,
-.posters,
-.num.views,
-.num.posts,
-.age {
-  color: var(--mm-gray) !important;
+  .topic-excerpt,
+  .category-description,
+  .topic-statuses,
+  .relative-date,
+  .posters,
+  .num.views,
+  .num.posts,
+  .age {
+    color: var(--primary-high);
+  }
 }
 
 // Selection styling
@@ -1745,8 +1771,8 @@ textarea {
   .select-kit-header {
     border: 1px solid var(--mm-gray-dark);
     border-radius: 6.25em;
-    background: var(--mm-black-light);
-    color: var(--mm-white);
+    background: var(--primary-low);
+    color: var(--primary);
     padding: 0.5em 1em;
     min-height: 2.25rem;
     transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
@@ -1770,7 +1796,7 @@ textarea {
   .select-kit-body {
     border: 1px solid var(--mm-gray-dark);
     border-radius: 0;
-    background: var(--mm-black-light);
+    background: var(--primary-low);
     @include mm-clip-card(var(--mm-clip-sm));
     box-shadow: var(--mm-shadow-lg);
     max-height: 300px;
@@ -1779,22 +1805,22 @@ textarea {
   }
 
   .select-kit-row {
-    color: var(--mm-white);
+    color: var(--primary);
     padding: 0.625rem 1rem;
     transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
 
     &.is-selected {
       background: rgba(186, 242, 74, 0.15);
-      color: var(--mm-green);
+      color: var(--tertiary);
     }
 
     &:hover {
-      background: var(--mm-black-mid);
-      color: var(--mm-white);
+      background: var(--hover);
+      color: var(--primary);
     }
 
     &.is-highlighted {
-      background: var(--mm-black-mid);
+      background: var(--hover);
     }
   }
 
@@ -2114,7 +2140,7 @@ textarea {
     box-sizing: border-box;
     margin: 0 auto;
     max-height: 80vh;
-    background-color: var(--mm-black-light);
+    background-color: var(--primary-low);
     border: 1px solid var(--mm-gray-dark);
     box-shadow: var(--mm-shadow-lg);
     width: calc(100% - 1.34em);
@@ -2809,11 +2835,10 @@ body .custom-search-banner-wrap {
 }
 
 // ============================================================================
-// ADMIN PANEL LAYOUT
+// ADMIN — minimal overrides (layout is Discourse-native)
 // ============================================================================
 
-// Discourse admin: html.admin-area + body.admin-interface.
-// Admin nav lives in .sidebar-wrapper (admin panel) — do not hide it or force block layout on the grid.
+// html.admin-area + body.admin-interface; admin nav uses .sidebar-wrapper .admin-panel
 html.admin-area {
   #main-outlet-wrapper {
     max-width: 1400px;
@@ -2821,7 +2846,7 @@ html.admin-area {
     padding: 0 20px;
   }
 
-  // Dashboard and reports render inside .loading-container after load — keep block flow.
+  // Dashboard content lives in .loading-container after load — not a centered spinner
   .loading-container {
     display: block;
     width: 100%;
@@ -2830,85 +2855,46 @@ html.admin-area {
     justify-content: initial;
   }
 
-  .admin-contents.dashboard,
-  .dashboard-next.general {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-width: 0;
-  }
-
-  // Admin sidebar panel (reuses .sidebar-wrapper; distinct from community sidebar)
   .sidebar-wrapper .admin-panel {
-    background: var(--mm-black-light);
+    background: var(--primary-low);
     border: 1px solid var(--mm-gray-dark);
   }
-}
 
-// Classic admin layout: nav + detail as flex siblings (not used on dashboard-only pages)
-.admin-contents:has(.admin-main-nav) {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  min-width: 0;
-
-  .admin-main-nav {
-    width: 200px;
-    min-width: 160px;
-    flex-shrink: 0;
+  .admin-content.boxed.white {
+    background: var(--secondary);
+    color: var(--primary);
   }
 
-  .admin-detail {
-    flex: 1;
-    min-width: 0;
-    overflow-x: auto;
+  .section-title h2,
+  .section-title h2 a {
+    color: var(--primary);
   }
-}
 
-// New-style admin config area
-.admin-config-area,
-.admin-page-container,
-.admin-config-page {
-  display: flex;
-  align-items: flex-start;
-  min-width: 0;
-
-  .admin-nav,
-  .admin-main-nav,
-  .admin-config-area__sidebar {
-    width: 200px;
-    min-width: 160px;
-    flex-shrink: 0;
+  .dashboard-next .section-body,
+  .admin-table-wrapper,
+  .directory-table {
+    color: var(--primary);
   }
 
   .admin-detail,
   .admin-config-area__content {
-    flex: 1;
-    min-width: 0;
-    overflow-x: auto;
-  }
-}
+    .table-scroll-wrapper,
+    .admin-table-wrapper {
+      overflow-x: auto;
+      max-width: 100%;
+    }
 
-// Tables in admin must keep display: table so column widths work correctly.
-// Wrap them in a scrollable container instead of forcing block on the table.
-.admin-detail,
-.admin-config-area__content {
-  .table-scroll-wrapper,
-  .admin-table-wrapper {
-    overflow-x: auto;
-    max-width: 100%;
-  }
+    form,
+    .form-horizontal {
+      max-width: 100%;
+    }
 
-  form,
-  .form-horizontal {
-    max-width: 100%;
-  }
-
-  .control-group,
-  .setting-row {
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    .control-group,
+    .setting-row {
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
   }
 }
 
@@ -2995,17 +2981,19 @@ html.admin-area {
   margin-bottom: 1rem;
 
   .combo-box .combo-box-header {
-    background: var(--mm-black-light);
+    background: var(--primary-low);
     border: 1px solid var(--mm-gray-dark);
-    color: var(--mm-white);
+    color: var(--primary);
     border-radius: 6.25em;
   }
 }
 
 // [Removed duplicate nav-pills block]
 
-// Category breadcrumb styling
-body .category-breadcrumb {
+// Category breadcrumb styling (topic/category list pages only)
+.navigation-topics,
+.categories-list {
+  .category-breadcrumb {
   display: flex !important;
   align-items: center !important;
   gap: 0.5em !important;
@@ -3066,6 +3054,7 @@ body .category-breadcrumb {
       line-height: 1;
     }
   }
+  }
 }
 
 // Navigation Bar Consistency
@@ -3087,88 +3076,84 @@ body .category-breadcrumb {
 }
 
 // ============================================================================
-// NAVIGATION CONTAINER ALIGNMENT (from live DOM inspection)
+// NAVIGATION CONTAINER ALIGNMENT (topic/category list pages only)
 // ============================================================================
-// Fixes vertical misalignment between dropdowns and navigation links
-body .navigation-container {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  justify-content: flex-start !important;
-  gap: 0.5em !important;
-  width: 100% !important;
-  min-height: 3rem !important;
-  padding: 0.5rem 0 !important;
-}
-
-// Left side wrapper (breadcrumb + navigation bar)
-body .navigation-container .category-breadcrumb,
-body .navigation-container #navigation-bar {
-  flex-shrink: 1 !important;
-  min-width: 0 !important;
-}
-
-// Push right-side navigation controls to the right
-body .navigation-controls {
-  margin-left: auto !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5em !important;
-  flex-shrink: 0 !important;
-}
-
-// Category breadcrumb list containing dropdowns
-body .navigation-container .category-breadcrumb {
-  display: flex !important;
-  align-items: center !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  gap: 0.25em !important;
-}
-
-// The select-kit dropdowns (Category and Tags)
-body .category-breadcrumb__category-selector,
-body .tag-drop {
-  display: flex !important;
-  align-items: center !important;
-  flex-shrink: 0 !important;
-
-  // The header/button of the dropdown
-  .select-kit-header {
-    display: flex !important;
-    align-items: center !important;
-    height: 2.25rem !important;
-    min-height: 2.25rem !important;
-    padding: 0 0.875em !important;
-    line-height: 1 !important;
-    box-sizing: border-box !important;
-    margin: 0 !important;
+.navigation-topics,
+.categories-list {
+  .navigation-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.5em;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.5rem 0;
   }
-}
 
-// The navigation bar (Categories, Latest, Top links)
-body .navigation-container #navigation-bar {
-  display: flex !important;
-  align-items: center !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  gap: 0 !important;
-  flex-shrink: 1 !important;
-  min-width: 0 !important;
+  .navigation-container .category-breadcrumb,
+  .navigation-container #navigation-bar {
+    flex-shrink: 1;
+    min-width: 0;
+  }
 
-  li {
-    display: flex !important;
-    align-items: center !important;
-    margin: 0 !important;
-    flex-shrink: 0 !important;
+  .navigation-controls {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-shrink: 0;
+  }
 
-    a {
-      display: flex !important;
-      align-items: center !important;
-      height: 2.25rem !important;
-      line-height: 1 !important;
-      padding: 0 0.875em !important;
-      white-space: nowrap !important;
+  .navigation-container .category-breadcrumb {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 0.25em;
+  }
+
+  .category-breadcrumb__category-selector,
+  .tag-drop {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    .select-kit-header {
+      display: flex;
+      align-items: center;
+      height: 2.25rem;
+      min-height: 2.25rem;
+      padding: 0 0.875em;
+      line-height: 1;
+      box-sizing: border-box;
+      margin: 0;
+    }
+  }
+
+  .navigation-container #navigation-bar {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    flex-shrink: 1;
+    min-width: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      flex-shrink: 0;
+
+      a {
+        display: flex;
+        align-items: center;
+        height: 2.25rem;
+        line-height: 1;
+        padding: 0 0.875em;
+        white-space: nowrap;
+      }
     }
   }
 }
@@ -3700,21 +3685,23 @@ section[class*="category"] {
 // Discourse only loads mobile.scss on mobile user agents; layout fixes belong here.
 // ============================================================================
 @include mm-bp-max(tablet) {
-  // Collapse sidebar grid from desktop.scss (240px + 1fr) — main cause of ~100px column
-  body:not(.admin-interface) #main-outlet-wrapper {
-    display: block !important;
-    padding: 0 12px !important;
-    max-width: 100% !important;
+  // Collapse community sidebar grid on narrow viewports (not admin panel)
+  @include mm-forum-only {
+    #main-outlet-wrapper {
+      display: block !important;
+      padding: 0 12px !important;
+      max-width: 100% !important;
 
-    &.has-sidebar {
-      grid-template-columns: 1fr !important;
+      &.has-sidebar {
+        grid-template-columns: 1fr !important;
+      }
     }
-  }
 
-  body:not(.admin-interface) #main-outlet-wrapper .sidebar-wrapper,
-  body:not(.admin-interface) #main-outlet-wrapper .sidebar-container,
-  body:not(.admin-interface) #main-outlet-wrapper nav.sidebar {
-    display: none !important;
+    #main-outlet-wrapper .sidebar-wrapper,
+    #main-outlet-wrapper .sidebar-container,
+    #main-outlet-wrapper nav.sidebar {
+      display: none !important;
+    }
   }
 
   #main-outlet {
@@ -3770,17 +3757,20 @@ section[class*="category"] {
     }
   }
 
-  body .navigation-container {
-    flex-wrap: wrap !important;
-    min-height: auto !important;
-  }
+  .navigation-topics,
+  .categories-list {
+    .navigation-container {
+      flex-wrap: wrap;
+      min-height: auto;
+    }
 
-  body .navigation-container .category-breadcrumb,
-  body .navigation-container #navigation-bar {
-    flex: 1 1 100% !important;
-    width: 100% !important;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    .navigation-container .category-breadcrumb,
+    .navigation-container #navigation-bar {
+      flex: 1 1 100%;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   .custom-search-banner-wrap {

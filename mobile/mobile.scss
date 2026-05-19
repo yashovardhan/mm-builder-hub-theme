@@ -27,18 +27,19 @@ body {
   padding-top: 8px;
 }
 
-// Single column layout on mobile — hide sidebar (use header menu)
-// Exclude admin: Discourse uses body.admin-interface + html.admin-area.
-body:not(.admin-interface) #main-outlet-wrapper {
-  display: block;
-  padding: 0 12px;
-  width: 100%;
-  max-width: 100%;
+// Single column layout on mobile — hide community sidebar (use header menu)
+@include mm-forum-only {
+  #main-outlet-wrapper {
+    display: block;
+    padding: 0 12px;
+    width: 100%;
+    max-width: 100%;
 
-  .sidebar-wrapper,
-  .sidebar-container,
-  nav.sidebar {
-    display: none !important;
+    .sidebar-wrapper,
+    .sidebar-container,
+    nav.sidebar {
+      display: none !important;
+    }
   }
 }
 
@@ -128,17 +129,20 @@ html.admin-area #main-outlet-wrapper {
 // ============================================================================
 // LIST CONTROLS - Mobile
 // ============================================================================
-body .navigation-container {
-  flex-wrap: wrap !important;
-  min-height: auto !important;
-}
+.navigation-topics,
+.categories-list {
+  .navigation-container {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
 
-body .navigation-container .category-breadcrumb,
-body .navigation-container #navigation-bar {
-  flex: 1 1 100% !important;
-  width: 100% !important;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  .navigation-container .category-breadcrumb,
+  .navigation-container #navigation-bar {
+    flex: 1 1 100%;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 // ============================================================================
