@@ -69,7 +69,7 @@ html.admin-area #main-outlet-wrapper {
   }
 
   .title {
-    font-size: 0.875em;
+    font-size: var(--mm-text-nav);
     min-width: 0;
     flex: 1 1 auto;
     overflow: hidden;
@@ -165,7 +165,7 @@ html.admin-area #main-outlet-wrapper {
 
     > a {
       padding: 0.5em 0.875em;
-      font-size: 0.875em;
+      font-size: var(--mm-text-body-sm);
       white-space: nowrap;
     }
   }
@@ -234,12 +234,12 @@ html.admin-area #main-outlet-wrapper {
 
     .category-box-heading h3,
     h3.category-title {
-      font-size: 1rem;
+      font-size: var(--mm-text-card-title);
     }
 
     .description,
     .category-description {
-      font-size: 0.8125rem;
+      font-size: var(--mm-text-body);
     }
 
     .subcategories .badge-category {
@@ -283,8 +283,8 @@ html.admin-area #main-outlet-wrapper {
     }
 
     .title {
-      font-size: 0.9375em;
-      line-height: 1.4;
+      font-size: var(--mm-text-nav);
+      line-height: var(--mm-leading-body);
     }
 
     .topic-excerpt {
@@ -337,16 +337,8 @@ html.admin-area #main-outlet-wrapper {
   }
 }
 
-// Post content
+// Post content — prose scale from typography.scss (no downscaling)
 .cooked {
-  font-size: 0.9375em;
-  line-height: 1.7;
-
-  h1 { font-size: 1.5em; }
-  h2 { font-size: 1.25em; }
-  h3 { font-size: 1.125em; }
-  h4 { font-size: 1em; }
-
   // Make images responsive
   img {
     max-width: 100%;
@@ -557,12 +549,13 @@ html.admin-area #main-outlet-wrapper {
 
   .custom-search-banner-headline,
   h1 {
-    font-size: 1.375em;
-    line-height: 1.2;
+    font-size: clamp(1.5rem, 5vw, var(--mm-text-home-title));
+    line-height: var(--mm-leading-home-title);
   }
 
   p {
-    font-size: 0.875em;
+    font-size: var(--mm-text-home-subtitle);
+    line-height: var(--mm-leading-body);
   }
 
   // Smaller decorative elements
@@ -693,7 +686,7 @@ select {
 
     .custom-search-banner-headline,
     h1 {
-      font-size: 1.25em;
+      font-size: clamp(1.375rem, 4vw, var(--mm-text-home-title));
     }
   }
 

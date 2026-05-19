@@ -25,7 +25,7 @@
   align-items: center !important;
   gap: 0.5em !important;
   font-family: var(--mm-font-primary);
-  font-size: var(--font-0); // Standardize base size
+  font-size: var(--mm-text-nav);
   color: var(--mm-gray);
 
   li {
@@ -92,7 +92,7 @@
     gap: 0.5em;
 
     >li>a {
-      font-size: var(--font-0); // Match breadcrumb
+      font-size: var(--mm-text-nav);
       height: 2.25rem; // Match breadcrumb height
       padding: 0 1rem; // Use side padding only
       display: flex;

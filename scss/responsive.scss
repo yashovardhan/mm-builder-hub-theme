@@ -98,8 +98,8 @@
 
     .custom-search-banner-headline,
     h1 {
-      font-size: 1.375em;
-      line-height: 1.2;
+      font-size: clamp(1.5rem, 5vw, var(--mm-text-home-title));
+      line-height: var(--mm-leading-home-title);
     }
   }
 

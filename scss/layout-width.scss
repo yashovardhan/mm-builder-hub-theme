@@ -1,5 +1,5 @@
 // Layout width from theme setting: $layout_width (full | comfortable | compact)
-$layout_width: full !default;
+$layout_width: comfortable !default;
 
 :root {
   @if $layout_width == "full" {
@@ -17,7 +17,7 @@ html.admin-area #main-outlet-wrapper,
 body:not(.admin-interface) #main-outlet-wrapper {
   width: 100%;
   max-width: var(--mm-layout-max-width);
-  padding: 0 20px;
+  padding: 0 var(--mm-page-padding-x);
 
   @if $layout_width != "full" {
     margin-left: auto;

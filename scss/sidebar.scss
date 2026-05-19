@@ -27,7 +27,7 @@
     align-items: center;
     padding: 6px 10px;
     font-family: var(--mm-font-primary);
-    font-size: var(--font-0);
+    font-size: var(--mm-text-sidebar);
     color: var(--mm-white);
     text-decoration: none;
     border-radius: 0;
@@ -67,7 +67,7 @@
 
     // Fix icon sizing in sidebar
     .d-icon {
-      font-size: var(--font-0);
+      font-size: var(--mm-text-sidebar);
       width: 1.1em;
       height: 1.1em;
       margin-right: 0.5em;
@@ -80,8 +80,8 @@
 .sidebar-section-header-wrapper {
   .sidebar-section-header-text {
     font-family: var(--mm-font-primary);
-    font-size: var(--font-down-1);
-    font-weight: 500;
+    font-size: var(--mm-text-body-sm);
+    font-weight: var(--mm-font-weight-medium);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--mm-gray-mid);

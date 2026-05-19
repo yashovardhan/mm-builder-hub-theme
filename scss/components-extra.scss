@@ -315,6 +315,18 @@
     color: var(--mm-white);
     transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
 
+    .search-link .topic-title {
+      font-size: var(--mm-text-card-title);
+      font-weight: var(--mm-font-weight-medium);
+      line-height: var(--mm-leading-h3);
+    }
+
+    .search-category,
+    .search-meta,
+    .blurb {
+      font-size: var(--mm-text-body-sm);
+    }
+
     &:hover {
       background: var(--mm-black-mid);
     }
@@ -330,7 +342,8 @@
   input.search-query {
     @include mm-search-compact-input;
     flex: 1 1 auto;
-    min-height: 2.625rem;
+    min-height: 2.625rem; // docs search input ~42px (4.2rem @ 10px)
+    font-size: var(--mm-text-body);
     padding: 0 1em !important;
     border: 1px solid var(--mm-gray-dark) !important;
     border-radius: 6.25em !important;

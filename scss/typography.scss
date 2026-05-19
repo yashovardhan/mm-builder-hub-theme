@@ -99,34 +99,47 @@ b {
 .category-breadcrumb .select-kit-header,
 .btn,
 .select-kit .select-kit-header,
-.topic-list-item .main-link,
-.topic-list-item .title,
 .topic-list .topic-list-data,
-.raw-topic-link,
-.d-header .title,
 .d-header .header-buttons .btn {
   font-size: var(--mm-text-body);
 }
 
 .d-header .title {
+  font-size: var(--mm-text-nav);
   font-weight: var(--mm-font-weight-medium);
 }
 
 .custom-search-banner-wrap .custom-search-banner-headline,
 .custom-search-banner-wrap h1 {
-  font-size: var(--mm-text-hero);
+  font-size: var(--mm-text-home-title);
   font-weight: var(--mm-font-weight-medium);
-  line-height: var(--mm-leading-hero);
+  line-height: var(--mm-leading-home-title);
 }
 
 .category-box .category-title,
 .category-box h3 {
-  font-size: var(--mm-text-h3);
+  font-size: var(--mm-text-card-title);
   font-weight: var(--mm-font-weight-medium);
 }
 
 .category-box .category-description {
-  font-size: var(--mm-text-body-sm);
+  font-size: var(--mm-text-body);
+}
+
+// Topic view title
+.topic-title,
+.fancy-title,
+#topic-title {
+  font-size: var(--mm-text-topic-title);
+  font-weight: var(--mm-font-weight-medium);
+  line-height: var(--mm-leading-h1);
+}
+
+// Topic list primary links
+.topic-list-item .title,
+.topic-list-item .main-link,
+.raw-topic-link {
+  font-size: var(--mm-text-nav);
 }
 
 // Secondary / meta
@@ -143,11 +156,46 @@ b {
   line-height: var(--mm-leading-body);
 }
 
-// Cooked posts — docs .contentful-rich-text-styles / .markdown body
+// Prose scale mixin target: cooked posts, composer preview/input
+@mixin mm-prose-headings {
+  h1 {
+    font-size: var(--mm-text-prose-h1);
+    line-height: var(--mm-leading-prose-h1);
+  }
+
+  h2 {
+    font-size: var(--mm-text-prose-h2);
+    line-height: var(--mm-leading-prose-h2);
+  }
+
+  h3 {
+    font-size: var(--mm-text-prose-h3);
+    line-height: var(--mm-leading-h3);
+  }
+
+  h4 {
+    font-size: var(--mm-text-prose-h4);
+    line-height: var(--mm-leading-h4);
+  }
+
+  h5 {
+    font-size: var(--mm-text-prose-h5);
+    line-height: var(--mm-leading-h5);
+  }
+
+  h6 {
+    font-size: var(--mm-text-prose-h6);
+    line-height: var(--mm-leading-h5);
+  }
+}
+
+// Cooked posts — docs .markdown body
 .cooked {
   font-size: var(--mm-text-body);
   line-height: var(--mm-leading-body);
   color: var(--primary-high);
+
+  @include mm-prose-headings;
 
   h1,
   h2,
@@ -193,8 +241,11 @@ b {
   }
 }
 
-// Composer matches cooked
-.d-editor-preview {
+// Composer matches cooked prose scale
+.d-editor-preview,
+.d-editor .d-editor-input {
   font-size: var(--mm-text-body);
   line-height: var(--mm-leading-body);
+
+  @include mm-prose-headings;
 }

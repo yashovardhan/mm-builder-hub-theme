@@ -109,7 +109,11 @@
 
 // Topic title wrapper
 .topic-title-wrapper {
-  .topic-title {
+  .topic-title,
+  .fancy-title {
+    font-size: var(--mm-text-topic-title);
+    font-weight: var(--mm-font-weight-medium);
+    line-height: var(--mm-leading-h1);
     color: var(--mm-white);
   }
 }

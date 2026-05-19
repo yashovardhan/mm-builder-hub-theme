@@ -2,13 +2,16 @@
 // HEADER - MetaMask Navbar Style (Dark) - Production Polish
 // ============================================================================
 .d-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background: var(--mm-black) !important;
   border-bottom: 1px solid var(--mm-gray-dark);
   box-shadow: none;
-  height: 5rem; // Desktop height
+  height: 5rem; // Desktop — docs --header-desktop (8rem @ 10px) = 80px
 
   @include mm-bp-max(tablet) {
-    height: 3.8125rem; // Mobile height
+    height: 3.8125rem; // Mobile — docs --header-mobile (6.1rem @ 10px)
   }
 
   .wrap {
@@ -31,17 +34,17 @@
     }
   }
 
-  // Logo
+  // Logo + site title (docs navbar__logo 3.2rem height, navbar__link 1.7rem)
   .title {
     font-family: var(--mm-font-primary);
-    font-weight: 500;
-    font-size: 1em;
+    font-weight: var(--mm-font-weight-medium);
+    font-size: var(--mm-text-nav);
     color: var(--mm-white) !important;
 
     a {
       display: flex;
       align-items: center;
-      gap: var(--mm-space-sm);
+      gap: 0.5rem;
       color: var(--mm-white) !important;
       text-decoration: none;
 
@@ -50,6 +53,18 @@
         color: var(--mm-green) !important;
       }
     }
+
+    img {
+      display: block;
+      height: 2rem;
+      width: auto;
+      max-height: none;
+    }
+  }
+
+  .header-site-name {
+    font-size: var(--mm-text-nav);
+    font-weight: var(--mm-font-weight-medium);
   }
 
   // Header icons container
@@ -241,5 +256,11 @@
   // Header search dropdown — layout in SEARCH section (avoid styling bare inputs here)
   .search-menu {
     border-radius: 0;
+
+    .search-term__input,
+    input[type="search"] {
+      min-height: 2.625rem;
+      font-size: var(--mm-text-body);
+    }
   }
 }

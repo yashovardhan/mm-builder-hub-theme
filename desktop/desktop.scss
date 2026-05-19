@@ -252,7 +252,7 @@ body:not(.admin-interface) {
   }
 
   a {
-    font-size: 0.875em;
+    font-size: var(--mm-text-body-sm);
     color: var(--mm-gray);
 
     &:hover {
@@ -278,7 +278,7 @@ body:not(.admin-interface) table {
   th {
     font-weight: 500;
     background: var(--primary-low);
-    font-size: 0.8125em;
+    font-size: var(--mm-text-label);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--primary-medium);

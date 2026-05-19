@@ -1,6 +1,11 @@
 // Type scale from https://docs.metamask.io/ (html { font-size: 10px } on docs).
 // Absolute sizes below are the computed px values; we express them in rem on a 16px
 // Discourse root so layout stays compatible while matching docs visually.
+//
+// Scales:
+// - Marketing/UI: type-heading-* (page chrome, nav labels)
+// - Prose: .markdown / article body (.cooked, composer preview)
+// - Cards/home: cardContainer h3, homepage hero title
 
 :root {
   // Body & UI copy
@@ -8,17 +13,31 @@
   --mm-text-body-sm: 0.875rem; // 14px — type-paragraph-s
   --mm-text-body-lg: 1.125rem; // 18px — type-paragraph-l
   --mm-text-label: 0.75rem; // 12px — type-label
-  --mm-text-nav: 1.0625rem; // 17px — docs .menu__link
+  --mm-text-nav: 1.0625rem; // 17px — docs .menu__link / navbar
   --mm-text-sidebar: 0.9375rem; // 15px — docs sidebar links
 
-  // Headings (Geist on docs — MM Sans only in CMS rich text)
-  --mm-text-hero: 2.375rem; // 38px — type-heading-l (homepage hero)
+  // Marketing headings (type-heading-*)
+  --mm-text-hero: 2.375rem; // 38px — type-heading-l
   --mm-text-h1: 1.5rem; // 24px — type-heading-m
   --mm-text-h2: 1.375rem; // 22px — type-heading-sm
   --mm-text-h3: 1.25rem; // 20px — type-heading-s
   --mm-text-h4: 1.125rem; // 18px — type-heading-xs
   --mm-text-h5: 1rem; // 16px — type-heading-xxs
   --mm-text-h6: 1rem;
+
+  // Prose / markdown (docs .markdown>h1–h3)
+  --mm-text-prose-h1: 1.875rem; // 30px
+  --mm-text-prose-h2: 1.25rem; // 20px
+  --mm-text-prose-h3: 0.9375rem; // 15px
+  --mm-text-prose-h4: var(--mm-text-h4);
+  --mm-text-prose-h5: var(--mm-text-h5);
+  --mm-text-prose-h6: var(--mm-text-h6);
+
+  // Homepage & cards (docs title_f1Hy, cardContainer h3)
+  --mm-text-home-title: 1.875rem; // 30px — docs homepage hero
+  --mm-text-home-subtitle: 1.5rem; // 24px — docs hero__subtitle
+  --mm-text-card-title: 1.5rem; // 24px — docs card h3
+  --mm-text-topic-title: 1.5rem; // 24px — topic view title
 
   // Line heights (docs percentages → unitless)
   --mm-leading-body: 1.5;
@@ -29,6 +48,9 @@
   --mm-leading-h4: 1.667;
   --mm-leading-h5: 1.575;
   --mm-leading-hero: 1.263;
+  --mm-leading-prose-h1: 1.333;
+  --mm-leading-prose-h2: 1.4;
+  --mm-leading-home-title: 1.333;
 
   // Weights (docs: 400 body, 500 medium UI / strong, 700 bold)
   --mm-font-weight-normal: 400;
@@ -40,15 +62,21 @@
   --mm-text-code-block: 0.9em;
   --mm-leading-code-block: 1.45;
 
+  // Layout (docs --page-padding-x)
+  --mm-page-padding-x: 1.6rem;
+
+  // Announcement bar (docs --header-toast-bar-height)
+  --mm-announcement-height: 4.1rem;
+
   // Map Discourse relative scale → docs sizes (forum chrome uses --font-*)
   --font-0: var(--mm-text-body);
   --font-down-1: var(--mm-text-body-sm);
   --font-down-2: 0.8125rem;
   --font-up-1: var(--mm-text-h4);
-  --font-up-2: var(--mm-text-h3);
+  --font-up-2: var(--mm-text-card-title);
   --font-up-3: var(--mm-text-h2);
   --font-up-4: var(--mm-text-h1);
-  --font-up-5: var(--mm-text-hero);
+  --font-up-5: var(--mm-text-home-title);
   --cooked-line-height: var(--mm-leading-body);
   --line-height-large: var(--mm-leading-body);
   --line-height-medium: var(--mm-leading-h2);

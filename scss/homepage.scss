@@ -16,7 +16,7 @@ body .custom-search-banner-wrap {
   position: relative;
   background: var(--mm-black-light);
   color: var(--mm-white);
-  padding: 24px 20px;
+  padding: 2rem var(--mm-page-padding-x);
   margin: 0 0 16px 0;
   width: 100%;
   border-radius: 1.5em; // Use border-radius instead of clip-path to allow dropdowns
@@ -54,20 +54,20 @@ body .custom-search-banner-wrap {
   .custom-search-banner-headline,
   h1 {
     font-family: var(--mm-font-primary);
-    font-size: var(--mm-text-hero);
+    font-size: var(--mm-text-home-title);
     font-weight: var(--mm-font-weight-medium);
-    line-height: var(--mm-leading-hero);
-    color: var(--mm-green);
-    margin-bottom: 8px;
+    line-height: var(--mm-leading-home-title);
+    color: var(--mm-white);
+    margin-bottom: 0.5rem;
     position: relative;
     z-index: 1;
   }
 
   .custom-search-banner-content > p {
-    font-size: var(--mm-text-body-lg);
-    line-height: var(--mm-leading-body-lg);
+    font-size: var(--mm-text-home-subtitle);
+    line-height: var(--mm-leading-body);
     color: var(--primary-high);
-    margin: 0 0 16px;
+    margin: 0 0 1rem;
     position: relative;
     z-index: 1;
   }
@@ -259,10 +259,13 @@ body .custom-search-banner-wrap {
 .footer {
   background: var(--mm-black-light);
   border-top: 1px solid var(--mm-gray-dark);
-  padding: var(--mm-space-xl) var(--mm-space-lg);
+  padding: var(--mm-space-xl) var(--mm-page-padding-x);
   margin-top: var(--mm-space-xl);
+  font-size: var(--mm-text-body);
+  line-height: var(--mm-leading-body);
 
   a {
+    font-size: var(--mm-text-body);
     color: var(--mm-gray);
 
     &:hover {
@@ -387,9 +390,16 @@ body .custom-search-banner-wrap {
   border-radius: 0;
   background: var(--mm-black-light);
   box-shadow: var(--mm-shadow-lg);
+  font-size: var(--mm-text-body);
 
   .reply-area {
     padding: var(--mm-space-md);
+  }
+
+  .d-editor-input,
+  .d-editor-preview {
+    font-size: var(--mm-text-body);
+    line-height: var(--mm-leading-body);
   }
 
   .grippie {

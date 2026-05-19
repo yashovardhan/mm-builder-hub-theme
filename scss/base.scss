@@ -2,7 +2,15 @@
 // ============================================================================
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5em;
+  scroll-padding-top: 5rem;
+}
+
+html:has(.mm-announcement-bar) {
+  scroll-padding-top: calc(5rem + var(--mm-announcement-height));
+
+  @include mm-bp-max(tablet) {
+    scroll-padding-top: calc(3.8125rem + var(--mm-announcement-height));
+  }
 }
 
 body {

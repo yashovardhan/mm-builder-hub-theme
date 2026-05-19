@@ -12,7 +12,15 @@ A dark mode Discourse theme for the MetaMask Developer Builder Hub, featuring a 
 
 ## Brand
 
-Colors and logos follow the official [MetaMask brand assets](https://metamask.io/assets). Typography matches [docs.metamask.io](https://docs.metamask.io): **Geist** for UI and headings, **MM Sans Mono** for code, with the same px scale as the docs site (16px body, 24px h1, 38px hero, etc.). See `scss/docs-typography.scss`.
+Colors and logos follow the official [MetaMask brand assets](https://metamask.io/assets). Typography matches [docs.metamask.io](https://docs.metamask.io): **Geist** for UI and headings, **MM Sans Mono** for code. See `scss/docs-typography.scss`.
+
+| Scale | Use | Sizes (comfortable / 16px root) |
+|-------|-----|----------------------------------|
+| **UI / marketing** | Nav, page chrome, category labels | Body 16px, h1 24px, nav 17px |
+| **Prose** | Posts (`.cooked`), composer preview | h1 30px, h2 20px, h3 15px |
+| **Home / cards** | Homepage hero, category tiles | Hero 30px, subtitle 24px, card title 24px |
+
+The theme includes a docs-style **announcement bar** and optional **header links to docs.metamask.io** (theme settings). Default layout width is **comfortable** (~1400px) to align with docs content width.
 
 ### Fonts vs Discourse admin
 
@@ -76,6 +84,13 @@ announcements|📢|Latest updates and news
 - **slug**: Discourse category slug (must match existing category)
 - **icon**: Emoji or text icon (e.g., 🚀, 📦, or custom text)
 - **description**: Short description shown on card (optional)
+
+### Docs parity settings
+
+- **Layout width**: `comfortable` (default) approximates docs content width; use `full` for edge-to-edge forum layouts
+- **Font scale**: Keep `comfortable` (16px body) for parity with docs.metamask.io
+- **Enable announcement bar**: Docs-style banner above the header (MetaMask Connect message by default)
+- **Show docs nav links**: Desktop header links to Docs, Connect, Embedded Wallets, and Snaps on docs.metamask.io
 
 ## Hidden Elements
 
