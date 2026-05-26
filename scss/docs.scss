@@ -337,23 +337,59 @@ a.mention-group {
   color: var(--mm-white) !important;
 }
 
-// Target the actual banner container aggressively
-.category-heading,
-div.category-heading,
-section.category-heading,
-[class*="category-heading"] {
+// Target category description banners only when they have real content
+.category-heading:has(
+    .cooked h1,
+    .cooked h2,
+    .cooked h3,
+    .cooked p,
+    .cooked ul,
+    .cooked ol,
+    .cooked img,
+    .category-heading-description,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    img,
+    ul,
+    ol,
+    .category-logo,
+    .aspect-image
+  ),
+div.category-heading:has(
+    .cooked h1,
+    .cooked h2,
+    .cooked h3,
+    .cooked p,
+    .category-heading-description,
+    h1,
+    h2,
+    h3,
+    img,
+    .category-logo,
+    .aspect-image
+  ),
+section.category-heading:has(
+    .cooked h1,
+    .cooked h2,
+    .cooked h3,
+    .cooked p,
+    .category-heading-description,
+    h1,
+    h2,
+    h3,
+    img,
+    .category-logo,
+    .aspect-image
+  ) {
   background: var(--mm-black-light) !important;
   background-color: var(--mm-black-light) !important;
   border: 1px solid var(--mm-gray-dark) !important;
   padding: var(--mm-space-md);
   margin-bottom: var(--mm-space-md);
-
-  &:empty {
-    display: none;
-    margin: 0;
-    padding: 0;
-    border: none;
-  }
 
   // Override all child elements
   * {
@@ -477,7 +513,19 @@ section.category-heading,
 }
 
 // Override teal/light blue category banners — explicit targets only (not nav chrome)
-.category-heading,
+.category-heading:has(
+    .cooked h1,
+    .cooked h2,
+    .cooked h3,
+    .cooked p,
+    .category-heading-description,
+    h1,
+    h2,
+    h3,
+    img,
+    .category-logo,
+    .aspect-image
+  ),
 .topic-category,
 .category-header-widget,
 .category-title-header,
@@ -494,15 +542,6 @@ section.category-heading,
       color: var(--mm-green) !important;
     }
   }
-}
-
-// List controls nav bar must stay flat — never treat as a category banner
-.list-controls .navigation-container.category-navigation {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: none !important;
-  padding: 0;
-  margin-bottom: 0;
 }
 
 // Cooked content in category descriptions (the formatted text)
