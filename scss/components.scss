@@ -642,6 +642,8 @@
   border-collapse: separate;
   border-spacing: 0;
   background: transparent;
+  table-layout: fixed;
+  width: 100%;
 
   // Header row
   .topic-list-header {
@@ -692,12 +694,6 @@
 
     &:first-of-type {
       padding-left: 0;
-      display: flex;
-      flex-direction: column;
-
-      @include mm-bp-max(tablet) {
-        gap: 0.25rem;
-      }
     }
 
     &:last-of-type {
@@ -705,17 +701,28 @@
     }
 
     &.main-link {
+      // Fill remaining row width — do not cap (26.5rem caused a huge dead zone on wide layouts)
+      max-width: none;
       width: auto;
-      max-width: 26.5rem;
 
-      @include mm-bp-max(desktop) {
-        max-width: none;
+      .link-top-line,
+      .link-bottom-line {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
       }
     }
 
     &.posters {
-      @include mm-bp(desktop) {
-        width: 13.375em;
+      width: 9.125em; // ~146px, matches Discourse default when avatars are shown
+
+      &:not(:has(a)) {
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        border: none !important;
       }
 
       >a {
@@ -850,20 +857,11 @@
   line-height: 1.5 !important;
 }
 
-// Empty posters column — Discourse keeps the <td> but avatars are hidden on many
-// breakpoints, leaving unselectable dead space beside the title.
-.topic-list td.posters:not(:has(a)) {
+// Empty posters header cell (body cells handled on .topic-list-data.posters above)
+.topic-list th.posters:not(:has(a)) {
+  display: none !important;
   width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
   padding: 0 !important;
-  border: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  overflow: hidden;
-  visibility: collapse;
-  font-size: 0;
-  line-height: 0;
 }
 
 // Topic excerpt — desktop/tablet only (hidden on narrow viewports; see responsive.scss)
