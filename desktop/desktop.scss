@@ -84,13 +84,13 @@ body:not(.admin-interface) {
   border-spacing: 0 6px;
 
   th {
-    padding: 6px 12px;
+    padding: 1rem var(--mm-topic-list-padding-x, 0.875rem);
     font-size: 0.75em;
   }
 
   .topic-list-item {
     td {
-      padding: 10px 14px;
+      padding: 1.25rem var(--mm-topic-list-padding-x, 0.875rem);
     }
 
     // Show more info on hover

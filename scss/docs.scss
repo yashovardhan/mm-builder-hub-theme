@@ -348,6 +348,13 @@ section.category-heading,
   padding: var(--mm-space-md);
   margin-bottom: var(--mm-space-md);
 
+  &:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
   // Override all child elements
   * {
     background: transparent !important;
@@ -469,14 +476,12 @@ section.category-heading,
   }
 }
 
-// Override any teal/light blue category backgrounds - MAXIMUM SPECIFICITY
+// Override teal/light blue category banners — explicit targets only (not nav chrome)
 .category-heading,
 .topic-category,
 .category-header-widget,
 .category-title-header,
-.topic-category-title,
-div[class*="category"],
-section[class*="category"] {
+.topic-category-title {
   &:not(.category-box):not(.category-boxes) {
     background: var(--mm-black-light) !important;
     background-color: var(--mm-black-light) !important;
@@ -489,6 +494,15 @@ section[class*="category"] {
       color: var(--mm-green) !important;
     }
   }
+}
+
+// List controls nav bar must stay flat — never treat as a category banner
+.list-controls .navigation-container.category-navigation {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0;
+  margin-bottom: 0;
 }
 
 // Cooked content in category descriptions (the formatted text)

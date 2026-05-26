@@ -19,7 +19,8 @@
 
 // Category breadcrumb styling (topic/category list pages only)
 .navigation-topics,
-.categories-list {
+.categories-list,
+.list-controls {
   .category-breadcrumb {
   display: flex !important;
   align-items: center !important;
@@ -106,7 +107,8 @@
 // NAVIGATION CONTAINER ALIGNMENT (topic/category list pages only)
 // ============================================================================
 .navigation-topics,
-.categories-list {
+.categories-list,
+.list-controls {
   .navigation-container {
     display: flex;
     align-items: center;

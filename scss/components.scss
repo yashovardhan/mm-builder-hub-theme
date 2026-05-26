@@ -643,17 +643,29 @@
   border-spacing: 0;
   background: transparent;
   width: 100%;
+  --mm-topic-list-padding-y: 1rem;
+  --mm-topic-list-padding-x: 0.875rem;
+  --mm-topic-list-edge-x: 1.25rem;
 
   // Header row
   .topic-list-header {
     .topic-list-data {
       color: var(--mm-white);
       font-weight: 500;
-      padding: 1.25rem 0.5rem 1rem;
+      padding: 1.25rem var(--mm-topic-list-padding-x) 1rem;
 
       &:hover,
       &:focus {
         background-color: transparent;
+      }
+
+      &.default,
+      &.main-link {
+        padding-left: var(--mm-topic-list-edge-x);
+      }
+
+      &.activity {
+        padding-right: var(--mm-topic-list-edge-x);
       }
     }
   }
@@ -666,13 +678,15 @@
   th,
   td {
     font-family: var(--mm-font-primary);
-    padding: 1.5rem 0.5rem;
+    padding: 1.5rem var(--mm-topic-list-padding-x);
     border: none;
     background: transparent;
     vertical-align: middle;
 
     @include mm-bp-max(tablet) {
-      padding: 0.5rem 0.625rem;
+      --mm-topic-list-padding-x: 0.625rem;
+      --mm-topic-list-edge-x: 0.75rem;
+      padding: 0.5rem var(--mm-topic-list-padding-x);
     }
   }
 
@@ -683,7 +697,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--mm-gray);
-    padding: 1rem 0.5rem;
+    padding: 1rem var(--mm-topic-list-padding-x);
   }
 
   // Data column widths
@@ -691,18 +705,12 @@
     position: relative;
     z-index: 1;
 
-    &:first-of-type {
-      padding-left: 0;
-    }
-
-    &:last-of-type {
-      padding-right: 0;
-    }
-
+    &.default,
     &.main-link {
       // No max-width cap — 26.5rem left a dead zone on wide layouts
       max-width: none;
       width: auto;
+      padding-left: var(--mm-topic-list-edge-x);
     }
 
     // Metadata columns — fixed widths so activity does not absorb extra space
@@ -751,6 +759,8 @@
       min-width: 10em;
       white-space: nowrap;
       text-align: right;
+      padding-right: var(--mm-topic-list-edge-x);
+      padding-left: var(--mm-topic-list-padding-x);
     }
 
     .number,
