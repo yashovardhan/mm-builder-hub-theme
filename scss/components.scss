@@ -669,6 +669,10 @@
     border: none;
     background: transparent;
     vertical-align: middle;
+
+    @include mm-bp-max(tablet) {
+      padding: 0.5rem 0.625rem;
+    }
   }
 
   // Header cells
@@ -692,7 +696,7 @@
       flex-direction: column;
 
       @include mm-bp-max(tablet) {
-        gap: 0.5rem;
+        gap: 0.25rem;
       }
     }
 
@@ -703,10 +707,16 @@
     &.main-link {
       width: auto;
       max-width: 26.5rem;
+
+      @include mm-bp-max(desktop) {
+        max-width: none;
+      }
     }
 
     &.posters {
-      width: 13.375em;
+      @include mm-bp(desktop) {
+        width: 13.375em;
+      }
 
       >a {
         margin-right: 0.5rem;
@@ -840,15 +850,41 @@
   line-height: 1.5 !important;
 }
 
-// Topic excerpt - only show when there's content
+// Empty posters column — Discourse keeps the <td> but avatars are hidden on many
+// breakpoints, leaving unselectable dead space beside the title.
+.topic-list td.posters:not(:has(a)) {
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden;
+  visibility: collapse;
+  font-size: 0;
+  line-height: 0;
+}
+
+// Topic excerpt — desktop/tablet only (hidden on narrow viewports; see responsive.scss)
 .topic-excerpt {
-  display: block !important;
   font-size: var(--font-0);
   color: var(--mm-gray) !important;
   font-weight: 400;
   line-height: 1.6 !important;
   margin-top: 0.5em;
-  @include mm-line-clamp(2); // Default to 2 lines
+
+  @include mm-bp(tablet) {
+    display: block !important;
+    @include mm-line-clamp(2);
+  }
+
+  @include mm-bp-max(tablet) {
+    display: none !important;
+    margin: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+  }
 
   // Hide if empty
   &:empty {
@@ -856,20 +892,21 @@
   }
 }
 
-// Expand excerpt on hover
-// Expand excerpt on hover
-.topic-list-item:hover .topic-excerpt {
-  -webkit-line-clamp: unset !important;
-  line-clamp: unset !important;
-  max-height: none !important;
-  overflow: visible !important;
-}
+// Expand excerpt on hover (desktop/tablet only)
+@include mm-bp(tablet) {
+  .topic-list-item:hover .topic-excerpt {
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
 
-.topic-excerpt-more {
-  color: var(--mm-green);
-  font-weight: 500;
-  display: block;
-  margin-top: 0.5em;
+  .topic-excerpt-more {
+    color: var(--mm-green);
+    font-weight: 500;
+    display: block;
+    margin-top: 0.5em;
+  }
 }
 
 // Topic list text colors

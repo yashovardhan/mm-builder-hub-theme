@@ -267,7 +267,11 @@ html.admin-area #main-outlet-wrapper {
   td.posters,
   td.views,
   td.activity {
-    display: none;
+    display: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    visibility: collapse;
   }
 
   th {
@@ -287,8 +291,18 @@ html.admin-area #main-outlet-wrapper {
       line-height: var(--mm-leading-body);
     }
 
-    .topic-excerpt {
-      display: none; // Hide excerpts on mobile
+    .topic-excerpt,
+    .topic-excerpt-more {
+      display: none !important; // components.scss uses !important on desktop
+      margin: 0 !important;
+      max-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    td.num.posts,
+    td.posts-map {
+      padding-top: 0;
+      padding-bottom: 0.5rem;
     }
   }
 }
