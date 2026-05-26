@@ -169,12 +169,9 @@
   }
 }
 
-// Tablet landscape → narrow desktop: empty posters <td> still reserves ~146–270px
+// Tablet landscape → narrow desktop: hide poster column (avatars shown in main-link on small screens)
 @include mm-bp-max(desktop) {
   .topic-list {
-    table-layout: fixed;
-    width: 100%;
-
     th.posters,
     td.posters {
       display: none !important;
@@ -182,11 +179,9 @@
       min-width: 0 !important;
       padding: 0 !important;
       border: none !important;
-      visibility: collapse;
     }
 
     td.main-link {
-      width: auto !important;
       max-width: none !important;
     }
   }

@@ -642,7 +642,6 @@
   border-collapse: separate;
   border-spacing: 0;
   background: transparent;
-  table-layout: fixed;
   width: 100%;
 
   // Header row
@@ -701,47 +700,57 @@
     }
 
     &.main-link {
-      // Fill remaining row width — do not cap (26.5rem caused a huge dead zone on wide layouts)
+      // No max-width cap — 26.5rem left a dead zone on wide layouts
       max-width: none;
       width: auto;
-
-      .link-top-line,
-      .link-bottom-line {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
-      }
     }
 
+    // Metadata columns — fixed widths so activity does not absorb extra space
     &.posters {
-      width: 9.125em; // ~146px, matches Discourse default when avatars are shown
+      width: 9.125em;
+      max-width: 9.125em;
+      min-width: 9.125em;
+      white-space: nowrap;
+      vertical-align: middle;
+      overflow: hidden; // contain floated avatars
 
-      &:not(:has(a)) {
-        display: none !important;
-        width: 0 !important;
-        min-width: 0 !important;
-        padding: 0 !important;
-        border: none !important;
+      > a {
+        display: inline-block;
+        float: left;
+        margin-right: 0.25rem;
       }
 
-      >a {
-        margin-right: 0.5rem;
+      > a:last-of-type {
+        margin-right: 0;
       }
     }
 
     &.posts-map,
-    &.num.posts {
-      width: 4.875em;
+    &.num.posts,
+    &.posts {
+      width: var(--d-topic-list-likes-views-posts-width, 4.875em);
+      max-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
+      min-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
+      white-space: nowrap;
+      text-align: center;
     }
 
     &.views,
     &.num.views {
-      width: 4.875em;
+      width: var(--d-topic-list-likes-views-posts-width, 4.875em);
+      max-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
+      min-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
+      white-space: nowrap;
+      text-align: center;
     }
 
-    &.activity {
+    &.activity,
+    &.num.activity {
       width: 10em;
+      max-width: 10em;
+      min-width: 10em;
+      white-space: nowrap;
+      text-align: right;
     }
 
     .number,
@@ -749,6 +758,16 @@
       color: var(--mm-white);
       font-weight: 500;
     }
+  }
+
+  // Body only — empty poster cells (th never contains <a>, so do not target th here)
+  td.posters:not(:has(a)) {
+    display: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    border: none !important;
   }
 
   // Row styling with hover effect
@@ -855,13 +874,6 @@
   font-size: var(--mm-text-nav);
   font-family: var(--mm-font-primary);
   line-height: 1.5 !important;
-}
-
-// Empty posters header cell (body cells handled on .topic-list-data.posters above)
-.topic-list th.posters:not(:has(a)) {
-  display: none !important;
-  width: 0 !important;
-  padding: 0 !important;
 }
 
 // Topic excerpt — desktop/tablet only (hidden on narrow viewports; see responsive.scss)
