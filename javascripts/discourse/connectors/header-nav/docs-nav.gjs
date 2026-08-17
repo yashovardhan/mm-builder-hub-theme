@@ -23,4 +23,16 @@ export default class DocsNav extends Component {
   get links() {
     return DOCS_LINKS;
   }
+
+  <template>
+    {{#if this.enabled}}
+      <ul class="mm-header-docs-nav" aria-label="MetaMask documentation">
+        {{#each this.links as |link|}}
+          <li>
+            <a href={{link.href}} target="_blank" rel="noopener noreferrer">{{link.label}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </template>
 }
