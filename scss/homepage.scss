@@ -12,6 +12,11 @@
   display: none !important;
 }
 
+// Hide native category grid when custom homepage grid is active
+#main-outlet:has(.homepage-categories-wrapper) .categories-list {
+  display: none !important;
+}
+
 body .custom-search-banner-wrap {
   position: relative;
   background: var(--mm-black-light);

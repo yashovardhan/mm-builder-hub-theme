@@ -97,3 +97,16 @@
   padding: var(--mm-space-md);
 }
 
+// Collapsed sidebar — hide empty section bodies and redundant headings
+.sidebar-wrapper.sidebar-sections__sections--collapsed,
+.sidebar-wrapper[data-collapsed="true"] {
+  .sidebar-section:empty,
+  .sidebar-section-link-wrapper:empty {
+    display: none;
+  }
+
+  .sidebar-section-header-text:empty {
+    display: none;
+  }
+}
+

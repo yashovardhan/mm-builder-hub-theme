@@ -34,12 +34,43 @@ html.admin-area {
     color: var(--primary);
   }
 
+  .loading-container,
+  .dashboard-next,
+  .db-activity,
+  .db-activity__table-scroll-container {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .db-activity__table-scroll-container,
+  .table-scroll-wrapper,
+  .admin-table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .admin-detail,
-  .admin-config-area__content {
+  .admin-config-area__content,
+  .admin-config-area__primary-content {
+    min-width: 0;
+    max-width: 100%;
+
     .table-scroll-wrapper,
     .admin-table-wrapper {
       overflow-x: auto;
       max-width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .d-table,
+    .d-table__wrapper {
+      max-width: 100%;
+    }
+
+    .d-table td {
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     form,
@@ -53,6 +84,25 @@ html.admin-area {
       overflow-wrap: break-word;
       word-wrap: break-word;
     }
+  }
+
+  .db-search-table,
+  .admin-contents table {
+    max-width: 100%;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .db-search-table td,
+  .admin-contents table td {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 0;
+  }
+
+  .admin-contents .users-list-container {
+    overflow-x: auto;
+    max-width: 100%;
   }
 }
 

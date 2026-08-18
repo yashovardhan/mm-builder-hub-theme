@@ -53,14 +53,28 @@
       flex-shrink: 0;
     }
 
+    .title img {
+      max-width: 8.5rem;
+      height: auto;
+      object-fit: contain;
+    }
+
     .d-header-icons {
       flex-wrap: nowrap;
       flex-shrink: 0;
 
+      .icon,
+      .btn,
+      a.btn {
+        min-width: var(--mm-touch-target);
+        min-height: var(--mm-touch-target);
+      }
+
       #search-button {
-        width: 2.25rem !important;
-        height: 2.25rem !important;
-        min-width: 2.25rem;
+        width: var(--mm-header-icon-size-mobile) !important;
+        height: var(--mm-header-icon-size-mobile) !important;
+        min-width: var(--mm-touch-target) !important;
+        min-height: var(--mm-touch-target) !important;
         padding: 0 !important;
         border-radius: 50% !important;
         aspect-ratio: 1 / 1;
@@ -71,22 +85,82 @@
         }
       }
     }
+
+    #current-user .icon {
+      min-width: var(--mm-touch-target);
+      min-height: var(--mm-touch-target);
+    }
   }
 
   .navigation-topics,
   .categories-list,
   .list-controls {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
     .navigation-container {
       flex-wrap: wrap;
-      min-height: auto;
+      min-height: 0;
+      gap: 0.25rem;
     }
 
     .navigation-container .category-breadcrumb,
     .navigation-container #navigation-bar {
-      flex: 1 1 100%;
-      width: 100%;
+      flex: 1 1 auto;
+      width: auto;
+      max-width: 100%;
+      min-width: 0;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+      max-height: var(--mm-control-height);
+    }
+
+    .navigation-container .navigation-controls {
+      flex: 0 0 auto;
+    }
+  }
+
+  // Profile / activity — contain wide tables and scrollable tab nav
+  .user-main,
+  .user-content,
+  .new-user-wrapper {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .new-user-summary {
+    overflow-x: auto;
+    max-width: 100%;
+
+    table {
+      width: 100%;
+      max-width: 100%;
+      table-layout: fixed;
+    }
+
+    td,
+    th {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+  }
+
+  .user-nav,
+  .user-nav .nav-pills {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > li > a,
+    > li {
+      flex-shrink: 0;
+      white-space: nowrap;
     }
   }
 
@@ -107,6 +181,8 @@
   // Topic list — compact rows (mobile.scss only loads on mobile UA)
   .topic-list {
     border-spacing: 0 2px;
+    table-layout: fixed;
+    width: 100%;
 
     th.posters,
     th.views,
@@ -120,6 +196,31 @@
     th {
       padding: 0.25rem 0.5rem;
       font-size: 0.6875em;
+    }
+
+    td.main-link,
+    .topic-list-data.main-link {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    td.posts-map,
+    td.num.posts,
+    .topic-list-data.posts-map,
+    .topic-list-data.num.posts {
+      width: auto;
+      min-width: 0;
+      max-width: 4.5em;
+      padding-right: 0.25rem;
+    }
+
+    .age.activity,
+    .relative-date.age.activity,
+    td.num.activity.last {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .topic-list-item {

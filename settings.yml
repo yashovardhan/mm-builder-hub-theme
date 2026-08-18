@@ -31,7 +31,7 @@ homepage_categories:
 
 layout_width:
   type: enum
-  default: comfortable
+  default: full
   choices:
     - full
     - comfortable
@@ -39,7 +39,7 @@ layout_width:
 
 font_scale:
   type: enum
-  default: comfortable
+  default: large
   choices:
     - compact
     - comfortable

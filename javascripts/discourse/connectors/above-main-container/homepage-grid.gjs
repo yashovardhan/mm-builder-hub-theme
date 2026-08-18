@@ -24,6 +24,10 @@ export default class HomepageGrid extends Component {
     return routeName === "discovery.categories" && enabled;
   }
 
+  get hasCategories() {
+    return Array.isArray(this.categories) && this.categories.length > 0;
+  }
+
   get heroTitle() {
     return this.themeSettings.hero_title || "Build the future of Web3 with MetaMask";
   }
@@ -89,22 +93,22 @@ export default class HomepageGrid extends Component {
 
   <template>
     {{#if this.shouldDisplay}}
-      <div class="custom-search-banner-wrap">
-        <div class="custom-search-banner-content">
-          {{#if this.heroTitle}}
-            <h1 class="custom-search-banner-headline">{{this.heroTitle}}</h1>
-          {{/if}}
-          {{#if this.heroSubtitle}}
-            <p>{{this.heroSubtitle}}</p>
-          {{/if}}
-        </div>
-      </div>
-
       {{#if this.isLoading}}
         <div class="loading-container">
           <div class="spinner"></div>
         </div>
-      {{else if this.categories}}
+      {{else if this.hasCategories}}
+        <div class="custom-search-banner-wrap">
+          <div class="custom-search-banner-content">
+            {{#if this.heroTitle}}
+              <h1 class="custom-search-banner-headline">{{this.heroTitle}}</h1>
+            {{/if}}
+            {{#if this.heroSubtitle}}
+              <p>{{this.heroSubtitle}}</p>
+            {{/if}}
+          </div>
+        </div>
+
         <div class="homepage-categories-wrapper">
           <div class="category-boxes">
             {{#each this.categories as |category|}}

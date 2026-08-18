@@ -65,12 +65,14 @@
   // Layout (docs --page-padding-x)
   --mm-page-padding-x: 1.6rem;
 
-  // Header chrome (docs navbar: logo 3.2rem @ 10px root = 32px; bar ~7.6rem @ 10px = 76px)
+  // Header chrome (production: 87px desktop / 69px mobile @ 18px root)
   --mm-header-height-desktop: 4.75rem;
   --mm-header-height-mobile: 3.75rem;
   --mm-header-logo-height: 2rem;
   --mm-header-icon-size: 2rem;
-  --mm-header-icon-size-mobile: 2.25rem;
+  --mm-header-icon-size-mobile: 2.5rem; // 45px @ 18px — touch-friendly
+  --mm-control-height: 2.5rem; // 45px @ 18px — nav rows, compact chrome
+  --mm-touch-target: 2.5rem;
 
   // Map Discourse relative scale → docs sizes (forum chrome uses --font-*)
   --font-0: var(--mm-text-body);

@@ -73,6 +73,12 @@ html.admin-area #main-outlet-wrapper {
     min-width: 0;
     flex: 1 1 auto;
     overflow: hidden;
+
+    img {
+      max-width: 8.5rem;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
   .panel {
@@ -95,17 +101,25 @@ html.admin-area #main-outlet-wrapper {
     gap: 0.25em;
     flex-shrink: 0;
 
+    .icon,
+    .btn,
+    a.btn {
+      min-width: var(--mm-touch-target);
+      min-height: var(--mm-touch-target);
+    }
+
     .icon {
-      width: 2.25rem;
-      height: 2.25rem;
+      width: var(--mm-header-icon-size-mobile);
+      height: var(--mm-header-icon-size-mobile);
       padding: 0;
       box-sizing: border-box;
     }
 
     #search-button {
-      width: 2.25rem !important;
-      height: 2.25rem !important;
-      min-width: 2.25rem;
+      width: var(--mm-header-icon-size-mobile) !important;
+      height: var(--mm-header-icon-size-mobile) !important;
+      min-width: var(--mm-touch-target) !important;
+      min-height: var(--mm-touch-target) !important;
       padding: 0 !important;
       border-radius: 50% !important;
 
@@ -132,13 +146,16 @@ html.admin-area #main-outlet-wrapper {
 .list-controls {
   .navigation-container {
     flex-wrap: wrap;
-    min-height: auto;
+    min-height: 0;
+    gap: 0.25rem;
   }
 
   .navigation-container .category-breadcrumb,
   .navigation-container #navigation-bar {
-    flex: 1 1 100%;
-    width: 100%;
+    flex: 1 1 auto;
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -603,7 +620,7 @@ select {
   min-height: 3em;
 }
 
-.select-kit {
+.select-kit:not(.category-breadcrumb .select-kit) {
   .select-kit-header {
     min-height: 3em;
     padding: var(--mm-space-sm) var(--mm-space-md);

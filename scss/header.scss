@@ -217,14 +217,29 @@
     @include mm-form-item-sizing;
   }
 
-  // Login button - icon only on mobile
+  // Guest: Log In secondary, Sign Up stays primary
   .login-button {
+    background: transparent;
+    color: var(--mm-white);
+    border: 1px solid var(--mm-gray-dark);
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      background: var(--mm-black-light);
+      border-color: var(--mm-green);
+      color: var(--mm-green);
+      box-shadow: none;
+    }
+
     @include mm-bp-max(tablet) {
       border-radius: 50%;
       aspect-ratio: 1/1;
       padding: 1em;
-      width: 2.25rem;
-      height: 2.25rem;
+      width: var(--mm-touch-target);
+      height: var(--mm-touch-target);
+      min-width: var(--mm-touch-target);
+      min-height: var(--mm-touch-target);
 
       .d-button-label {
         display: none;
@@ -268,6 +283,8 @@
     @include mm-bp-max(tablet) {
       width: var(--mm-header-icon-size-mobile);
       height: var(--mm-header-icon-size-mobile);
+      min-width: var(--mm-touch-target);
+      min-height: var(--mm-touch-target);
     }
 
     .d-icon {
@@ -293,6 +310,8 @@
     @include mm-bp-max(tablet) {
       width: var(--mm-header-icon-size-mobile);
       height: var(--mm-header-icon-size-mobile);
+      min-width: var(--mm-touch-target);
+      min-height: var(--mm-touch-target);
     }
 
     img {
