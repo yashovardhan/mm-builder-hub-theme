@@ -32,18 +32,33 @@ For production, consider self-hosting the `.woff2` files in the theme `assets/` 
 
 | Token | Hex | Use |
 |-------|-----|-----|
-| Orange | `#FF5C16` | Primary accent, danger |
-| Light Orange | `#FFA680` | Warnings, highlights |
-| Dark Orange | `#661800` | Orange depth |
-| Green | `#BAF24A` | Success, links, CTAs |
-| Light Green | `#E5FFC3` | Green tints |
+| Orange | `#FA4B00` | Primary accent, danger |
+| Light Orange | `#FFC0A5` | Warnings, highlights |
+| Dark Orange | `#28001A` | Orange depth |
+| Green | `#B9F302` | Success, links, CTAs |
+| Light Green | `#E3FF89` | Green tints |
 | Dark Green | `#013330` | Green depth |
-| Purple | `#d075ff` | Accents, code blocks |
-| Light Purple | `#EAC2FF` | Purple tints |
-| Dark Purple | `#3d065f` | Code block backgrounds |
-| Blue | `#89B0FF` | Info |
-| Light Blue | `#CCE7FF` | Blue tints |
-| Dark Blue | `#190066` | Blue depth |
+| Purple | `#C66EF5` | Accents, code blocks |
+| Light Purple | `#E1A9FF` | Purple tints |
+| Dark Purple | `#360853` | Code block backgrounds |
+| Blue | `#73A6FF` | Info |
+| Light Blue | `#B4D0FF` | Blue tints |
+| Dark Blue | `#002139` | Blue depth |
+
+### Logos (Admin → Settings → Branding)
+
+Logos are site settings, not theme files. The theme is always dark, so Discourse uses the **Logo** setting on a dark header — upload the white-text lockup there, not the black one.
+
+| Setting | Asset |
+|---------|-------|
+| Logo, Logo dark | White-text lockup (MetaMask wordmark + "Builder Hub") |
+| Logo small, Mobile logo | Fox only, transparent |
+| Large icon, Apple touch icon | Fox on a solid tile (no transparency) |
+| Favicon | Fox only, PNG |
+| OpenGraph image, X summary large image | 1200×630 card |
+| Digest logo | Black-text lockup PNG on white (emails are light) |
+
+The header renders the logo at `--mm-header-logo-height` (2rem, `scss/docs-typography.scss`).
 
 ## Installation
 

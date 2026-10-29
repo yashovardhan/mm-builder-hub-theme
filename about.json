@@ -7,14 +7,14 @@
     "MetaMask Dark": {
       "primary": "ffffff",
       "secondary": "0a0a0a",
-      "tertiary": "baf24a",
-      "quaternary": "d075ff",
+      "tertiary": "b9f302",
+      "quaternary": "c66ef5",
       "header_background": "0a0a0a",
       "header_primary": "ffffff",
-      "highlight": "baf24a",
-      "danger": "ff5c16",
-      "success": "baf24a",
-      "love": "d075ff",
+      "highlight": "b9f302",
+      "danger": "fa4b00",
+      "success": "b9f302",
+      "love": "c66ef5",
       "selected": "242628",
       "hover": "1b1b1b"
     }

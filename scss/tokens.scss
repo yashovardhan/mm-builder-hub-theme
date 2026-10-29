@@ -1,4 +1,4 @@
-// MetaMask design tokens — https://metamask.io/assets (consumer palette)
+// MetaMask design tokens — https://metamask.io/assets (published brand palette)
 // Typography aligned with docs.metamask.io (Geist UI + prose, MM Sans Mono code)
 
 // ============================================================================
@@ -17,23 +17,23 @@
   --mm-black: #0a0a0a;
 
   // Brand — https://metamask.io/assets
-  --mm-orange-light: #ffa680;
-  --mm-orange: #ff5c16;
-  --mm-orange-dark: #661800;
-  --mm-purple-light: #eac2ff;
-  --mm-purple: #d075ff;
-  --mm-purple-dark: #3d065f;
-  --mm-green-light: #e5ffc3;
-  --mm-green: #baf24a;
+  --mm-orange-light: #ffc0a5;
+  --mm-orange: #fa4b00;
+  --mm-orange-dark: #28001a;
+  --mm-purple-light: #e1a9ff;
+  --mm-purple: #c66ef5;
+  --mm-purple-dark: #360853;
+  --mm-green-light: #e3ff89;
+  --mm-green: #b9f302;
   --mm-green-dark: #013330;
-  --mm-blue-light: #cce7ff;
-  --mm-blue: #89b0ff;
-  --mm-blue-dark: #190066;
+  --mm-blue-light: #b4d0ff;
+  --mm-blue: #73a6ff;
+  --mm-blue-dark: #002139;
 
   // RGB channels for alpha tints (derived from brand hex above)
-  --mm-green-rgb: 186 242 74;
-  --mm-orange-rgb: 255 92 22;
-  --mm-blue-rgb: 137 176 255;
+  --mm-green-rgb: 185 243 2;
+  --mm-orange-rgb: 250 75 0;
+  --mm-blue-rgb: 115 166 255;
   --mm-green-a10: rgb(var(--mm-green-rgb) / 0.1);
   --mm-green-a15: rgb(var(--mm-green-rgb) / 0.15);
   --mm-green-a20: rgb(var(--mm-green-rgb) / 0.2);
