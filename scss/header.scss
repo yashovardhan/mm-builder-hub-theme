@@ -245,8 +245,10 @@
         display: none;
       }
 
+      // btn-primary icons default to --secondary (black) — invisible on this transparent button
       .d-icon {
         margin: 0;
+        color: currentColor;
       }
     }
   }

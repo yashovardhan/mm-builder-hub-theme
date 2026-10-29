@@ -22,6 +22,14 @@
     height: var(--mm-header-logo-height) !important;
     width: auto !important;
     max-height: var(--mm-header-logo-height) !important;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  // Wide wordmark reads oversized at the square-icon height
+  .title img.logo-big {
+    height: var(--mm-header-logo-wide-height) !important;
+    max-height: var(--mm-header-logo-wide-height) !important;
   }
 }
 
