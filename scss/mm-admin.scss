@@ -151,18 +151,10 @@ html.admin-area {
   }
 }
 
-// Topic map
+// Topic map — keep core's layout (top/bottom rules, avatar-aligned padding);
+// only recolour. A full border + padding boxed it off from the post.
 .topic-map {
-  background: var(--mm-black-light);
-  border: 1px solid var(--mm-gray-dark);
-  padding: var(--mm-space-md);
-}
-
-// Topic avatar
-.topic-avatar {
-  .avatar {
-    border-color: var(--mm-gray-dark);
-  }
+  border-color: var(--mm-gray-dark);
 }
 
 // Topic status info
