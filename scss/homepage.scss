@@ -378,6 +378,21 @@ body .custom-search-banner-wrap {
   }
 }
 
+// Core leaves an empty in-flow #user-card / #group-card placeholder (39em wide,
+// position: unset) at the end of #main-outlet; real cards render in a float-kit
+// menu. Keep the placeholder inside its column (it caused 113px horizontal
+// scroll at 768px with the sidebar open) and drop the stray 2px border line.
+#main-outlet > .user-card,
+#main-outlet > .group-card {
+  max-width: 100%;
+
+  &:not(:has(*)) {
+    border: 0;
+    box-shadow: none;
+    clip-path: none;
+  }
+}
+
 // Topic timeline
 .topic-timeline {
   .timeline-handle {
@@ -390,16 +405,19 @@ body .custom-search-banner-wrap {
 }
 
 // Composer
+// Default open height via core's own hook (core: --composer-height:
+// var(--reply-composer-height, 255px)). A drag-resize still overrides it,
+// unlike the old `#reply-control.open { height: 50vh }` which broke resizing.
+:root {
+  --reply-composer-height: max(22em, 50vh);
+}
+
 #reply-control {
   border: 1px solid var(--mm-gray-dark);
   border-radius: 0;
   background: var(--mm-black-light);
   box-shadow: var(--mm-shadow-lg);
   font-size: var(--mm-text-body);
-
-  .reply-area {
-    padding: var(--mm-space-md);
-  }
 
   .d-editor-input,
   .d-editor-preview {

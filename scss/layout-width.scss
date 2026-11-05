@@ -1,31 +1,53 @@
 // Layout width from theme setting: $layout_width (full | comfortable | compact)
+//
+// IMPORTANT: --d-max-width must always be a real length. Core uses it inside
+// calc() to position the composer (#reply-control), header search and more.
+// Setting it to `none` makes those calc()s invalid — the composer then falls
+// back to `left: auto` and collapses into a ~50px strip at the right edge.
+//
+// "full" follows the official Horizon theme (themes/horizon/scss/desktop-full-width.scss):
+// keep --d-max-width as the readable content width and lift the wrapper cap instead.
 $layout_width: comfortable !default;
 
 :root {
   @if $layout_width == "full" {
     --mm-layout-max-width: none;
+    --d-max-width: 1110px; // core default
   } @else if $layout_width == "comfortable" {
     --mm-layout-max-width: 1400px;
+    --d-max-width: calc(1400px - var(--d-sidebar-width, 17em));
   } @else {
     --mm-layout-max-width: 1110px;
+    --d-max-width: calc(1110px - var(--d-sidebar-width, 17em));
   }
-
-  --d-max-width: var(--mm-layout-max-width);
 }
 
-html.admin-area #main-outlet-wrapper,
-body:not(.admin-interface) #main-outlet-wrapper {
+html body:not(.admin-interface) #main-outlet-wrapper {
   width: 100%;
   max-width: var(--mm-layout-max-width);
-  padding: 0 var(--mm-page-padding-x);
+  padding-inline: var(--mm-page-padding-x);
+  box-sizing: border-box;
 
   @if $layout_width != "full" {
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
   }
 }
 
-.wrap {
-  width: 100%;
-  max-width: var(--d-max-width);
+// Admin keeps core's own width; just give it the same page gutter
+html.admin-area #main-outlet-wrapper {
+  padding-inline: var(--mm-page-padding-x);
+  box-sizing: border-box;
+}
+
+@if $layout_width == "full" {
+  // Core caps .wrap (and .has-sidebar-page .wrap) — undo both, like Horizon
+  html .wrap,
+  html body.has-sidebar-page .wrap {
+    max-width: unset;
+  }
+} @else {
+  .wrap {
+    width: 100%;
+    max-width: var(--mm-layout-max-width);
+  }
 }

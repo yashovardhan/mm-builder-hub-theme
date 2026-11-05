@@ -1,214 +1,27 @@
 // ============================================================================
-// MetaMask Builder Hub - Mobile Specific Styles
-// Optimized for touch interactions and small screens
-// ALWAYS DARK MODE
+// MetaMask Builder Hub - Mobile stylesheet
+//
+// Core now serves this file by viewport (media="(width < 40rem)"). Responsive
+// layout lives in scss/responsive.scss (imported from common) so narrow
+// desktop windows behave the same. Keep this file to small-screen cosmetics.
+//
+// Removed on purpose — core already handles these on small screens and the
+// old overrides broke them: full-screen composer/modals/search/menu panels,
+// post row layout, 3em min-height on every input/select, global .btn sizing,
+// hiding all tooltips, user-card positioning.
 // ============================================================================
 
-// ============================================================================
-// BASE MOBILE ADJUSTMENTS
-// ============================================================================
 html {
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  font-size: 1em;
-  line-height: 1.6;
-}
-
 // ============================================================================
-// LAYOUT
+// CREATE TOPIC — floating action button
 // ============================================================================
-.wrap {
-  padding: 0 12px;
-}
-
-#main-outlet {
-  padding-top: 8px;
-}
-
-// Single column layout on mobile — hide community sidebar (use header menu)
-body:not(.admin-interface) #main-outlet-wrapper {
-  display: block;
-  padding: 0 12px;
-  width: 100%;
-  max-width: 100%;
-
-  .sidebar-wrapper,
-  .sidebar-container,
-  nav.sidebar {
-    display: none !important;
-  }
-}
-
-html.admin-area #main-outlet-wrapper {
-  padding: 0 12px;
-  max-width: 100%;
-}
-
-#main-outlet {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-
-// ============================================================================
-// HEADER - Mobile Compact
-// ============================================================================
-.d-header {
-  min-height: var(--mm-header-height-mobile);
-
-  .wrap {
-    padding: 0 12px;
-  }
-
-  .contents {
-    padding: var(--mm-space-xs) 0;
-    flex-wrap: nowrap;
-    min-width: 0;
-  }
-
-  .title {
-    font-size: var(--mm-text-nav);
-    min-width: 0;
-    flex: 1 1 auto;
-    overflow: hidden;
-
-    img {
-      max-width: 8.5rem;
-      height: auto;
-      object-fit: contain;
-    }
-  }
-
-  .panel {
-    flex: 0 0 auto;
-  }
-
-  .header-buttons,
-  .auth-buttons {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 0.25em;
-    flex-shrink: 0;
-  }
-
-  .d-header-icons {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 0.25em;
-    flex-shrink: 0;
-
-    .icon,
-    .btn,
-    a.btn {
-      min-width: var(--mm-touch-target);
-      min-height: var(--mm-touch-target);
-    }
-
-    .icon {
-      width: var(--mm-header-icon-size-mobile);
-      height: var(--mm-header-icon-size-mobile);
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    #search-button {
-      width: var(--mm-header-icon-size-mobile) !important;
-      height: var(--mm-header-icon-size-mobile) !important;
-      min-width: var(--mm-touch-target) !important;
-      min-height: var(--mm-touch-target) !important;
-      padding: 0 !important;
-      border-radius: 50% !important;
-
-      &::after {
-        display: none !important;
-        content: none !important;
-      }
-    }
-  }
-}
-
-// Mobile menu
-.mobile-nav {
-  background: var(--mm-black);
-  border-bottom: 1px solid var(--mm-gray-dark);
-  padding: var(--mm-space-sm) var(--mm-space-md);
-}
-
-// ============================================================================
-// LIST CONTROLS - Mobile
-// ============================================================================
-.navigation-topics,
-.categories-list,
-.list-controls {
-  .navigation-container {
-    flex-wrap: wrap;
-    min-height: 0;
-    gap: 0.25rem;
-  }
-
-  .navigation-container .category-breadcrumb,
-  .navigation-container #navigation-bar {
-    flex: 1 1 auto;
-    width: auto;
-    max-width: 100%;
-    min-width: 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-// ============================================================================
-// NAVIGATION - Mobile Horizontal Scroll
-// ============================================================================
-.nav-pills {
-  display: flex;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: var(--mm-space-xs);
-  margin: 0 calc(-1 * var(--mm-space-md));
-  padding-left: var(--mm-space-md);
-  padding-right: var(--mm-space-md);
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  > li {
-    flex: 0 0 auto;
-
-    > a {
-      padding: 0.5em 0.875em;
-      font-size: var(--mm-text-body-sm);
-      white-space: nowrap;
-    }
-  }
-}
-
-// ============================================================================
-// BUTTONS - Mobile Touch Friendly
-// ============================================================================
-.btn {
-  min-height: 2.75em; // Apple's recommended touch target
-  padding: var(--mm-space-sm) var(--mm-space-md);
-  font-size: 0.9375em;
-
-  &-icon {
-    min-width: 2.75em;
-    min-height: 2.75em;
-    padding: 0.625em;
-  }
-}
-
-// Create topic button - fixed position on mobile
 #create-topic {
   position: fixed;
-  bottom: var(--mm-space-md);
-  right: var(--mm-space-md);
+  bottom: calc(var(--mm-space-xl) + env(safe-area-inset-bottom, 0px));
+  right: var(--mm-space-xl);
   z-index: 100;
   width: 3.5em;
   height: 3.5em;
@@ -219,7 +32,6 @@ html.admin-area #main-outlet-wrapper {
   align-items: center;
   justify-content: center;
 
-  // Hide text, show icon only
   .d-button-label {
     display: none;
   }
@@ -228,10 +40,15 @@ html.admin-area #main-outlet-wrapper {
     margin: 0;
     font-size: 1.25em;
   }
+
+  // Keep the FAB out of the way while composing
+  .composer-open & {
+    display: none;
+  }
 }
 
 // ============================================================================
-// CATEGORY CARDS - Mobile Stack
+// CATEGORY CARDS
 // ============================================================================
 .category-boxes {
   grid-template-columns: 1fr;
@@ -250,21 +67,10 @@ html.admin-area #main-outlet-wrapper {
       min-height: 0;
     }
 
-    .category-box-heading h3,
-    h3.category-title {
-      font-size: var(--mm-text-card-title);
-    }
-
-    .description,
-    .category-description {
-      font-size: var(--mm-text-body);
-    }
-
     .subcategories .badge-category {
       font-size: 0.75rem;
     }
 
-    // Smaller decorative shape
     &::after {
       width: 70px;
       opacity: 0.3;
@@ -273,119 +79,19 @@ html.admin-area #main-outlet-wrapper {
 }
 
 // ============================================================================
-// TOPIC LIST - Mobile Compact
+// POST CONTENT
 // ============================================================================
-.topic-list {
-  border-spacing: 0 4px;
-
-  // Hide some columns on mobile
-  th.posters,
-  th.views,
-  th.activity,
-  td.posters,
-  td.views,
-  td.activity {
-    display: none !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    padding: 0 !important;
-    visibility: collapse;
-  }
-
-  th {
-    padding: 4px 8px;
-    font-size: 0.6875em;
-  }
-
-  .topic-list-item {
-    --mm-clip-xs: 0.4em;
-
-    td {
-      padding: 8px 10px;
-    }
-
-    .title {
-      font-size: var(--mm-text-nav);
-      line-height: var(--mm-leading-body);
-    }
-
-    .topic-excerpt,
-    .topic-excerpt-more {
-      display: none !important; // components.scss uses !important on desktop
-      margin: 0 !important;
-      max-height: 0 !important;
-      overflow: hidden !important;
-    }
-
-    td.num.posts,
-    td.posts-map {
-      padding-top: 0;
-      padding-bottom: 0.5rem;
-    }
-  }
-}
-
-// ============================================================================
-// POST LAYOUT - Mobile
-// ============================================================================
-.topic-post {
-  --mm-clip-md: 0.8em;
-  margin-bottom: 10px;
-
-  .row {
-    padding: 10px 12px;
-    display: block;
-  }
-
-  .topic-avatar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-
-    img.avatar {
-      width: 36px;
-      height: 36px;
-    }
-  }
-
-  .topic-body {
-    width: 100%;
-  }
-
-  // Post actions - horizontal scroll on mobile
-  .post-actions {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 4px;
-    padding-bottom: 4px;
-
-    .btn {
-      flex: 0 0 auto;
-      min-height: 32px;
-      padding: 4px 10px;
-    }
-  }
-}
-
-// Post content — prose scale from typography.scss (no downscaling)
 .cooked {
-  // Make images responsive
   img {
     max-width: 100%;
     height: auto;
   }
 
-  // Code blocks scroll horizontally
   pre {
-    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: var(--mm-space-sm);
     font-size: 0.8125em;
   }
 
-  // Tables scroll horizontally
   table {
     display: block;
     overflow-x: auto;
@@ -394,203 +100,11 @@ html.admin-area #main-outlet-wrapper {
 }
 
 // ============================================================================
-// SIDEBAR - Mobile Collapsible
-// ============================================================================
-.sidebar-wrapper {
-  background: var(--mm-black-light);
-  border: 1px solid var(--mm-gray-dark);
-  --mm-clip-md: 1em;
-
-  .sidebar-container {
-    padding: var(--mm-space-sm);
-  }
-
-  .sidebar-section {
-    margin-bottom: var(--mm-space-md);
-  }
-
-  .sidebar-section-link-wrapper a {
-    padding: var(--mm-space-sm) var(--mm-space-md);
-    font-size: 0.9375em;
-  }
-}
-
-// ============================================================================
-// SEARCH - Mobile Full Screen
-// ============================================================================
-.search-menu {
-  &.visible {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    max-width: none;
-    z-index: 1000;
-    background: var(--mm-black);
-    border-radius: 0;
-    clip-path: none;
-  }
-
-  .search-input {
-    font-size: 1em;
-    padding: var(--mm-space-sm) var(--mm-space-md);
-  }
-
-  .results {
-    max-height: calc(100vh - 5em);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .search-result-topic {
-    padding: var(--mm-space-sm) var(--mm-space-md);
-  }
-}
-
-// ============================================================================
-// MODAL - Mobile Full Screen
-// ============================================================================
-.modal-outer-container {
-  padding: 0;
-}
-
-.modal-inner-container {
-  min-width: auto;
-  max-width: none;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  border-radius: 0;
-  clip-path: none;
-
-  .modal-header {
-    padding: var(--mm-space-md);
-    position: sticky;
-    top: 0;
-    background: var(--mm-black-light);
-    z-index: 10;
-
-    .title {
-      font-size: 1.125em;
-    }
-  }
-
-  .modal-body {
-    padding: var(--mm-space-md);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .modal-footer {
-    padding: var(--mm-space-sm) var(--mm-space-md);
-    position: sticky;
-    bottom: 0;
-    background: var(--mm-black-light);
-  }
-}
-
-// ============================================================================
-// MENU PANELS - Mobile Slide In
-// ============================================================================
-.menu-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 85%;
-  max-width: 320px;
-  border-radius: 0;
-  clip-path: none;
-  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.5);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-
-  .widget-link,
-  .categories-link {
-    padding: var(--mm-space-sm) var(--mm-space-md);
-    min-height: 2.75em;
-  }
-}
-
-// ============================================================================
-// COMPOSER - Mobile Full Screen
-// ============================================================================
-#reply-control {
-  &.open {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100% !important;
-    max-height: none;
-    border-radius: 0;
-    clip-path: none;
-  }
-
-  .reply-area {
-    padding: var(--mm-space-sm);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .d-editor-textarea-wrapper {
-    flex: 1;
-    min-height: 0;
-
-    textarea {
-      height: 100%;
-    }
-  }
-
-  // Hide preview on mobile by default
-  .d-editor-preview-wrapper {
-    display: none;
-  }
-
-  .grippie {
-    display: none;
-  }
-
-  // Composer toolbar scroll
-  .d-editor-button-bar {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
-    padding-bottom: var(--mm-space-xs);
-
-    .btn {
-      flex: 0 0 auto;
-    }
-  }
-}
-
-// ============================================================================
-// CUSTOM SEARCH BANNER - Mobile Compact
+// CUSTOM SEARCH BANNER
 // ============================================================================
 .custom-search-banner-wrap {
   --mm-clip-lg: 1em;
-  padding: 16px 14px;
-  margin: 0 0 12px;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
 
-  .custom-search-banner-headline,
-  h1 {
-    font-size: clamp(1.5rem, 5vw, var(--mm-text-home-title));
-    line-height: var(--mm-leading-home-title);
-  }
-
-  p {
-    font-size: var(--mm-text-home-subtitle);
-    line-height: var(--mm-leading-body);
-  }
-
-  // Smaller decorative elements
   &::before {
     width: 120px;
     height: 120px;
@@ -607,136 +121,8 @@ html.admin-area #main-outlet-wrapper {
 }
 
 // ============================================================================
-// FORMS - Mobile Touch Optimized
-// ============================================================================
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-textarea,
-select {
-  font-size: 1em; // Prevents iOS zoom on focus
-  padding: var(--mm-space-sm) var(--mm-space-md);
-  min-height: 3em;
-}
-
-.select-kit:not(.category-breadcrumb .select-kit) {
-  .select-kit-header {
-    min-height: 3em;
-    padding: var(--mm-space-sm) var(--mm-space-md);
-  }
-}
-
-// ============================================================================
-// ALERTS - Mobile
-// ============================================================================
-.alert {
-  padding: 16px 40px 16px 18px;
-  margin: 12px 0;
-  font-size: 0.875em;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  word-break: normal;
-
-  &::before {
-    width: 0.3em;
-  }
-
-  &.alert-success a {
-    color: var(--mm-black);
-    font-weight: 500;
-    text-decoration: underline;
-  }
-
-  .close,
-  button.close {
-    min-width: 44px;
-    min-height: 44px;
-  }
-}
-
-// ============================================================================
-// TAGS - Mobile Wrap
+// TAGS
 // ============================================================================
 .discourse-tag {
   font-size: 0.75em;
-  padding: 0.25em 0.625em;
-  margin: 0.125em;
 }
-
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-// ============================================================================
-// USER CARD - Mobile
-// ============================================================================
-#user-card {
-  width: calc(100vw - var(--mm-space-lg)) !important;
-  max-width: 360px;
-  left: 50% !important;
-  transform: translateX(-50%);
-}
-
-// ============================================================================
-// TOOLTIPS - Disable on Mobile (use tap instead)
-// ============================================================================
-[data-tippy-root] {
-  display: none !important;
-}
-
-// ============================================================================
-// SAFE AREA - iOS Notch Support
-// ============================================================================
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-  .d-header {
-    padding-top: env(safe-area-inset-top);
-  }
-
-  #reply-control.open {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  #create-topic {
-    bottom: calc(var(--mm-space-md) + env(safe-area-inset-bottom));
-  }
-
-  .modal-inner-container .modal-footer {
-    padding-bottom: calc(var(--mm-space-sm) + env(safe-area-inset-bottom));
-  }
-}
-
-// ============================================================================
-// LANDSCAPE MODE
-// ============================================================================
-@media (orientation: landscape) and (max-height: 500px) {
-  .custom-search-banner-wrap {
-    padding: var(--mm-space-md);
-
-    .custom-search-banner-headline,
-    h1 {
-      font-size: clamp(1.375rem, 4vw, var(--mm-text-home-title));
-    }
-  }
-
-  #reply-control.open {
-    .d-editor-button-bar {
-      padding: var(--mm-space-xs) 0;
-    }
-  }
-}
-
-// ============================================================================
-// REDUCE MOTION
-// ============================================================================
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-// Dark mode is always enforced - no media query needed

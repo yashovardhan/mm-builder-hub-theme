@@ -1,55 +1,26 @@
 // ============================================================================
-// MetaMask Builder Hub - Desktop Specific Styles
-// Enhanced layouts and interactions for larger screens
-// ALWAYS DARK MODE
+// MetaMask Builder Hub - Desktop stylesheet
+//
+// Core now serves this file by viewport (media="(width >= 40rem)"), not by
+// device, so it also applies to tablets and narrow windows. Following the
+// official Horizon theme, layout lives in common/ with breakpoint mixins and
+// this file only carries cosmetic, desktop-only polish. Do NOT override core
+// layout here (composer height/position, post grid, sidebar columns, modals):
+// core computes those together and partial overrides break them.
 // ============================================================================
 
 // ============================================================================
-// LAYOUT ADJUSTMENTS (max-width: layout-width.scss via common)
-// ============================================================================
-.wrap {
-  padding: 0 20px;
-}
-
-#main-outlet {
-  padding-top: 12px;
-}
-
-// ============================================================================
-// HEADER ENHANCEMENTS
+// HEADER
 // ============================================================================
 .d-header {
   .wrap {
-    padding: 0 2.5rem;
+    padding-inline: var(--mm-page-padding-x);
   }
 
-  .contents {
-    padding: 0;
-  }
-
-  // Navigation links
   .header-buttons {
     display: flex;
     align-items: center;
     gap: var(--mm-space-lg);
-
-    .btn {
-      padding: 0.5em 1em;
-    }
-  }
-}
-
-// ============================================================================
-// TWO-COLUMN LAYOUT
-// ============================================================================
-// Note: We don't override the default Discourse grid layout.
-// The sidebar should remain on the left as per Discourse default.
-// Only add minimal styling enhancements.
-
-body:not(.admin-interface) {
-  #main-outlet {
-    min-width: 0;
-    width: 100%;
   }
 }
 
@@ -57,7 +28,7 @@ body:not(.admin-interface) {
 // CATEGORY CARDS - Desktop Grid
 // ============================================================================
 .category-boxes {
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 16px;
 
   .category-box {
@@ -70,7 +41,6 @@ body:not(.admin-interface) {
       padding: 1.5rem;
     }
 
-    // Larger decorative shape on desktop
     &::after {
       width: 120px;
     }
@@ -78,123 +48,18 @@ body:not(.admin-interface) {
 }
 
 // ============================================================================
-// TOPIC LIST - Desktop Enhancements
+// TOPIC LIST - excerpt reveal on hover
 // ============================================================================
-.topic-list {
-  border-spacing: 0 6px;
-
-  th {
-    padding: 1rem var(--mm-topic-list-padding-x, 0.875rem);
-    font-size: 0.75em;
-  }
-
-  .topic-list-item {
-    td {
-      padding: 1.25rem var(--mm-topic-list-padding-x, 0.875rem);
-    }
-
-    // Show more info on hover
-    .topic-excerpt {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
-    }
-
-    &:hover .topic-excerpt {
-      max-height: 60px;
-      opacity: 1;
-      margin-top: 4px;
-    }
-  }
+.topic-list .topic-list-item .topic-excerpt {
+  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
 }
 
 // ============================================================================
-// POST LAYOUT
+// SEARCH
 // ============================================================================
-.topic-post {
-  .row {
-    padding: 14px 18px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 14px;
-  }
-
-  .topic-avatar {
-    width: 48px;
-  }
-
-  .topic-body {
-    min-width: 0;
-  }
-}
-
-// ============================================================================
-// SIDEBAR - Desktop Specific
-// ============================================================================
-.sidebar-wrapper {
-  .sidebar-sections {
-    padding: 4px 0;
-  }
-
-  .sidebar-section {
-    margin-bottom: 12px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .sidebar-section-link-wrapper a {
-    padding: 6px 12px;
-  }
-}
-
-// ============================================================================
-// SEARCH - Desktop Full Width
-// ============================================================================
-.search-menu {
-  &.visible {
-    width: 500px;
-    max-width: 90vw;
-  }
-
-  .search-input {
-    font-size: 1em;
-    padding: var(--mm-space-md) var(--mm-space-md);
-  }
-
-  .results {
-    max-height: 60vh;
-    overflow-y: auto;
-  }
-}
-
-// ============================================================================
-// MODAL - Desktop Centered
-// ============================================================================
-.modal-inner-container {
-  min-width: 500px;
-  max-width: 800px;
-  margin: 10vh auto;
-}
-
-// ============================================================================
-// COMPOSER - Desktop Floating
-// ============================================================================
-#reply-control {
-  &.open {
-    height: 50vh;
-    min-height: 22em;
-  }
-
-  .reply-area {
-    padding: var(--mm-space-lg);
-  }
-
-  .d-editor-textarea-wrapper {
-    min-height: 12em;
-  }
+.search-menu .results {
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 // ============================================================================
@@ -206,18 +71,13 @@ body:not(.admin-interface) {
 
   .custom-search-banner-headline,
   h1 {
-    font-size: var(--mm-text-home-title);
-    line-height: var(--mm-leading-home-title);
     max-width: 700px;
   }
 
   p {
-    font-size: var(--mm-text-home-subtitle);
-    line-height: var(--mm-leading-body);
     max-width: 600px;
   }
 
-  // Larger decorative elements
   &::before {
     width: 250px;
     height: 250px;
@@ -234,155 +94,38 @@ body:not(.admin-interface) {
 }
 
 // ============================================================================
-// NAVIGATION - Desktop Horizontal Nav
+// TOOLTIPS
 // ============================================================================
-.category-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: var(--mm-space-xs);
-  margin-bottom: var(--mm-space-lg);
-
-  li {
-    display: flex;
-    align-items: center;
-
-    &:not(:last-child)::after {
-      content: '/';
-      margin-left: var(--mm-space-xs);
-      color: var(--mm-gray-mid);
-    }
-  }
-
-  a {
-    font-size: var(--mm-text-body-sm);
-    color: var(--mm-gray);
-
-    &:hover {
-      color: var(--mm-green);
-    }
-  }
+[data-tippy-root] .tippy-box {
+  max-width: 350px;
 }
 
 // ============================================================================
-// TABLES - Desktop Full Width (exclude admin so Discourse layout is unchanged)
-// ============================================================================
-body:not(.admin-interface) table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--mm-space-lg) 0;
-
-  th, td {
-    padding: var(--mm-space-md);
-    text-align: left;
-    border-bottom: 1px solid var(--mm-gray-dark);
-  }
-
-  th {
-    font-weight: 500;
-    background: var(--primary-low);
-    font-size: var(--mm-text-label);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--primary-medium);
-  }
-
-  tr:hover td {
-    background: var(--hover);
-  }
-}
-
-// ============================================================================
-// TOOLTIPS - Desktop Positioning
-// ============================================================================
-[data-tippy-root] {
-  .tippy-box {
-    max-width: 350px;
-    padding: var(--mm-space-sm) var(--mm-space-md);
-  }
-}
-
-// ============================================================================
-// ANIMATIONS - Desktop Enhanced
+// MOTION — subtle lift on cards/buttons only. (Rows used to translateX on
+// hover, which shifted table cells and caused horizontal scroll jitter.)
 // ============================================================================
 @media (prefers-reduced-motion: no-preference) {
-  .category-box {
-    &:hover {
-      transform: translateY(-4px);
-    }
-  }
-
-  .topic-list-item {
-    &:hover {
-      transform: translateX(4px);
-    }
-  }
-
-  .btn {
-    &:hover {
-      transform: translateY(-2px);
-    }
+  .discourse-no-touch .category-box:hover {
+    transform: translateY(-4px);
   }
 }
 
 // ============================================================================
-// WIDE SCREENS (1920px+)
-// ============================================================================
-@media (min-width: 1920px) {
-  .wrap {
-    padding: 0 var(--mm-space-xl);
-  }
-
-  body:not(.admin-interface) #main-outlet-wrapper {
-    gap: var(--mm-space-xl);
-    padding: 0 var(--mm-space-xl);
-
-    &.has-sidebar {
-      grid-template-columns: 320px 1fr;
-    }
-  }
-
-  .category-boxes {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  }
-}
-
-// ============================================================================
-// MEDIUM SCREENS (1024px - 1440px)
-// ============================================================================
-@media (max-width: 1440px) {
-  .wrap {
-    padding: 0 var(--mm-space-lg);
-  }
-
-  body:not(.admin-interface) #main-outlet-wrapper {
-    gap: var(--mm-space-lg);
-    padding: 0 var(--mm-space-lg);
-
-    &.has-sidebar {
-      grid-template-columns: 240px 1fr;
-    }
-  }
-}
-
-// ============================================================================
-// PRINT STYLES
+// PRINT
 // ============================================================================
 @media print {
   .d-header,
   .sidebar-wrapper,
   #reply-control,
-  .btn,
   .topic-footer-buttons {
     display: none !important;
   }
 
   .topic-post {
     break-inside: avoid;
-    page-break-inside: avoid;
   }
 
   a {
-    color: var(--mm-white) !important;
     text-decoration: underline !important;
   }
 }

@@ -65,6 +65,9 @@
   // Layout (docs --page-padding-x)
   --mm-page-padding-x: 1.6rem;
 
+  // Page gutter (was referenced but never defined — wrapper had zero side padding)
+  --mm-page-padding-x: clamp(0.75rem, 2vw, 1.5rem);
+
   // Header chrome (production: 87px desktop / 69px mobile @ 18px root)
   --mm-header-height-desktop: 4.75rem;
   --mm-header-height-mobile: 3.75rem;

@@ -1,33 +1,173 @@
 // ============================================================================
-// RESPONSIVE — viewport-based (applies on desktop UA + narrow windows)
-// Discourse only loads mobile.scss on mobile user agents; layout fixes belong here.
+// RESPONSIVE — viewport-based, shared by every device.
+// Breakpoints mirror core (see mixins.scss): mobile < 40rem, tablet < 48rem,
+// desktop < 64rem. Core switches the topic list to a single-cell "mobile"
+// row (td.topic-list-data > .pull-left + .topic-item-metadata) when the
+// html element has .mobile-view, so list rules key off that class instead of
+// guessing from width.
 // ============================================================================
-@include mm-bp-max(tablet) {
-  // Collapse community sidebar grid on narrow viewports (not admin panel)
-  body:not(.admin-interface) #main-outlet-wrapper {
-    display: block !important;
-    padding: 0 12px !important;
-    max-width: 100% !important;
 
-    &.has-sidebar {
-      grid-template-columns: 1fr !important;
-    }
+// ----------------------------------------------------------------------------
+// Topic list — mobile (single-cell) layout
+// ----------------------------------------------------------------------------
+// Previously `table-layout: fixed` + fixed-width header cells (posts/likes/
+// bulk-select) sized the only body cell from the header row. For logged-in
+// users with extra header columns that cell collapsed to ~1ch, rendering
+// titles one letter per line.
+.mobile-view .topic-list {
+  table-layout: auto;
+  width: 100%;
+
+  // Only undo the theme's desktop column sizing — core's own mobile row
+  // layout (floated avatar, 78% main-link, pull-right count) then works.
+  .topic-list-item > td.topic-list-data {
+    width: auto;
+    min-width: 0;
+    max-width: none;
   }
 
-  body:not(.admin-interface) #main-outlet-wrapper .sidebar-wrapper,
-  body:not(.admin-interface) #main-outlet-wrapper .sidebar-container,
-  body:not(.admin-interface) #main-outlet-wrapper nav.sidebar {
+  .main-link,
+  .raw-topic-link {
+    overflow-wrap: anywhere;
+  }
+
+  // Category badge + date sit on one nowrap flex line in core; long category
+  // names ("Embedded Wallets (Web3Auth)") pushed rows past 390px screens.
+  .topic-item-stats {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+  }
+
+  .topic-item-stats__category-tags,
+  .topic-item-stats .badge-category__wrapper,
+  .topic-item-stats .badge-category {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .topic-item-stats .badge-category__name {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  // Desktop column widths (posts-map min-width 4.875em …) leak into the
+  // mobile row's .pull-right count and push the table past the viewport.
+  .topic-list-data.posts-map,
+  .topic-list-data.num.posts,
+  .topic-list-data.posts,
+  .topic-list-data.activity,
+  .topic-list-data.num.activity,
+  .pull-right .posts-map,
+  .pull-right .badge-posts {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .topic-excerpt,
+  .topic-excerpt-more {
     display: none !important;
   }
+}
 
-  #main-outlet {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    grid-column: 1 / -1 !important;
+// Posters avatars need room; with the sidebar open they squeeze titles below xl
+@include mm-bp-max(wide) {
+  .desktop-view .topic-list {
+    th.posters,
+    td.posters {
+      display: none;
+    }
   }
+}
 
-  // Header — prevent Sign Up / Log In / Search overlap
+// ----------------------------------------------------------------------------
+// Topic list — desktop-view tables that are narrow (sidebar open, tablets)
+// ----------------------------------------------------------------------------
+@include mm-bp-max(desktop) {
+  .desktop-view .topic-list {
+    // Sidebar + 18px type leave ~460px at 768: tighten cells, drop min widths
+    --mm-topic-list-padding-x: 0.5rem;
+    --mm-topic-list-edge-x: 0.75rem;
+
+    .topic-list-data.posts-map,
+    .topic-list-data.num.posts,
+    .topic-list-data.posts,
+    .topic-list-data.activity,
+    .topic-list-data.num.activity {
+      min-width: 0;
+    }
+
+    .main-link,
+    .raw-topic-link,
+    a.title {
+      overflow-wrap: anywhere;
+    }
+
+    th.views,
+    td.views {
+      display: none;
+    }
+
+  }
+}
+
+@include mm-bp-max(tablet) {
+  .desktop-view .topic-list {
+    th.activity,
+    td.activity {
+      display: none;
+    }
+
+
+    .topic-excerpt,
+    .topic-excerpt-more {
+      display: none !important;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// List navigation row (category/tag dropdowns + nav pills + controls)
+// ----------------------------------------------------------------------------
+@include mm-bp-max(tablet) {
+  .navigation-topics,
+  .categories-list,
+  .list-controls {
+    .navigation-container {
+      flex-wrap: wrap;
+      min-height: 0;
+      gap: 0.5rem;
+    }
+
+    .navigation-container .category-breadcrumb {
+      flex: 1 1 100%;
+      min-width: 0;
+      max-width: 100%;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .navigation-container #navigation-bar {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .navigation-container .navigation-controls {
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Header — keep auth buttons / icons on one line
+// ----------------------------------------------------------------------------
+@include mm-bp-max(tablet) {
   .d-header {
     .contents {
       flex-wrap: nowrap;
@@ -40,88 +180,34 @@
       overflow: hidden;
     }
 
-    .panel {
-      flex: 0 0 auto;
-    }
-
-    .header-buttons,
-    .auth-buttons {
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: center;
-      gap: 0.25em;
-      flex-shrink: 0;
-    }
-
     .title img {
       max-width: 8.5rem;
       height: auto;
       object-fit: contain;
     }
 
+    .panel,
+    .header-buttons,
+    .auth-buttons,
     .d-header-icons {
+      display: flex;
+      flex: 0 0 auto;
       flex-wrap: nowrap;
-      flex-shrink: 0;
-
-      .icon,
-      .btn,
-      a.btn {
-        min-width: var(--mm-touch-target);
-        min-height: var(--mm-touch-target);
-      }
-
-      #search-button {
-        width: var(--mm-header-icon-size-mobile) !important;
-        height: var(--mm-header-icon-size-mobile) !important;
-        min-width: var(--mm-touch-target) !important;
-        min-height: var(--mm-touch-target) !important;
-        padding: 0 !important;
-        border-radius: 50% !important;
-        aspect-ratio: 1 / 1;
-
-        &::after {
-          display: none !important;
-          content: none !important;
-        }
-      }
+      align-items: center;
+      gap: 0.25em;
     }
 
-    #current-user .icon {
+    .d-header-icons .icon {
       min-width: var(--mm-touch-target);
       min-height: var(--mm-touch-target);
     }
   }
+}
 
-  .navigation-topics,
-  .categories-list,
-  .list-controls {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-
-    .navigation-container {
-      flex-wrap: wrap;
-      min-height: 0;
-      gap: 0.25rem;
-    }
-
-    .navigation-container .category-breadcrumb,
-    .navigation-container #navigation-bar {
-      flex: 1 1 auto;
-      width: auto;
-      max-width: 100%;
-      min-width: 0;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      flex-wrap: nowrap;
-      max-height: var(--mm-control-height);
-    }
-
-    .navigation-container .navigation-controls {
-      flex: 0 0 auto;
-    }
-  }
-
-  // Profile / activity — contain wide tables and scrollable tab nav
+// ----------------------------------------------------------------------------
+// Profile / activity — contain wide tables and scrollable tab nav
+// ----------------------------------------------------------------------------
+@include mm-bp-max(tablet) {
   .user-main,
   .user-content,
   .new-user-wrapper {
@@ -129,20 +215,31 @@
     min-width: 0;
   }
 
-  .new-user-summary {
-    overflow-x: auto;
-    max-width: 100%;
-
-    table {
-      width: 100%;
-      max-width: 100%;
-      table-layout: fixed;
-    }
+  // Profile summary "Top categories" table — let long category badges wrap
+  .top-sub-section table {
+    width: 100%;
 
     td,
     th {
       overflow-wrap: anywhere;
-      word-break: break-word;
+      min-width: 0;
+    }
+
+    .badge-category__wrapper,
+    .badge-category,
+    .badge-category__name {
+      white-space: normal;
+      min-width: 0;
+    }
+  }
+
+  .new-user-summary {
+    overflow-x: auto;
+    max-width: 100%;
+
+    td,
+    th {
+      overflow-wrap: anywhere;
     }
   }
 
@@ -150,15 +247,14 @@
   .user-nav .nav-pills {
     max-width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
       display: none;
     }
 
-    > li > a,
-    > li {
+    > li,
+    > li > a {
       flex-shrink: 0;
       white-space: nowrap;
     }
@@ -167,124 +263,20 @@
   .custom-search-banner-wrap {
     padding: 16px 14px;
     margin: 0 0 12px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
 
     .custom-search-banner-headline,
     h1 {
       font-size: clamp(1.5rem, 5vw, var(--mm-text-home-title));
-      line-height: var(--mm-leading-home-title);
-    }
-  }
-
-  // Topic list — compact rows (mobile.scss only loads on mobile UA)
-  .topic-list {
-    border-spacing: 0 2px;
-    table-layout: fixed;
-    width: 100%;
-
-    th.posters,
-    th.views,
-    th.activity,
-    td.posters,
-    td.views,
-    td.activity {
-      display: none !important;
-    }
-
-    th {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.6875em;
-    }
-
-    td.main-link,
-    .topic-list-data.main-link {
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    td.posts-map,
-    td.num.posts,
-    .topic-list-data.posts-map,
-    .topic-list-data.num.posts {
-      width: auto;
-      min-width: 0;
-      max-width: 4.5em;
-      padding-right: 0.25rem;
-    }
-
-    .age.activity,
-    .relative-date.age.activity,
-    td.num.activity.last {
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .topic-list-item {
-      td.main-link {
-        padding-bottom: 0.375rem;
-      }
-
-      td.num.posts,
-      td.posts-map {
-        padding-top: 0;
-        padding-bottom: 0.5rem;
-        font-size: var(--mm-text-body-sm);
-      }
-
-      .link-bottom-line .badge-category__wrapper {
-        margin-bottom: 0.25rem;
-      }
-
-      .topic-excerpt,
-      .topic-excerpt-more {
-        display: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        max-height: 0 !important;
-        overflow: hidden !important;
-      }
     }
   }
 
   .alert {
     padding: 16px 40px 16px 18px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    word-break: normal;
 
     &.alert-success a {
       color: var(--mm-black);
       font-weight: 500;
       text-decoration: underline;
-    }
-
-    .close,
-    button.close {
-      min-width: 44px;
-      min-height: 44px;
-    }
-  }
-}
-
-// Tablet landscape → narrow desktop: hide poster column (avatars shown in main-link on small screens)
-@include mm-bp-max(desktop) {
-  .topic-list {
-    th.posters,
-    td.posters {
-      display: none !important;
-      width: 0 !important;
-      min-width: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-    }
-
-    td.main-link {
-      max-width: none !important;
     }
   }
 }
