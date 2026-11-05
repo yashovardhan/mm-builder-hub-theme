@@ -190,8 +190,10 @@
     }
   }
 
-  // Icon-only button - circular design (exclude dismiss buttons on notices/banners)
-  &-icon:not(.select-kit-header):not(.btn-flat):not(.modal-close):not(.close):not(.dismiss-link):not([class*="dismiss"]) {
+  // Icon-only button - circular design (exclude dismiss buttons on notices/banners).
+  // Core puts .btn-icon on some labelled buttons too (e.g. the topic footer
+  // notifications trigger "Normal"), so key off .no-text = truly icon-only.
+  &-icon.no-text:not(.select-kit-header):not(.btn-flat):not(.modal-close):not(.close):not(.dismiss-link):not([class*="dismiss"]) {
     border-radius: 50%;
     background: var(--mm-black-light);
     color: var(--mm-white);
@@ -909,9 +911,11 @@
   line-height: 1.6 !important;
   margin-top: 0.5em;
 
+  // -webkit-box (not block) or the 2-line clamp silently does nothing
   @include mm-bp(tablet) {
-    display: block !important;
+    display: -webkit-box !important;
     @include mm-line-clamp(2);
+    max-width: 40rem;
   }
 
   @include mm-bp-max(tablet) {
@@ -927,15 +931,8 @@
   }
 }
 
-// Expand excerpt on hover (desktop/tablet only)
+// (Hover-to-expand removed: it made rows jump height under the cursor.)
 @include mm-bp(tablet) {
-  .topic-list-item:hover .topic-excerpt {
-    -webkit-line-clamp: unset !important;
-    line-clamp: unset !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
   .topic-excerpt-more {
     color: var(--mm-green);
     font-weight: 500;
@@ -1052,8 +1049,22 @@
   border-radius: 0;
   margin-bottom: 12px;
   padding: 0;
-  transition: all calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
-  @include mm-clip-card(1.2em);
+  // Card hugs core's post width instead of stretching under the timeline
+  max-width: calc(
+    var(--topic-avatar-width) + var(--topic-body-width) +
+      (var(--topic-body-width-padding) * 2) + 2rem
+  );
+  transition: background-color calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+
+  // Small actions ("closed", "pinned" …) and time gaps stay plain rows
+  &:has(> .small-action),
+  &:has(.time-gap) {
+    background: transparent;
+
+    &::before {
+      display: none;
+    }
+  }
 
   .row {
     padding: 12px 16px;
@@ -1073,13 +1084,8 @@
     @include mm-accent-bar(var(--mm-purple), 3px);
   }
 
-  &:hover {
-    filter: drop-shadow(var(--mm-shadow-sm));
+  .discourse-no-touch &:hover {
     background: var(--mm-black-mid);
-
-    &::before {
-      opacity: 1;
-    }
   }
 }
 
@@ -1201,7 +1207,7 @@ textarea {
 }
 
 // Textarea specific - use rounded rectangle instead of pill
-textarea {
+textarea:not(.d-editor-input) {
   border-radius: 0.75em;
   min-height: 6rem;
   resize: vertical;
@@ -1212,7 +1218,6 @@ textarea {
   border: 1px solid var(--mm-gray-dark);
   border-radius: 0;
   background: var(--mm-black-light);
-  @include mm-clip-card(var(--mm-clip-sm));
 
   &:focus-within {
     border-color: var(--mm-green);
@@ -1251,7 +1256,6 @@ textarea {
     border: 1px solid var(--mm-gray-dark);
     border-radius: 0;
     background: var(--primary-low);
-    @include mm-clip-card(var(--mm-clip-sm));
     box-shadow: var(--mm-shadow-lg);
     max-height: 300px;
     overflow-y: auto;
@@ -1378,8 +1382,13 @@ textarea {
 // Layout only — keep Discourse background/colours; undo global .btn pill styles.
 // Controls live in .floated-button (current core) or .floated-buttons (legacy).
 #banner {
-  display: flex;
-  flex-direction: column;
+  // Core caps the banner at 20vh and scrolls. The close button used to sit on
+  // its own row (order:-1), wasting that height and cutting off the last line.
+  position: relative;
+
+  #banner-content {
+    padding-right: calc(var(--mm-touch-target) + 0.5rem);
+  }
 
   a {
     color: var(--mm-white);
@@ -1395,13 +1404,13 @@ textarea {
   .floated-button,
   .floated-buttons {
     float: none !important;
-    order: -1;
-    align-self: flex-end;
-    margin-left: auto;
-    flex-shrink: 0;
-    margin-bottom: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    margin: 0;
     display: flex;
     align-items: center;
+    z-index: 1;
 
     > .btn {
       padding-top: 0;

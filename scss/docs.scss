@@ -35,10 +35,34 @@
   }
 }
 
-// Topic footer buttons
-.topic-footer-buttons {
-  .btn {
-    margin-right: var(--mm-space-xs);
+// Topic footer buttons — core lays these out with flex + gap; keep the pills
+// compact so Share / Bookmark / Flag / Reply fit one row next to the timeline.
+#topic-footer-buttons {
+  .topic-footer-main-buttons {
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .topic-footer-main-buttons .btn,
+  .topic-notifications-button .btn {
+    height: auto;
+    min-height: 2.5rem;
+    padding: 0.5em 1em;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .topic-notifications-button {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .reason {
+      min-width: 0;
+      flex: 1 1 16rem;
+      color: var(--primary-medium);
+    }
   }
 }
 

@@ -1,39 +1,39 @@
 // Breakpoints and shared mixins
 // ============================================================================
-// RESPONSIVE BREAKPOINTS - Production-ready breakpoint system
+// RESPONSIVE BREAKPOINTS — mirror core's lib/viewport scale
+// (sm 40rem / md 48rem / lg 64rem). Core loads mobile_theme below sm and
+// desktop_theme from sm upward, so theme breakpoints must line up with these
+// or narrow-desktop and tablet widths receive conflicting rules.
 // ============================================================================
-$mm-tablet: 769px;
-$mm-desktop: 1025px;
-$mm-tablet-max: calc(#{$mm-tablet} - 1px);
-$mm-desktop-max: calc(#{$mm-desktop} - 1px);
+$mm-mobile: 40rem; // core sm — single-column "mobile view" below this
+$mm-tablet: 48rem; // core md
+$mm-desktop: 64rem; // core lg
+$mm-wide: 80rem; // core xl
 
-// Min-width breakpoints (mobile-first)
-@mixin mm-bp($class) {
-  @if $class ==tablet {
-    @media screen and (min-width: $mm-tablet) {
-      @content;
-    }
+@function mm-bp-value($class) {
+  @if $class == mobile {
+    @return $mm-mobile;
+  } @else if $class == tablet {
+    @return $mm-tablet;
+  } @else if $class == desktop {
+    @return $mm-desktop;
+  } @else if $class == wide {
+    @return $mm-wide;
   }
+  @error "Unknown breakpoint: #{$class}";
+}
 
-  @else if $class ==desktop {
-    @media screen and (min-width: $mm-desktop) {
-      @content;
-    }
+// Min-width (mobile-first): width >= bp
+@mixin mm-bp($class) {
+  @media (width >= #{mm-bp-value($class)}) {
+    @content;
   }
 }
 
-// Max-width breakpoints (for mobile overrides)
+// Max-width: width < bp
 @mixin mm-bp-max($class) {
-  @if $class ==tablet {
-    @media screen and (max-width: $mm-tablet-max) {
-      @content;
-    }
-  }
-
-  @else if $class ==desktop {
-    @media screen and (max-width: $mm-desktop-max) {
-      @content;
-    }
+  @media (width < #{mm-bp-value($class)}) {
+    @content;
   }
 }
 
