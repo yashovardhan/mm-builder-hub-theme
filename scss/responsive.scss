@@ -70,8 +70,10 @@
   }
 }
 
-// Posters avatars need room; with the sidebar open they squeeze titles below xl
-@include mm-bp-max(wide) {
+// Posters: at full width core's 146px column is kept (see components.scss).
+// Below lg core collapses it to one avatar, but with the sidebar + 18px type
+// that still pushes the table ~25px past the content column at 768 — hide it.
+@include mm-bp-max(desktop) {
   .desktop-view .topic-list {
     th.posters,
     td.posters {
@@ -219,8 +221,7 @@
   .top-sub-section table {
     width: 100%;
 
-    td,
-    th {
+    td {
       overflow-wrap: anywhere;
       min-width: 0;
     }

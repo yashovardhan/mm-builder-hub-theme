@@ -284,11 +284,12 @@ body .custom-search-banner-wrap {
 // ============================================================================
 .avatar {
   border-radius: 50%;
-  border: 2px solid transparent;
-  transition: border-color calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
+  // Ring via box-shadow, not border: a border made every avatar 4px larger
+  // than its width/height attributes (48 → 52) and shifted it off core's grid.
+  transition: box-shadow calc(var(--mm-motion) * var(--mm-motion-speed)) var(--mm-gentle-ease);
 
   &:hover {
-    border-color: var(--mm-green);
+    box-shadow: 0 0 0 2px var(--mm-green);
   }
 }
 
@@ -366,7 +367,9 @@ body .custom-search-banner-wrap {
 .user-card {
   background: var(--mm-black-light);
   border: 1px solid var(--mm-gray-dark);
-  @include mm-clip-card(var(--mm-clip-md));
+  // No clip-path: core lifts the avatar above the card (negative margin),
+  // and clipping cut its top off.
+  border-radius: var(--d-border-radius-large, 8px);
   box-shadow: var(--mm-shadow-lg);
 
   .user-info {
@@ -413,11 +416,18 @@ body .custom-search-banner-wrap {
 }
 
 #reply-control {
-  border: 1px solid var(--mm-gray-dark);
   border-radius: 0;
   background: var(--mm-black-light);
-  box-shadow: var(--mm-shadow-lg);
   font-size: var(--mm-text-body);
+
+  // Only frame the composer when it is visible — the closed composer is a
+  // 2px fixed strip, and its border/shadow drew a line across every page.
+  &.open,
+  &.draft,
+  &.saving {
+    border: 1px solid var(--mm-gray-dark);
+    box-shadow: var(--mm-shadow-lg);
+  }
 
   .d-editor-input,
   .d-editor-preview {

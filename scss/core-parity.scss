@@ -1,0 +1,225 @@
+// ============================================================================
+// CORE PARITY — targeted fixes from the page-by-page UX audit against the
+// official Discourse theme (meta.discourse.org). Imported last so these hand
+// layout back to core where the brand styles over-reached.
+// ============================================================================
+
+:root {
+  // Post card = core's post column + the card's own 1rem side padding.
+  // Map, footer buttons and suggested topics share it so their edges line up.
+  --mm-post-card-width: calc(
+    var(--topic-avatar-width) + var(--topic-body-width) +
+      (var(--topic-body-width-padding) * 2) + 2rem
+  );
+  --mm-radius-panel: 0.75rem;
+}
+
+// ----------------------------------------------------------------------------
+// Topic page
+// ----------------------------------------------------------------------------
+.topic-map,
+.topic-map.--bottom,
+#topic-footer-buttons,
+.more-topics__container {
+  max-width: var(--mm-post-card-width);
+}
+
+// Global .btn sizing gave the stat triggers a fixed 2.625rem height, which
+// cut the "views / links / users" labels in half.
+.topic-map .topic-map__stats .btn {
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+// Composer toolbar + window controls: compact square buttons like core,
+// not the 47px bordered circles used for standalone icon buttons.
+.d-editor-button-bar .btn,
+#reply-control .composer-controls .btn {
+  height: auto;
+  min-height: 0;
+  padding: 0.45em 0.6em;
+  border: 0;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--mm-gray);
+  box-shadow: none;
+  transform: none;
+
+  .d-icon {
+    margin: 0;
+    color: currentColor;
+  }
+
+  @include mm-hover {
+    background: var(--mm-black-mid);
+    color: var(--mm-white);
+    transform: none;
+  }
+}
+
+// New-topic title: a rounded field, not a full-bleed pill clipped by the
+// screen edges; category/tag choosers share one background.
+#reply-control {
+  #reply-title {
+    border-radius: 0.5rem;
+  }
+
+  .select-kit .select-kit-header {
+    background: var(--mm-black-light);
+    border-radius: 0.5rem;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Topic list
+// ----------------------------------------------------------------------------
+// The Solved plugin's "unsolved" hollow square read as a broken glyph on most
+// rows; official themes show nothing for unsolved topics.
+.topic-list .topic-status.--unsolved {
+  display: none;
+}
+
+// ----------------------------------------------------------------------------
+// Header
+// ----------------------------------------------------------------------------
+// Desktop Log In: the user icon is black on a transparent pill (invisible) but
+// still took space, leaving a lopsided gap after the label.
+@include mm-bp(tablet) {
+  .d-header .login-button .d-icon {
+    display: none;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Sidebar
+// ----------------------------------------------------------------------------
+#main-outlet-wrapper .sidebar-wrapper {
+  // Core's footer fades to these; they defaulted to page black, drawing a
+  // hard dark band over the sidebar card.
+  --d-sidebar-background: var(--mm-black-light);
+  --d-sidebar-footer-fade: var(--mm-black-light);
+}
+
+.sidebar-footer-wrapper {
+  background: var(--mm-black-light);
+}
+
+// Section headings were centred (inherited .btn text-align) and pushed right
+.sidebar-section-header-wrapper .sidebar-section-header {
+  justify-content: space-between;
+  text-align: start;
+
+  .sidebar-section-header-text {
+    flex: 1 1 auto;
+    text-align: start;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Banner — core caps it at 20vh with an inner scroll, which cut the text
+// mid-sentence on tablets and phones.
+// ----------------------------------------------------------------------------
+#banner {
+  max-height: none;
+  overflow: visible;
+}
+
+// ----------------------------------------------------------------------------
+// Static pages (About / FAQ / Privacy) and profile tabs on small screens
+// ----------------------------------------------------------------------------
+@include mm-bp-max(tablet) {
+  // Privacy tab was pushed off-screen with no scroll hint
+  .body-page > .nav-pills {
+    flex-wrap: wrap;
+
+    > li > a {
+      padding: 0 0.625rem;
+    }
+  }
+
+  // Scrollable profile tab rows: fade the edge so the overflow is discoverable
+  .user-nav .nav-pills,
+  .user-primary-navigation .nav-pills {
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+}
+
+// About stats row overflowed at 768px (page scrolled 105px sideways)
+.about__stats {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+// ----------------------------------------------------------------------------
+// User summary — two 50% columns collide beside the sidebar below ~60rem
+// ----------------------------------------------------------------------------
+@media (width < 60rem) {
+  .user-summary-page .top-sub-section {
+    width: 100%;
+  }
+}
+
+// Table headings broke mid-word ("Topi/cs"); only let category cells wrap
+.top-sub-section table th {
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
+// ----------------------------------------------------------------------------
+// Users directory — 18px root pushed the last column off-screen
+// ----------------------------------------------------------------------------
+.directory-table {
+  font-size: var(--font-down-1);
+}
+
+// ----------------------------------------------------------------------------
+// User menu (notifications) — bottom buttons overlapped on mobile
+// ----------------------------------------------------------------------------
+.user-menu .panel-body-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+// ----------------------------------------------------------------------------
+// Keyboard focus — several rules remove outlines; restore a visible ring for
+// keyboard users only.
+// ----------------------------------------------------------------------------
+.sidebar-section-link:focus-visible,
+.sidebar-section-header:focus-visible,
+.d-header a:focus-visible,
+.menu-panel a:focus-visible,
+.topic-list a.title:focus-visible,
+.nav-pills > li > a:focus-visible {
+  outline: 2px solid var(--mm-green);
+  outline-offset: -2px;
+}
+
+.search-input:focus-within,
+.search-input--welcome-banner:focus-within {
+  outline: 2px solid var(--mm-green);
+  outline-offset: 2px;
+}
+
+// ----------------------------------------------------------------------------
+// Polish
+// ----------------------------------------------------------------------------
+// Category card title links were 21px tall on phones (touch target)
+@include mm-bp-max(mobile) {
+  .category-box-heading a.parent-box-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+}
+
+// Unread notifications: light tint instead of a solid olive block
+.user-menu .menu-panel .unread,
+.user-menu .menu-panel li.unread {
+  background-color: var(--mm-green-a10, rgba(185, 243, 2, 0.1));
+}

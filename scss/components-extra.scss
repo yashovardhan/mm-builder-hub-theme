@@ -63,8 +63,9 @@
     border: 1px solid var(--mm-gray-dark);
     box-shadow: var(--mm-shadow-lg);
     width: calc(100% - 1.34em);
-    min-width: auto;
-    @include mm-clip-card(1.2em);
+    // Rounded, not clip-path: clipping cut off dropdowns, autocomplete and
+    // the shadow of anything that extends past the modal box.
+    border-radius: var(--mm-radius-panel);
   }
 
   &__header {
@@ -138,7 +139,7 @@
   border-radius: 0;
   box-shadow: var(--mm-shadow-lg);
   max-height: 80vh;
-  @include mm-clip-card(1.2em);
+  border-radius: var(--mm-radius-panel);
 
   .modal-header {
     display: flex;
@@ -199,9 +200,9 @@
 .menu-panel {
   background: var(--mm-black-light);
   border: 1px solid var(--mm-gray-dark);
-  border-radius: 0;
+  // Rounded, not clip-path: the clip removed the drop shadow and cut rows
+  border-radius: var(--mm-radius-panel);
   box-shadow: var(--mm-shadow-lg);
-  @include mm-clip-card(var(--mm-clip-md));
 
   .widget-link,
   .categories-link {
@@ -267,13 +268,14 @@
     display: flex;
     align-items: center;
     min-width: 0;
-    overflow: hidden;
     box-sizing: border-box;
     border: 1px solid var(--mm-gray-dark);
-    border-radius: 0;
+    border-radius: var(--mm-radius-panel);
+    // Inset so the text doesn't touch the border (input itself is padding: 0)
+    padding-inline: 0.75rem;
+    gap: 0.5rem;
     background: var(--mm-black-light);
     color: var(--mm-white);
-    @include mm-clip-card(var(--mm-clip-sm));
 
     .search-term__input,
     input[type="text"],
@@ -304,9 +306,8 @@
 
   .results {
     border: 1px solid var(--mm-gray-dark);
-    border-radius: 0;
+    border-radius: var(--mm-radius-panel);
     background: var(--mm-black-light);
-    @include mm-clip-card(var(--mm-clip-md));
     box-shadow: var(--mm-shadow-lg);
   }
 
