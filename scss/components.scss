@@ -730,11 +730,11 @@
       padding-left: var(--mm-topic-list-edge-x);
     }
 
-    // Metadata columns — fixed widths so activity does not absorb extra space
+    // Metadata columns shrink-to-fit (width: 1% + nowrap) so the title column
+    // gets all remaining space. Fixed em widths (activity was 10em = 180px at
+    // the production 18px root) pushed the table past the viewport on tablets.
     &.posters {
-      width: 9.125em;
-      max-width: 9.125em;
-      min-width: 9.125em;
+      width: 1%;
       white-space: nowrap;
       vertical-align: middle;
       overflow: hidden; // contain floated avatars
@@ -752,28 +752,21 @@
 
     &.posts-map,
     &.num.posts,
-    &.posts {
-      width: var(--d-topic-list-likes-views-posts-width, 4.875em);
-      max-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
-      min-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
-      white-space: nowrap;
-      text-align: center;
-    }
-
+    &.posts,
     &.views,
-    &.num.views {
-      width: var(--d-topic-list-likes-views-posts-width, 4.875em);
-      max-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
-      min-width: var(--d-topic-list-likes-views-posts-width, 4.875em);
+    &.num.views,
+    &.likes,
+    &.op-likes {
+      width: 1%;
+      min-width: 4em;
       white-space: nowrap;
       text-align: center;
     }
 
     &.activity,
     &.num.activity {
-      width: 10em;
-      max-width: 10em;
-      min-width: 10em;
+      width: 1%;
+      min-width: 5em;
       white-space: nowrap;
       text-align: right;
       padding-right: var(--mm-topic-list-edge-x);

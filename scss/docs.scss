@@ -43,13 +43,41 @@
     align-items: center;
   }
 
-  .topic-footer-main-buttons .btn,
-  .topic-notifications-button .btn {
+  .topic-footer-main-buttons .btn:not(.no-text),
+  .topic-notifications-button .btn:not(.no-text) {
     height: auto;
     min-height: 2.5rem;
     padding: 0.5em 1em;
     margin: 0;
     white-space: nowrap;
+  }
+
+  // Icon-only buttons — equal circles so the row fits one line. On small
+  // screens core hides every footer label (labels stay in the DOM), so all
+  // footer buttons become icon circles there.
+  .topic-footer-main-buttons .btn.no-text,
+  .topic-notifications-button .btn.no-text,
+  .mobile-view & .topic-footer-main-buttons .btn,
+  .mobile-view & .topic-notifications-button .btn {
+    flex: 0 0 auto;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    justify-content: center;
+    gap: 0;
+    overflow: hidden;
+
+    .d-icon {
+      margin: 0;
+    }
+
+    .d-button-label {
+      display: none;
+    }
   }
 
   .topic-notifications-button {

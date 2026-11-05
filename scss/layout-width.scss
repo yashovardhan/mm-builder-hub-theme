@@ -33,6 +33,12 @@ html body:not(.admin-interface) #main-outlet-wrapper {
   }
 }
 
+// Admin keeps core's own width; just give it the same page gutter
+html.admin-area #main-outlet-wrapper {
+  padding-inline: var(--mm-page-padding-x);
+  box-sizing: border-box;
+}
+
 @if $layout_width == "full" {
   // Core caps .wrap (and .has-sidebar-page .wrap) — undo both, like Horizon
   html .wrap,

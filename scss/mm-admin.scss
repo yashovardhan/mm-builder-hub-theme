@@ -1,5 +1,9 @@
 // ============================================================================
 // ADMIN — minimal overrides (layout is Discourse-native)
+//
+// Named mm-admin (not admin) on purpose: on Discourse the theme compiler
+// resolves `@import "admin"` to core's admin.scss bundle, which shipped all of
+// core's admin CSS on every forum page and silently skipped this file.
 // ============================================================================
 
 // html.admin-area + body.admin-interface; admin nav uses .sidebar-wrapper .admin-panel
@@ -86,18 +90,11 @@ html.admin-area {
     }
   }
 
-  .db-search-table,
-  .admin-contents table {
-    max-width: 100%;
-    table-layout: fixed;
-    width: 100%;
-  }
-
+  // No table-layout: fixed / max-width: 0 here — that collapses columns to
+  // equal widths (same failure as the old mobile topic list).
   .db-search-table td,
   .admin-contents table td {
     overflow-wrap: anywhere;
-    word-break: break-word;
-    max-width: 0;
   }
 
   .admin-contents .users-list-container {
@@ -158,7 +155,6 @@ html.admin-area {
 .topic-map {
   background: var(--mm-black-light);
   border: 1px solid var(--mm-gray-dark);
-  @include mm-clip-card(var(--mm-clip-sm));
   padding: var(--mm-space-md);
 }
 
@@ -175,6 +171,3 @@ html.admin-area {
     color: var(--mm-gray);
   }
 }
-
-// Topic excerpt - removed duplicate (see line 1199)
-
